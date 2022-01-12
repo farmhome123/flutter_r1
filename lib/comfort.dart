@@ -2,7 +2,7 @@ import 'dart:convert' show utf8;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
-import 'package:page_transition/page_transition.dart';
+
 import 'package:torqueair/Navbar.dart';
 import 'package:torqueair/eco.dart';
 import 'package:torqueair/page1.dart';
@@ -15,6 +15,7 @@ import 'package:torqueair/page6.dart';
 import 'package:torqueair/page7.dart';
 import 'package:torqueair/page8.dart';
 import 'package:torqueair/page9.dart';
+import 'package:torqueair/settingble.dart';
 import 'package:torqueair/sport2.dart';
 
 class comfort extends StatefulWidget {
@@ -77,7 +78,8 @@ class _comfortState extends State<comfort> {
           IconButton(
             icon: Icon(Icons.bluetooth),
             onPressed: () {
-              _showDialog(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SettingBle()));
             },
           )
         ],
@@ -152,19 +154,16 @@ class _comfortState extends State<comfort> {
                                   children: [
                                     IconButton(
                                       onPressed: () {
-                                            if (characteristic != null) {
-                                        widget.characteristic!
-                                            .write(utf8.encode('RY0102#'));
-                                            }
+                                        if (characteristic != null) {
+                                          widget.characteristic!
+                                              .write(utf8.encode('RY0102#'));
+                                        }
                                         Navigator.push(
                                             context,
-                                            PageTransition(
-                                                type: PageTransitionType
-                                                    .leftToRight,
-                                                child: page2(
-                                                  characteristic:
-                                                      widget.characteristic,
-                                                )));
+                                            MaterialPageRoute(
+                                                builder: (context) => page2(
+                                                    characteristic:
+                                                        characteristic)));
                                       },
                                       icon: Image.asset('lib/item/SPORT1.png'),
                                       iconSize: 60,
@@ -185,18 +184,17 @@ class _comfortState extends State<comfort> {
                                     ),
                                     IconButton(
                                       padding: EdgeInsets.only(left: 10),
-                                      onPressed: () {    if (characteristic != null) {
-                                        widget.characteristic!
-                                            .write(utf8.encode('RY0103#'));}
+                                      onPressed: () {
+                                        if (characteristic != null) {
+                                          widget.characteristic!
+                                              .write(utf8.encode('RY0103#'));
+                                        }
                                         Navigator.push(
                                             context,
-                                            PageTransition(
-                                                type: PageTransitionType
-                                                    .leftToRight,
-                                                child: sport2(
-                                                  characteristic:
-                                                      widget.characteristic,
-                                                )));
+                                            MaterialPageRoute(
+                                                builder: (context) => sport2(
+                                                    characteristic:
+                                                        characteristic)));
                                       },
                                       icon: Image.asset('lib/item/SPORT+1.png'),
                                       iconSize: 60,
@@ -208,18 +206,17 @@ class _comfortState extends State<comfort> {
                                       MainAxisAlignment.spaceAround,
                                   children: [
                                     IconButton(
-                                      onPressed: () {    if (characteristic != null) {
-                                        widget.characteristic!
-                                            .write(utf8.encode('RY0100#'));}
+                                      onPressed: () {
+                                        if (characteristic != null) {
+                                          widget.characteristic!
+                                              .write(utf8.encode('RY0100#'));
+                                        }
                                         Navigator.push(
                                             context,
-                                            PageTransition(
-                                                type: PageTransitionType
-                                                    .leftToRight,
-                                                child: eco(
-                                                  characteristic:
-                                                      widget.characteristic,
-                                                )));
+                                            MaterialPageRoute(
+                                                builder: (context) => eco(
+                                                    characteristic:
+                                                        characteristic)));
                                       },
                                       icon: Image.asset('lib/item/ECO1.png'),
                                       iconSize: 60,
@@ -255,11 +252,15 @@ class _comfortState extends State<comfort> {
               children: [
                 IconButton(
                   onPressed: () {
-                      if (characteristic != null) {
-                    widget.characteristic!.write(utf8.encode('RY00#'));}
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => page1(
-                              characteristic: widget.characteristic,
-                            )));
+                    if (characteristic != null) {
+                      widget.characteristic!.write(utf8.encode('RY00#'));
+                    }
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => page1(
+                                  characteristic: widget.characteristic,
+                                )));
                   },
                   icon: Image.asset('lib/img/icon1.png'),
                   iconSize: 70,
@@ -269,20 +270,21 @@ class _comfortState extends State<comfort> {
                     if (characteristic != null) {
                       widget.characteristic!.write(utf8.encode('RY01#'));
                     }
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => page2(
-                                    characteristic: widget.characteristic,
-                                  )));
-                    
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => page2(
+                                  characteristic: widget.characteristic,
+                                )));
                   },
                   icon: Image.asset('lib/img/icon2.1.png'),
                   iconSize: 70,
                 ),
                 IconButton(
-                  onPressed: () {  if (characteristic != null) {
-                    widget.characteristic!.write(utf8.encode('RY02#'));}
+                  onPressed: () {
+                    if (characteristic != null) {
+                      widget.characteristic!.write(utf8.encode('RY02#'));
+                    }
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -296,9 +298,9 @@ class _comfortState extends State<comfort> {
                 ),
                 IconButton(
                   onPressed: () {
-                      if (characteristic != null) {
-                    widget.characteristic!.write(utf8.encode('RB#'));
-                      }
+                    if (characteristic != null) {
+                      widget.characteristic!.write(utf8.encode('RB#'));
+                    }
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -320,9 +322,9 @@ class _comfortState extends State<comfort> {
                 ),
                 IconButton(
                   onPressed: () {
-                      if (characteristic != null) {
-                    widget.characteristic!.write(utf8.encode('RY04#'));
-                      }
+                    if (characteristic != null) {
+                      widget.characteristic!.write(utf8.encode('RY04#'));
+                    }
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -335,9 +337,9 @@ class _comfortState extends State<comfort> {
                 ),
                 IconButton(
                   onPressed: () {
-                      if (characteristic != null) {
-                    widget.characteristic!.write(utf8.encode('RY05#'));
-                      }
+                    if (characteristic != null) {
+                      widget.characteristic!.write(utf8.encode('RY05#'));
+                    }
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -350,8 +352,9 @@ class _comfortState extends State<comfort> {
                 ),
                 IconButton(
                   onPressed: () {
-                      if (characteristic != null) {
-                    widget.characteristic!.write(utf8.encode('RY06#'));}
+                    if (characteristic != null) {
+                      widget.characteristic!.write(utf8.encode('RY06#'));
+                    }
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -367,8 +370,10 @@ class _comfortState extends State<comfort> {
                   iconSize: 70,
                 ),
                 IconButton(
-                  onPressed: () {  if (characteristic != null) {
-                    widget.characteristic!.write(utf8.encode('RY07#'));}
+                  onPressed: () {
+                    if (characteristic != null) {
+                      widget.characteristic!.write(utf8.encode('RY07#'));
+                    }
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -382,8 +387,10 @@ class _comfortState extends State<comfort> {
                   iconSize: 70,
                 ),
                 IconButton(
-                  onPressed: () {  if (characteristic != null) {
-                    widget.characteristic!.write(utf8.encode('RY08#'));}
+                  onPressed: () {
+                    if (characteristic != null) {
+                      widget.characteristic!.write(utf8.encode('RY08#'));
+                    }
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -396,8 +403,10 @@ class _comfortState extends State<comfort> {
                   iconSize: 70,
                 ),
                 IconButton(
-                  onPressed: () {  if (characteristic != null) {
-                      widget.characteristic!.write(utf8.encode('RY00#'));}
+                  onPressed: () {
+                    if (characteristic != null) {
+                      widget.characteristic!.write(utf8.encode('RY00#'));
+                    }
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -415,7 +424,7 @@ class _comfortState extends State<comfort> {
                 ),
               ],
             ),
-           ],
+          ],
         ),
       ),
     );

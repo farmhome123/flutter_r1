@@ -16,6 +16,7 @@ import 'package:torqueair/page6.dart';
 import 'package:torqueair/page7.dart';
 import 'package:torqueair/page8.dart';
 import 'package:torqueair/page9.dart';
+import 'package:torqueair/settingble.dart';
 
 class sport2 extends StatefulWidget {
   final List<int>? valueTx;
@@ -75,7 +76,8 @@ class _sport2State extends State<sport2> {
           IconButton(
             icon: Icon(Icons.bluetooth),
             onPressed: () {
-              _showDialog(context);
+             Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SettingBle()));
             },
           )
         ],
@@ -146,18 +148,17 @@ class _sport2State extends State<sport2> {
                                       MainAxisAlignment.spaceAround,
                                   children: [
                                     IconButton(
-                                      onPressed: () {    if (characteristic != null) {
-                                        widget.characteristic!
-                                            .write(utf8.encode('RY0102#'));}
+                                      onPressed: () {
+                                        if (characteristic != null) {
+                                          widget.characteristic!
+                                              .write(utf8.encode('RY0102#'));
+                                        }
                                         Navigator.push(
                                             context,
-                                            PageTransition(
-                                                type: PageTransitionType
-                                                    .leftToRight,
-                                                child: page2(
-                                                  characteristic:
-                                                      widget.characteristic,
-                                                )));
+                                            MaterialPageRoute(
+                                                builder: (context) => page2(
+                                                    characteristic:
+                                                        characteristic)));
                                       },
                                       icon: Image.asset('lib/item/SPORT1.png'),
                                       iconSize: 60,
@@ -170,18 +171,17 @@ class _sport2State extends State<sport2> {
                                   children: [
                                     IconButton(
                                       padding: EdgeInsets.only(right: 10),
-                                      onPressed: () {    if (characteristic != null) {
-                                        widget.characteristic!
-                                            .write(utf8.encode('RY0101#'));}
+                                      onPressed: () {
+                                        if (characteristic != null) {
+                                          widget.characteristic!
+                                              .write(utf8.encode('RY0101#'));
+                                        }
                                         Navigator.push(
                                             context,
-                                            PageTransition(
-                                                type: PageTransitionType
-                                                    .leftToRight,
-                                                child: comfort(
-                                                  characteristic:
-                                                      widget.characteristic,
-                                                )));
+                                            MaterialPageRoute(
+                                                builder: (context) => comfort(
+                                                    characteristic:
+                                                        characteristic)));
                                       },
                                       icon:
                                           Image.asset('lib/item/COMFORT1.png'),
@@ -203,18 +203,17 @@ class _sport2State extends State<sport2> {
                                   children: [
                                     IconButton(
                                       padding: EdgeInsets.only(top: 10),
-                                      onPressed: () {    if (characteristic != null) {
-                                        widget.characteristic!
-                                            .write(utf8.encode('RY0100#'));}
+                                      onPressed: () {
+                                        if (characteristic != null) {
+                                          widget.characteristic!
+                                              .write(utf8.encode('RY0100#'));
+                                        }
                                         Navigator.push(
                                             context,
-                                            PageTransition(
-                                                type: PageTransitionType
-                                                    .leftToRight,
-                                                child: eco(
-                                                  characteristic:
-                                                      widget.characteristic,
-                                                )));
+                                            MaterialPageRoute(
+                                                builder: (context) => eco(
+                                                    characteristic:
+                                                        characteristic)));
                                       },
                                       icon: Image.asset('lib/item/ECO1.png'),
                                       iconSize: 60,

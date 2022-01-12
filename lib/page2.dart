@@ -2,7 +2,7 @@ import 'dart:convert' show utf8;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
-import 'package:page_transition/page_transition.dart';
+
 import 'package:torqueair/Navbar.dart';
 import 'package:torqueair/comfort.dart';
 import 'package:torqueair/eco.dart';
@@ -15,6 +15,7 @@ import 'package:torqueair/page6.dart';
 import 'package:torqueair/page7.dart';
 import 'package:torqueair/page8.dart';
 import 'package:torqueair/page9.dart';
+import 'package:torqueair/settingble.dart';
 import 'package:torqueair/sport2.dart';
 
 class page2 extends StatefulWidget {
@@ -48,16 +49,18 @@ class _page2State extends State<page2> {
       },
     );
   }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     setState(() {
-       setState(() {
-      characteristic = widget.characteristic;
-    });
+      setState(() {
+        characteristic = widget.characteristic;
+      });
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,7 +78,8 @@ class _page2State extends State<page2> {
           IconButton(
             icon: Icon(Icons.bluetooth),
             onPressed: () {
-              _showDialog(context);
+             Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SettingBle()));
             },
           )
         ],
@@ -161,34 +165,33 @@ class _page2State extends State<page2> {
                                   children: [
                                     IconButton(
                                       onPressed: () {
-                                            if (characteristic != null) {
-                                        widget.characteristic!
-                                            .write(utf8.encode('RY0101#'));
-                                            }
+                                        if (characteristic != null) {
+                                          widget.characteristic!
+                                              .write(utf8.encode('RY0101#'));
+                                        }
                                         Navigator.push(
                                             context,
-                                            PageTransition(
-                                                type: PageTransitionType
-                                                    .leftToRight,
-                                                child: comfort(
-                                                  characteristic:
-                                                      widget.characteristic,
-                                                )));
+                                            MaterialPageRoute(
+                                                builder: (context) => comfort(
+                                                    characteristic:
+                                                        characteristic)));
                                       },
                                       icon:
                                           Image.asset('lib/item/COMFORT1.png'),
                                       iconSize: 60,
                                     ),
                                     IconButton(
-                                      onPressed: () {    if (characteristic != null) {
-                                        widget.characteristic!
-                                            .write(utf8.encode('RY0103#'));}
+                                      onPressed: () {
+                                        if (characteristic != null) {
+                                          widget.characteristic!
+                                              .write(utf8.encode('RY0103#'));
+                                        }
                                         Navigator.push(
                                             context,
-                                            PageTransition(
-                                                type: PageTransitionType
-                                                    .leftToRight,
-                                                child: sport2(characteristic: widget.characteristic,)));
+                                            MaterialPageRoute(
+                                                builder: (context) => sport2(
+                                                    characteristic:
+                                                        characteristic)));
                                       },
                                       icon: Image.asset('lib/item/SPORT+1.png'),
                                       iconSize: 60,
@@ -200,18 +203,17 @@ class _page2State extends State<page2> {
                                       MainAxisAlignment.spaceAround,
                                   children: [
                                     IconButton(
-                                      onPressed: () {    if (characteristic != null) {
-                                        widget.characteristic!
-                                            .write(utf8.encode('RY0100#'));}
-                                        Navigator.push(
+                                      onPressed: () {
+                                        if (characteristic != null) {
+                                          widget.characteristic!
+                                              .write(utf8.encode('RY0100#'));
+                                        }
+                                     Navigator.push(
                                             context,
-                                            PageTransition(
-                                                type: PageTransitionType
-                                                    .leftToRight,
-                                                child: eco(
-                                                  characteristic:
-                                                      widget.characteristic,
-                                                )));
+                                            MaterialPageRoute(
+                                                builder: (context) => eco(
+                                                    characteristic:
+                                                        characteristic)));
                                       },
                                       icon: Image.asset('lib/item/ECO1.png'),
                                       iconSize: 60,
@@ -243,16 +245,19 @@ class _page2State extends State<page2> {
                 ],
               ),
             ),
-             Wrap(
+            Wrap(
               children: [
                 IconButton(
                   onPressed: () {
-                        if (characteristic != null) {
-                     widget.characteristic!.write(utf8.encode('RY00#'));
-                        }
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => page1(
-                              characteristic: widget.characteristic,
-                            )));
+                    if (characteristic != null) {
+                      widget.characteristic!.write(utf8.encode('RY00#'));
+                    }
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => page1(
+                                  characteristic: widget.characteristic,
+                                )));
                   },
                   icon: Image.asset('lib/img/icon1.png'),
                   iconSize: 70,
@@ -276,9 +281,9 @@ class _page2State extends State<page2> {
                 ),
                 IconButton(
                   onPressed: () {
-                        if (characteristic != null) {
-                    widget.characteristic!.write(utf8.encode('RY02#'));
-                        }
+                    if (characteristic != null) {
+                      widget.characteristic!.write(utf8.encode('RY02#'));
+                    }
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -291,9 +296,10 @@ class _page2State extends State<page2> {
                   iconSize: 70,
                 ),
                 IconButton(
-                  onPressed: () {    if (characteristic != null) {
-                            widget.characteristic!.write(utf8.encode('RB#'));
-                  }
+                  onPressed: () {
+                    if (characteristic != null) {
+                      widget.characteristic!.write(utf8.encode('RB#'));
+                    }
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -315,9 +321,9 @@ class _page2State extends State<page2> {
                 ),
                 IconButton(
                   onPressed: () {
-                        if (characteristic != null) {
-                    widget.characteristic!.write(utf8.encode('RY04#'));
-                        }
+                    if (characteristic != null) {
+                      widget.characteristic!.write(utf8.encode('RY04#'));
+                    }
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -329,9 +335,10 @@ class _page2State extends State<page2> {
                   iconSize: 70,
                 ),
                 IconButton(
-                  onPressed: () {    if (characteristic != null) {
-                    widget.characteristic!.write(utf8.encode('RY05#'));
-                  }
+                  onPressed: () {
+                    if (characteristic != null) {
+                      widget.characteristic!.write(utf8.encode('RY05#'));
+                    }
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -343,8 +350,10 @@ class _page2State extends State<page2> {
                   iconSize: 70,
                 ),
                 IconButton(
-                  onPressed: () {    if (characteristic != null) {
-                    widget.characteristic!.write(utf8.encode('RY06#'));}
+                  onPressed: () {
+                    if (characteristic != null) {
+                      widget.characteristic!.write(utf8.encode('RY06#'));
+                    }
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -360,8 +369,10 @@ class _page2State extends State<page2> {
                   iconSize: 70,
                 ),
                 IconButton(
-                  onPressed: () {    if (characteristic != null) {
-                    widget.characteristic!.write(utf8.encode('RY07#'));}
+                  onPressed: () {
+                    if (characteristic != null) {
+                      widget.characteristic!.write(utf8.encode('RY07#'));
+                    }
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -375,9 +386,10 @@ class _page2State extends State<page2> {
                   iconSize: 70,
                 ),
                 IconButton(
-                  onPressed: () {    if (characteristic != null) {
-                    widget.characteristic!.write(utf8.encode('RY08#'));
-                  }
+                  onPressed: () {
+                    if (characteristic != null) {
+                      widget.characteristic!.write(utf8.encode('RY08#'));
+                    }
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -408,7 +420,7 @@ class _page2State extends State<page2> {
                 ),
               ],
             ),
-           ],
+          ],
         ),
       ),
     );

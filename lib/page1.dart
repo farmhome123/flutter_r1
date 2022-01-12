@@ -1,8 +1,11 @@
 import 'dart:convert' show utf8;
+import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
-import 'package:page_transition/page_transition.dart';
+import 'package:geolocator/geolocator.dart';
+
 import 'package:torqueair/Navbar.dart';
 import 'package:torqueair/page10.dart';
 import 'package:torqueair/page2.dart';
@@ -27,6 +30,7 @@ class page1 extends StatefulWidget {
 
 class _page1State extends State<page1> {
   BluetoothCharacteristic? characteristic;
+  double? speed;
   void _showDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -51,11 +55,123 @@ class _page1State extends State<page1> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    checkPermission();
     print('โหมด  AI SPORT');
     print('send to esp RY0102#');
     setState(() {
       setState(() {
         characteristic = widget.characteristic;
+      });
+    });
+  }
+
+  Future<Null> checkPermission() async {
+    bool locationService;
+    LocationPermission locationPermission;
+
+    locationService = await Geolocator.isLocationServiceEnabled();
+    if (locationService) {
+      print('Service Location Open');
+
+      locationPermission = await Geolocator.checkPermission();
+      if (locationPermission == LocationPermission.denied) {
+        locationPermission = await Geolocator.requestPermission();
+        if (locationPermission == LocationPermission.deniedForever) {
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text('Localtion Service ปิดอยู่ ?'),
+              content: Text('กรุณาเปิด Localtion Service'),
+              actions: [
+                TextButton(
+                  onPressed: () async {
+                    await Geolocator.openLocationSettings();
+                    exit(0);
+                  },
+                  child: Text('OK'),
+                ),
+              ],
+            ),
+          );
+        } else {
+          // Find LatLang
+          findSpeed();
+        }
+      } else {
+        if (locationPermission == LocationPermission.deniedForever) {
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text('Localtion Service ปิดอยู่ ?'),
+              content: Text('กรุณาเปิด Localtion Service'),
+              actions: [
+                TextButton(
+                  onPressed: () async {
+                    await Geolocator.openLocationSettings();
+                    exit(0);
+                  },
+                  child: Text('OK'),
+                ),
+              ],
+            ),
+          );
+        } else {
+          // Find LatLng
+          findSpeed();
+        }
+      }
+    } else {
+      print('Service Location Close');
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Localtion Service ปิดอยู่ ?'),
+          content: Text('กรุณาเปิด Localtion Service'),
+          actions: [
+            TextButton(
+              onPressed: () async {
+                await Geolocator.openLocationSettings();
+                exit(0);
+              },
+              child: Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
+  }
+
+  Future<Null?> findSpeed() async {
+    print('Find findSpeed');
+    late LocationSettings locationSettings;
+    if (defaultTargetPlatform == TargetPlatform.android) {
+      print('locationSettings :android ');
+      locationSettings = AndroidSettings(
+        // accuracy: LocationAccuracy.best,
+        // distanceFilter: 2,
+        // forceLocationManager: false,
+        intervalDuration: const Duration(seconds: 1),
+      );
+    } else if (defaultTargetPlatform == TargetPlatform.iOS ||
+        defaultTargetPlatform == TargetPlatform.macOS) {
+      locationSettings = AppleSettings(
+        accuracy: LocationAccuracy.high,
+        distanceFilter: 100,
+        pauseLocationUpdatesAutomatically: true,
+      );
+    } else {
+      print('locationSettings orter');
+      locationSettings = LocationSettings(
+        accuracy: LocationAccuracy.high,
+        distanceFilter: 100,
+      );
+    }
+    Geolocator.getPositionStream(locationSettings: locationSettings)
+        .listen((position) {
+      var speedInMps = position.speed; // this is your speed
+      print('speedInMps = $speedInMps');
+      setState(() {
+        speed = double.parse('${speedInMps.toStringAsFixed(0)}');
       });
     });
   }
@@ -78,11 +194,8 @@ class _page1State extends State<page1> {
             icon: Icon(Icons.bluetooth),
             onPressed: () {
               // _showDialog(context);
-              Navigator.push(
-                  context,
-                  PageTransition(
-                      type: PageTransitionType.leftToRight,
-                      child: SettingBle()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SettingBle()));
             },
           )
         ],
@@ -136,16 +249,27 @@ class _page1State extends State<page1> {
                       height: 200,
                       child: Column(
                         children: [
-                          Text(
-                            "50",
-                            style: TextStyle(
-                              fontSize: 60,
-                              fontFamily: 'ethnocentric',
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
+                          speed != null
+                              ? Text(
+                                  '${speed!.toStringAsFixed(0)}',
+                                  style: TextStyle(
+                                    fontSize: 60,
+                                    fontFamily: 'ethnocentric',
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                )
+                              : Text(
+                                  " ",
+                                  style: TextStyle(
+                                    fontSize: 60,
+                                    fontFamily: 'ethnocentric',
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
                           Expanded(
                             child: Text(
                               "กิโลเมตร/ชม.",

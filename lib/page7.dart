@@ -3,8 +3,8 @@ import 'dart:convert' show utf8;
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:toggle_switch/toggle_switch.dart';
+
+
 import 'package:torqueair/Navbar.dart';
 import 'package:torqueair/page1.dart';
 import 'package:torqueair/page10.dart';

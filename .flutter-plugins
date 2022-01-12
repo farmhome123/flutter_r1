@@ -1,6 +1,12 @@
 # This is a generated file; do not edit or check into version control.
 flutter_blue=/Users/farm24dec/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_blue-0.8.0/
-url_launcher=/Users/farm24dec/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-6.0.10/
+geolocator=/Users/farm24dec/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator-8.0.1/
+geolocator_android=/Users/farm24dec/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_android-3.0.1/
+geolocator_apple=/Users/farm24dec/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_apple-2.0.0+2/
+geolocator_web=/Users/farm24dec/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_web-2.1.1/
+url_launcher=/Users/farm24dec/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-6.0.18/
+url_launcher_android=/Users/farm24dec/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_android-6.0.14/
+url_launcher_ios=/Users/farm24dec/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_ios-6.0.14/
 url_launcher_linux=/Users/farm24dec/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_linux-2.0.2/
 url_launcher_macos=/Users/farm24dec/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_macos-2.0.2/
 url_launcher_web=/Users/farm24dec/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_web-2.0.4/

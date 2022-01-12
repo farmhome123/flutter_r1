@@ -2,7 +2,7 @@ import 'dart:convert' show utf8;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
-import 'package:page_transition/page_transition.dart';
+
 import 'package:torqueair/Navbar.dart';
 import 'package:torqueair/page1.dart';
 import 'package:torqueair/page10.dart';
@@ -76,11 +76,8 @@ class _page5State extends State<page5> {
           IconButton(
             icon: Icon(Icons.bluetooth),
             onPressed: () {
-              Navigator.push(
-                  context,
-                  PageTransition(
-                      type: PageTransitionType.leftToRight,
-                      child: SettingBle()));
+          Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SettingBle()));
             },
           )
         ],
@@ -196,7 +193,7 @@ class _page5State extends State<page5> {
                 IconButton(
                   onPressed: () {
                     if (characteristic != null) {
-                    widget.characteristic!.write(utf8.encode('RY02#'));
+                      widget.characteristic!.write(utf8.encode('RY02#'));
                     }
                     Navigator.push(
                         context,
@@ -210,9 +207,10 @@ class _page5State extends State<page5> {
                   iconSize: 70,
                 ),
                 IconButton(
-                  onPressed: () {if (characteristic != null) {
-                    widget.characteristic!.write(utf8.encode('RB#'));
-                  }
+                  onPressed: () {
+                    if (characteristic != null) {
+                      widget.characteristic!.write(utf8.encode('RB#'));
+                    }
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -248,7 +246,10 @@ class _page5State extends State<page5> {
                 ),
                 IconButton(
                   onPressed: () {
-                    widget.characteristic!.write(utf8.encode('RY05#'));
+                    if (characteristic != null) {
+                      widget.characteristic!.write(utf8.encode('RY05#'));
+                    }
+
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -262,7 +263,7 @@ class _page5State extends State<page5> {
                 IconButton(
                   onPressed: () {
                     if (characteristic != null) {
-                    widget.characteristic!.write(utf8.encode('RY06#'));
+                      widget.characteristic!.write(utf8.encode('RY06#'));
                     }
                     Navigator.push(
                         context,
@@ -281,7 +282,7 @@ class _page5State extends State<page5> {
                 IconButton(
                   onPressed: () {
                     if (characteristic != null) {
-                    widget.characteristic!.write(utf8.encode('RY07#'));
+                      widget.characteristic!.write(utf8.encode('RY07#'));
                     }
                     Navigator.push(
                         context,
@@ -298,9 +299,9 @@ class _page5State extends State<page5> {
                 IconButton(
                   onPressed: () {
                     if (characteristic != null) {
-                    widget.characteristic!.write(utf8.encode('RY08#'));
-                 
-                       }   Navigator.push(
+                      widget.characteristic!.write(utf8.encode('RY08#'));
+                    }
+                    Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => page9(
@@ -313,7 +314,10 @@ class _page5State extends State<page5> {
                 ),
                 IconButton(
                   onPressed: () {
-                    widget.characteristic!.write(utf8.encode('RY00#'));
+                    if(characteristic != null ){
+                         widget.characteristic!.write(utf8.encode('RY00#'));
+                    }
+                 
                     Navigator.push(
                         context,
                         MaterialPageRoute(

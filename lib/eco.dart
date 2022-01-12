@@ -2,7 +2,7 @@ import 'dart:convert' show utf8;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
-import 'package:page_transition/page_transition.dart';
+
 import 'package:torqueair/Navbar.dart';
 import 'package:torqueair/comfort.dart';
 import 'package:torqueair/page1.dart';
@@ -15,6 +15,7 @@ import 'package:torqueair/page6.dart';
 import 'package:torqueair/page7.dart';
 import 'package:torqueair/page8.dart';
 import 'package:torqueair/page9.dart';
+import 'package:torqueair/settingble.dart';
 import 'package:torqueair/sport2.dart';
 
 class eco extends StatefulWidget {
@@ -79,7 +80,8 @@ class _ecoState extends State<eco> {
           IconButton(
             icon: Icon(Icons.bluetooth),
             onPressed: () {
-              _showDialog(context);
+               Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SettingBle()));
             },
           )
         ],
@@ -157,13 +159,11 @@ class _ecoState extends State<eco> {
                                         }
                                         Navigator.push(
                                             context,
-                                            PageTransition(
-                                                type: PageTransitionType
-                                                    .leftToRight,
-                                                child: page2(
-                                                  characteristic:
-                                                      widget.characteristic,
-                                                )));
+                                            MaterialPageRoute(
+                                                builder: (context) => page2(
+                                                    characteristic:
+                                                        characteristic)));
+                                        
                                       },
                                       icon: Image.asset('lib/item/SPORT1.png'),
                                       iconSize: 60,
@@ -182,13 +182,10 @@ class _ecoState extends State<eco> {
                                         }
                                         Navigator.push(
                                             context,
-                                            PageTransition(
-                                                type: PageTransitionType
-                                                    .leftToRight,
-                                                child: comfort(
-                                                  characteristic:
-                                                      widget.characteristic,
-                                                )));
+                                            MaterialPageRoute(
+                                                builder: (context) => comfort(
+                                                    characteristic:
+                                                        characteristic)));
                                       },
                                       icon:
                                           Image.asset('lib/item/COMFORT1.png'),
@@ -200,15 +197,12 @@ class _ecoState extends State<eco> {
                                           widget.characteristic!
                                               .write(utf8.encode('RY0103#'));
                                         }
-                                        Navigator.push(
+                                    Navigator.push(
                                             context,
-                                            PageTransition(
-                                                type: PageTransitionType
-                                                    .leftToRight,
-                                                child: sport2(
-                                                  characteristic:
-                                                      widget.characteristic,
-                                                )));
+                                            MaterialPageRoute(
+                                                builder: (context) => sport2(
+                                                    characteristic:
+                                                        characteristic)));
                                       },
                                       icon: Image.asset('lib/item/SPORT+1.png'),
                                       iconSize: 60,

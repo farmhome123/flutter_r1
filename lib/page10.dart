@@ -101,11 +101,8 @@ class _page10State extends State<page10> {
           IconButton(
             icon: Icon(Icons.bluetooth),
             onPressed: () {
-              Navigator.push(
-                  context,
-                  PageTransition(
-                      type: PageTransitionType.leftToRight,
-                      child: SettingBle()));
+               Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SettingBle()));
             },
           )
         ],
