@@ -8195,5 +8195,5 @@ com.google.android.gms.internal.common.zzc:
     private static final java.lang.ClassLoader zzd
 com.google.android.gms.common.stats.ConnectionTracker:
     private static boolean zzfb
-io.flutter.plugin.common.BinaryMessenger$-CC
 io.flutter.plugin.platform.PlatformView$-CC
+io.flutter.plugin.common.BinaryMessenger$-CC

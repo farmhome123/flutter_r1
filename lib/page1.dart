@@ -31,6 +31,7 @@ class page1 extends StatefulWidget {
 class _page1State extends State<page1> {
   BluetoothCharacteristic? characteristic;
   double? speed;
+  double? speed2;
   void _showDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -251,9 +252,9 @@ class _page1State extends State<page1> {
                         children: [
                           speed != null
                               ? Text(
-                                  '${speed!.toStringAsFixed(0)}',
+                                  '${(speed! * 3.7).toStringAsFixed(0)}',
                                   style: TextStyle(
-                                    fontSize: 60,
+                                    fontSize: 30,
                                     fontFamily: 'ethnocentric',
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -263,7 +264,28 @@ class _page1State extends State<page1> {
                               : Text(
                                   " ",
                                   style: TextStyle(
-                                    fontSize: 60,
+                                    fontSize: 30,
+                                    fontFamily: 'ethnocentric',
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                          speed != null
+                              ? Text(
+                                  '${(speed! * 3.65).toStringAsFixed(0)}',
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    fontFamily: 'ethnocentric',
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                )
+                              : Text(
+                                  " ",
+                                  style: TextStyle(
+                                    fontSize: 30,
                                     fontFamily: 'ethnocentric',
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,

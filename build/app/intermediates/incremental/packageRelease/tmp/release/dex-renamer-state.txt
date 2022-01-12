@@ -1,0 +1,4 @@
+#Wed Jan 12 20:29:36 ICT 2022
+base.0=/Users/farm24dec/Desktop/torqueair/build/app/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
