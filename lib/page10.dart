@@ -2,10 +2,11 @@ import 'dart:async';
 import 'dart:convert' show utf8;
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
-import 'package:page_transition/page_transition.dart';
+
 import 'package:passcode_screen/circle.dart';
 import 'package:passcode_screen/keyboard.dart';
 import 'package:passcode_screen/passcode_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:torqueair/Navbar.dart';
 import 'package:torqueair/page1.dart';
 import 'package:torqueair/page2.dart';
@@ -17,8 +18,6 @@ import 'package:torqueair/page7.dart';
 import 'package:torqueair/page8.dart';
 import 'package:torqueair/page9.dart';
 import 'package:torqueair/settingble.dart';
-
-const storedPasscode = '1234';
 
 class page10 extends StatefulWidget {
   final List<int>? valueTx;
@@ -38,10 +37,13 @@ class page10 extends StatefulWidget {
 class _page10State extends State<page10> {
   final StreamController<bool> _verificationNotifier =
       StreamController<bool>.broadcast();
-
+  final StreamController<bool> _verificationNotifierPassword =
+      StreamController<bool>.broadcast();
   bool isAuthenticated = false;
   bool? lockscreen = false;
-
+  String? storedPasscode;
+  String? passwordnew;
+  String? passwordconfrim;
   BluetoothCharacteristic? characteristic;
   @override
   void _showDialog(BuildContext context) {
@@ -74,6 +76,16 @@ class _page10State extends State<page10> {
       isAuthenticated = widget.value1 == '01' ? true : false;
     });
     print('########## value1 : ${lockscreen}');
+    getStorePassword();
+  }
+
+  getStorePassword() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      storedPasscode = prefs.getString('passwordCode');
+    });
+    print('storedPasscode : ${storedPasscode}');
   }
 
   @override
@@ -413,9 +425,30 @@ class _page10State extends State<page10> {
       setState(() {
         this.isAuthenticated = !isAuthenticated;
         if (characteristic != null) {
-          widget.characteristic!.write(utf8.encode('LCY0${isAuthenticated ? '1':'0'}#'));
+          widget.characteristic!
+              .write(utf8.encode('LCY0${isAuthenticated ? '1' : '0'}#'));
         }
       });
+    }
+  }
+
+  _onPasscodeEnterednewConfirm(String enteredPasscode) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isValid = passwordnew == enteredPasscode;
+    _verificationNotifier.add(isValid);
+    if (isValid) {
+      prefs.setString('passwordconfirm', enteredPasscode);
+      setState(() {
+        passwordconfrim = prefs.getString('passwordconfirm');
+        prefs.setString('passwordCode', enteredPasscode);
+      });
+      print('รหัสผ่านใหม่อีกครั้ง  ==  ${passwordconfrim}');
+
+      print('รหัสผ่าน==  ${prefs.getString('passwordCode')}');
+
+      Navigator.pop(context);
+      Navigator.pop(context);
+      Navigator.pop(context);
     }
   }
 
@@ -423,9 +456,28 @@ class _page10State extends State<page10> {
     Navigator.maybePop(context);
   }
 
+  _onPasscodeEnterednew(String enteredPasscode) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('passwordnew', enteredPasscode);
+    setState(() {
+      passwordnew = prefs.getString('passwordnew');
+    });
+    print('รหัสผ่านใหม่  ==  ${passwordnew}');
+    _showResetpasswordconfirm(
+      context,
+      opaque: false,
+      cancelButton: Text(
+        'Cancel',
+        style: const TextStyle(fontSize: 16, color: Colors.white),
+        semanticsLabel: 'Cancel',
+      ),
+    );
+  }
+
   @override
   void dispose() {
     _verificationNotifier.close();
+
     super.dispose();
   }
 
@@ -490,11 +542,103 @@ class _page10State extends State<page10> {
                 "I understand",
                 style: const TextStyle(fontSize: 18),
               ),
-              onPressed: onAccepted,
+              onPressed: () {
+                setState(() {
+                  storedPasscode = '1234';
+                });
+                _showResetpasswordnew(
+                  context,
+                  opaque: false,
+                  cancelButton: Text(
+                    'Cancel',
+                    style: const TextStyle(fontSize: 16, color: Colors.white),
+                    semanticsLabel: 'Cancel',
+                  ),
+                );
+              },
             ),
           ],
         );
       },
     );
+  }
+
+  _showResetpasswordnew(
+    BuildContext context, {
+    required bool opaque,
+    CircleUIConfig? circleUIConfig,
+    KeyboardUIConfig? keyboardUIConfig,
+    required Widget cancelButton,
+    List<String>? digits,
+  }) {
+    Navigator.push(
+        context,
+        PageRouteBuilder(
+          opaque: opaque,
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              PasscodeScreen(
+            title: Text(
+              'โปรดใส่รหัสผ่านใหม่',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Colors.white, fontSize: 28, fontFamily: 'Kanit'),
+            ),
+            circleUIConfig: circleUIConfig,
+            keyboardUIConfig: keyboardUIConfig,
+            passwordEnteredCallback: _onPasscodeEnterednew,
+            cancelButton: cancelButton,
+            deleteButton: Text(
+              'Delete',
+              style: const TextStyle(fontSize: 16, color: Colors.white),
+              semanticsLabel: 'Delete',
+            ),
+            shouldTriggerVerification: _verificationNotifier.stream,
+            backgroundColor: Colors.black,
+            cancelCallback: () {
+              Navigator.pop(context);
+              Navigator.pop(context);
+            },
+            digits: digits,
+            passwordDigits: 4,
+          ),
+        ));
+  }
+
+  _showResetpasswordconfirm(
+    BuildContext context, {
+    required bool opaque,
+    CircleUIConfig? circleUIConfig,
+    KeyboardUIConfig? keyboardUIConfig,
+    required Widget cancelButton,
+    List<String>? digits,
+  }) {
+    Navigator.push(
+        context,
+        PageRouteBuilder(
+          opaque: opaque,
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              PasscodeScreen(
+            title: Text(
+              'โปรดใส่รหัสผ่านใหม่อีกครั้ง',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Colors.white, fontSize: 28, fontFamily: 'Kanit'),
+            ),
+            circleUIConfig: circleUIConfig,
+            keyboardUIConfig: keyboardUIConfig,
+            passwordEnteredCallback: _onPasscodeEnterednewConfirm,
+            cancelButton: cancelButton,
+            deleteButton: Text(
+              'Delete',
+              style: const TextStyle(fontSize: 16, color: Colors.white),
+              semanticsLabel: 'Delete',
+            ),
+            shouldTriggerVerification: _verificationNotifier.stream,
+            backgroundColor: Colors.black,
+            cancelCallback: _onPasscodeCancelled,
+            digits: digits,
+            passwordDigits: 4,
+          ),
+        ));
   }
 }

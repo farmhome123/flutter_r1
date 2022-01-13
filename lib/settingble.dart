@@ -122,12 +122,14 @@ class FindDevicesScreen extends StatelessWidget {
                                 if (snapshot.data ==
                                     BluetoothDeviceState.connected) {
                                   return RaisedButton(
-                                    child: Text('OPEN'),
-                                    onPressed: () => Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                DeviceScreen(device: d))),
-                                  );
+                                      child: Text('OPEN'),
+                                      onPressed: () => {
+                                            Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        DeviceScreen(
+                                                            device: d))),
+                                          });
                                 }
                                 return Text(snapshot.data.toString());
                               },
@@ -194,7 +196,6 @@ class DeviceScreen extends StatefulWidget {
 
 class _DeviceScreenState extends State<DeviceScreen> {
   BluetoothCharacteristic? _characteristic;
-
   List<int> _getRandomBytes() {
     final math = Random();
     return [
@@ -211,9 +212,20 @@ class _DeviceScreenState extends State<DeviceScreen> {
     return utf8.decode(dataFromDevice);
   }
 
+  checkConnectDevice() async {
+    var connectDevices = await FlutterBlue.instance.connectedDevices;
+    for (var device in connectDevices) {
+      print(device.name);
+      device.disconnect();
+    }
+  }
+
   Future connect() async {
-    final String SERVICE_UUID = "6E400001-B5A3-F393-E0A9-E50EBBBBB000";
-    final String CHARACTERISTIC_UUID = "6E400003-B5A3-F393-E0A9-E50EBBBBB000";
+    final String SERVICE_UUID = "0000ffe0-0000-1000-8000-00805f9b34fb";
+    final String CHARACTERISTIC_UUID = "0000ffe1-0000-1000-8000-00805f9b34fb";
+    await checkConnectDevice();
+    await widget.device.connect();
+    await widget.device.discoverServices();
     int _countPage = 0;
     if (widget.device != null) {
       List<BluetoothService> services = await widget.device.discoverServices();
@@ -226,7 +238,7 @@ class _DeviceScreenState extends State<DeviceScreen> {
             _characteristic = characteristic;
             print('_characteristic = ${_characteristic}');
             if (characteristic.uuid.toString() ==
-                '6e400003-b5a3-f393-e0a9-e50ebbbbb000'.toLowerCase()) {
+                '0000ffe1-0000-1000-8000-00805f9b34fb') {
               if (characteristic.properties.notify) {
                 characteristic.value.listen((value) {
                   if (value != null) {
@@ -486,6 +498,7 @@ class _DeviceScreenState extends State<DeviceScreen> {
                 });
                 await characteristic
                     .setNotifyValue(!characteristic.isNotifying);
+                // characteristic.write(utf8.encode('REQ#'));
                 // Navigator.push(
                 //     context,
                 //     PageTransition(
@@ -522,6 +535,23 @@ class _DeviceScreenState extends State<DeviceScreen> {
         toolbarHeight: 70,
         backgroundColor: Colors.black,
         title: Text(widget.device.name),
+        leading: FlatButton(
+            onPressed: () {
+              if (_characteristic != null) {
+                sendPage();
+              } else {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => page1(
+                              characteristic: null,
+                            )));
+              }
+            },
+            child: Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            )),
         actions: <Widget>[
           StreamBuilder<BluetoothDeviceState>(
             stream: widget.device.state,
@@ -580,7 +610,7 @@ class _DeviceScreenState extends State<DeviceScreen> {
                             icon: Icon(Icons.refresh),
                             onPressed: () => {
                                   widget.device.discoverServices(),
-                                  connect(),
+                                  // connect(),
                                 }),
                         IconButton(
                           icon: SizedBox(
@@ -609,10 +639,28 @@ class _DeviceScreenState extends State<DeviceScreen> {
               //     ),
               //   ),
               // ),
+              // FlatButton(onPressed: () => sendPage(), child: Text('sendPage')),
             ],
           ),
         ),
       ),
     );
+  }
+
+  sendPage() async {
+    var res = await _characteristic;
+    if (res != null) {
+      if (_characteristic!.uuid.toString() ==
+          '6E400002-B5A3-F393-E0A9-E50EBBBBB000'.toLowerCase()) {
+        print('############# _characteristic!.uuid True ##############');
+        _characteristic!.write(utf8.encode('REQ#'));
+      } else {
+        print('############# _characteristic!.uuid False ##############');
+      }
+
+      // _characteristic!.write(utf8.encode('REQ#'));
+    } else {
+      print('############# _characteristic == null ##############');
+    }
   }
 }
