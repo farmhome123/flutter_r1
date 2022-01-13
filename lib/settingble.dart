@@ -540,13 +540,15 @@ class _DeviceScreenState extends State<DeviceScreen> {
               if (_characteristic != null) {
                 sendPage();
               } else {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => page1(
-                              characteristic: null,
-                            )));
+                Navigator.pop(context);
+                Navigator.pop(context);
               }
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (context) => page1(
+              //               characteristic: null,
+              //             )));
             },
             child: Icon(
               Icons.arrow_back,

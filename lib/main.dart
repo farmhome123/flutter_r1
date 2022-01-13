@@ -30,10 +30,9 @@ class _MyAppState extends State<MyApp> {
 
   _setPassword() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('statuslock', 'false');
     var statuslock = prefs.getString('statuslock');
     print(statuslock);
-    if (statuslock == false) {
+    if (statuslock != 'true') {
       prefs.setString('passwordCode', '1234');
       setState(() {
         prefs.setString('statuslock', 'true');

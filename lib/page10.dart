@@ -82,9 +82,8 @@ class _page10State extends State<page10> {
   getStorePassword() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    setState(() {
-      storedPasscode = prefs.getString('passwordCode');
-    });
+    storedPasscode = prefs.getString('passwordCode');
+
     print('storedPasscode : ${storedPasscode}');
   }
 
@@ -173,13 +172,14 @@ class _page10State extends State<page10> {
                     if (!isAuthenticated) {
                       if (characteristic != null) {
                         widget.characteristic!.write(utf8.encode('RY00#'));
+                      } else {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => page1(
+                                      characteristic: widget.characteristic,
+                                    )));
                       }
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => page1(
-                                    characteristic: widget.characteristic,
-                                  )));
                     }
                   },
                   icon: Image.asset('lib/img/icon1.png'),
@@ -190,13 +190,14 @@ class _page10State extends State<page10> {
                     if (!isAuthenticated) {
                       if (characteristic != null) {
                         widget.characteristic!.write(utf8.encode('RY01#'));
+                      } else {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => page2(
+                                      characteristic: widget.characteristic,
+                                    )));
                       }
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => page2(
-                                    characteristic: widget.characteristic,
-                                  )));
                     }
                   },
                   icon: Image.asset('lib/img/icon2.png'),
@@ -207,14 +208,15 @@ class _page10State extends State<page10> {
                     if (!isAuthenticated) {
                       if (characteristic != null) {
                         widget.characteristic!.write(utf8.encode('RY02#'));
+                      } else {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => page3(
+                                      value: '0',
+                                      characteristic: widget.characteristic,
+                                    )));
                       }
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => page3(
-                                    value: '0',
-                                    characteristic: widget.characteristic,
-                                  )));
                     }
                   },
                   icon: Image.asset('lib/img/icon3.png'),
@@ -225,22 +227,23 @@ class _page10State extends State<page10> {
                     if (!isAuthenticated) {
                       if (characteristic != null) {
                         widget.characteristic!.write(utf8.encode('RB#'));
+                      } else {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => page4(
+                                      characteristic: widget.characteristic,
+                                      value1: 0,
+                                      value3: 0,
+                                      value2: 0,
+                                      value4: 0,
+                                      value5: 0,
+                                      value6: 0,
+                                      value7: 0,
+                                      value8: 0,
+                                      value9: 0,
+                                    )));
                       }
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => page4(
-                                    characteristic: widget.characteristic,
-                                    value1: 0,
-                                    value3: 0,
-                                    value2: 0,
-                                    value4: 0,
-                                    value5: 0,
-                                    value6: 0,
-                                    value7: 0,
-                                    value8: 0,
-                                    value9: 0,
-                                  )));
                     }
                   },
                   icon: Image.asset('lib/img/icon4.png'),
@@ -251,13 +254,14 @@ class _page10State extends State<page10> {
                     if (!isAuthenticated) {
                       if (characteristic != null) {
                         widget.characteristic!.write(utf8.encode('RY04#'));
+                      } else {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => page5(
+                                      characteristic: widget.characteristic,
+                                    )));
                       }
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => page5(
-                                    characteristic: widget.characteristic,
-                                  )));
                     }
                   },
                   icon: Image.asset('lib/img/icon5.png'),
@@ -268,13 +272,14 @@ class _page10State extends State<page10> {
                     if (!isAuthenticated) {
                       if (characteristic != null) {
                         widget.characteristic!.write(utf8.encode('RY05#'));
+                      } else {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => page6(
+                                      characteristic: widget.characteristic,
+                                    )));
                       }
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => page6(
-                                    characteristic: widget.characteristic,
-                                  )));
                     }
                   },
                   icon: Image.asset('lib/img/icon6.png'),
@@ -285,17 +290,18 @@ class _page10State extends State<page10> {
                     if (!isAuthenticated) {
                       if (characteristic != null) {
                         widget.characteristic!.write(utf8.encode('RY06#'));
+                      } else {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => page7(
+                                      characteristic: widget.characteristic,
+                                      value: 0,
+                                      value1: 0,
+                                      value2: 0,
+                                      value3: 0,
+                                    )));
                       }
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => page7(
-                                    characteristic: widget.characteristic,
-                                    value: 0,
-                                    value1: 0,
-                                    value2: 0,
-                                    value3: 0,
-                                  )));
                     }
                   },
                   icon: Image.asset('lib/img/icon7.png'),
@@ -306,15 +312,16 @@ class _page10State extends State<page10> {
                     if (!isAuthenticated) {
                       if (characteristic != null) {
                         widget.characteristic!.write(utf8.encode('RY07#'));
+                      } else {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => page8(
+                                      characteristic: widget.characteristic,
+                                      value1: 0,
+                                      value2: 0,
+                                    )));
                       }
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => page8(
-                                    characteristic: widget.characteristic,
-                                    value1: 0,
-                                    value2: 0,
-                                  )));
                     }
                   },
                   icon: Image.asset('lib/img/icon8.png'),
@@ -325,14 +332,15 @@ class _page10State extends State<page10> {
                     if (!isAuthenticated) {
                       if (characteristic != null) {
                         widget.characteristic!.write(utf8.encode('RY08#'));
+                      } else {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => page9(
+                                      characteristic: widget.characteristic,
+                                      value1: 0,
+                                    )));
                       }
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => page9(
-                                    characteristic: widget.characteristic,
-                                    value1: 0,
-                                  )));
                     }
                   },
                   icon: Image.asset('lib/img/icon9.png'),
@@ -438,17 +446,13 @@ class _page10State extends State<page10> {
     _verificationNotifier.add(isValid);
     if (isValid) {
       prefs.setString('passwordconfirm', enteredPasscode);
-      setState(() {
-        passwordconfrim = prefs.getString('passwordconfirm');
-        prefs.setString('passwordCode', enteredPasscode);
-      });
+      passwordconfrim = prefs.getString('passwordconfirm');
+      prefs.setString('passwordCode', '${enteredPasscode}');
       print('รหัสผ่านใหม่อีกครั้ง  ==  ${passwordconfrim}');
 
-      print('รหัสผ่าน==  ${prefs.getString('passwordCode')}');
-
-      Navigator.pop(context);
-      Navigator.pop(context);
-      Navigator.pop(context);
+      print('รหัสผ่าน ==  ${prefs.getString('passwordCode')}');
+      getStorePassword();
+      Navigator.maybePop(context);
     }
   }
 
@@ -458,20 +462,23 @@ class _page10State extends State<page10> {
 
   _onPasscodeEnterednew(String enteredPasscode) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('passwordnew', enteredPasscode);
-    setState(() {
+    var stor = prefs.getString('passwordCode');
+    bool isValid = stor != enteredPasscode;
+    _verificationNotifier.add(isValid);
+    if (isValid) {
+      await prefs.setString('passwordnew', enteredPasscode);
       passwordnew = prefs.getString('passwordnew');
-    });
-    print('รหัสผ่านใหม่  ==  ${passwordnew}');
-    _showResetpasswordconfirm(
-      context,
-      opaque: false,
-      cancelButton: Text(
-        'Cancel',
-        style: const TextStyle(fontSize: 16, color: Colors.white),
-        semanticsLabel: 'Cancel',
-      ),
-    );
+      print('รหัสผ่านใหม่  ==  ${passwordnew}');
+      _showResetpasswordconfirm(
+        context,
+        opaque: false,
+        cancelButton: Text(
+          'Cancel',
+          style: const TextStyle(fontSize: 16, color: Colors.white),
+          semanticsLabel: 'Cancel',
+        ),
+      );
+    }
   }
 
   @override
@@ -507,9 +514,15 @@ class _page10State extends State<page10> {
       if (!result) {
         return;
       }
-      _showRestoreDialog(() {
-        Navigator.maybePop(context);
-      });
+      _showResetpasswordnew(
+        context,
+        opaque: false,
+        cancelButton: Text(
+          'Cancel',
+          style: const TextStyle(fontSize: 16, color: Colors.white),
+          semanticsLabel: 'Cancel',
+        ),
+      );
     });
   }
 
@@ -543,18 +556,7 @@ class _page10State extends State<page10> {
                 style: const TextStyle(fontSize: 18),
               ),
               onPressed: () {
-                setState(() {
-                  storedPasscode = '1234';
-                });
-                _showResetpasswordnew(
-                  context,
-                  opaque: false,
-                  cancelButton: Text(
-                    'Cancel',
-                    style: const TextStyle(fontSize: 16, color: Colors.white),
-                    semanticsLabel: 'Cancel',
-                  ),
-                );
+                onAccepted();
               },
             ),
           ],
@@ -595,7 +597,6 @@ class _page10State extends State<page10> {
             shouldTriggerVerification: _verificationNotifier.stream,
             backgroundColor: Colors.black,
             cancelCallback: () {
-              Navigator.pop(context);
               Navigator.pop(context);
             },
             digits: digits,

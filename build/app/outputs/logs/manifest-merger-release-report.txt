@@ -4,6 +4,7 @@ ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManife
 INJECTED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:1:1-48:12
 INJECTED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:1:1-48:12
 INJECTED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:1:1-48:12
+MERGED from [:shared_preferences_android] /Users/farm24dec/Desktop/torqueair/build/shared_preferences_android/intermediates/library_manifest/release/AndroidManifest.xml:2:1-7:12
 MERGED from [:geolocator_android] /Users/farm24dec/Desktop/torqueair/build/geolocator_android/intermediates/library_manifest/release/AndroidManifest.xml:2:1-7:12
 MERGED from [:url_launcher_android] /Users/farm24dec/Desktop/torqueair/build/url_launcher_android/intermediates/library_manifest/release/AndroidManifest.xml:2:1-14:12
 MERGED from [:flutter_blue] /Users/farm24dec/Desktop/torqueair/build/flutter_blue/intermediates/library_manifest/release/AndroidManifest.xml:2:1-11:12
@@ -140,6 +141,8 @@ uses-sdk
 INJECTED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml
 INJECTED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml
+MERGED from [:shared_preferences_android] /Users/farm24dec/Desktop/torqueair/build/shared_preferences_android/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences_android] /Users/farm24dec/Desktop/torqueair/build/shared_preferences_android/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
 MERGED from [:geolocator_android] /Users/farm24dec/Desktop/torqueair/build/geolocator_android/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
 MERGED from [:geolocator_android] /Users/farm24dec/Desktop/torqueair/build/geolocator_android/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
 MERGED from [:url_launcher_android] /Users/farm24dec/Desktop/torqueair/build/url_launcher_android/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44

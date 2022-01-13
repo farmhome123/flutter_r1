@@ -277,13 +277,14 @@ class _page8State extends State<page8> {
                   onPressed: () {
                     if (characteristic != null) {
                       widget.characteristic!.write(utf8.encode('RY00#'));
+                    } else {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => page1(
+                                    characteristic: widget.characteristic,
+                                  )));
                     }
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => page1(
-                                  characteristic: widget.characteristic,
-                                )));
                   },
                   icon: Image.asset('lib/img/icon1.png'),
                   iconSize: 70,
@@ -292,13 +293,14 @@ class _page8State extends State<page8> {
                   onPressed: () {
                     if (characteristic != null) {
                       widget.characteristic!.write(utf8.encode('RY01#'));
+                    } else {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => page2(
+                                    characteristic: widget.characteristic,
+                                  )));
                     }
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => page2(
-                                  characteristic: widget.characteristic,
-                                )));
                   },
                   icon: Image.asset('lib/img/icon2.png'),
                   iconSize: 70,
@@ -307,14 +309,15 @@ class _page8State extends State<page8> {
                   onPressed: () {
                     if (characteristic != null) {
                       widget.characteristic!.write(utf8.encode('RY02#'));
+                    } else {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => page3(
+                                    value: '0',
+                                    characteristic: widget.characteristic,
+                                  )));
                     }
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => page3(
-                                  value: '0',
-                                  characteristic: widget.characteristic,
-                                )));
                   },
                   icon: Image.asset('lib/img/icon3.png'),
                   iconSize: 70,
@@ -323,22 +326,23 @@ class _page8State extends State<page8> {
                   onPressed: () {
                     if (characteristic != null) {
                       widget.characteristic!.write(utf8.encode('RB#'));
+                    } else {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => page4(
+                                    characteristic: widget.characteristic,
+                                    value1: 0,
+                                    value3: 0,
+                                    value2: 0,
+                                    value4: 0,
+                                    value5: 0,
+                                    value6: 0,
+                                    value7: 0,
+                                    value8: 0,
+                                    value9: 0,
+                                  )));
                     }
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => page4(
-                                  characteristic: widget.characteristic,
-                                  value1: 0,
-                                  value3: 0,
-                                  value2: 0,
-                                  value4: 0,
-                                  value5: 0,
-                                  value6: 0,
-                                  value7: 0,
-                                  value8: 0,
-                                  value9: 0,
-                                )));
                   },
                   icon: Image.asset('lib/img/icon4.png'),
                   iconSize: 70,
@@ -347,13 +351,14 @@ class _page8State extends State<page8> {
                   onPressed: () {
                     if (characteristic != null) {
                       widget.characteristic!.write(utf8.encode('RY04#'));
+                    } else {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => page5(
+                                    characteristic: widget.characteristic,
+                                  )));
                     }
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => page5(
-                                  characteristic: widget.characteristic,
-                                )));
                   },
                   icon: Image.asset('lib/img/icon5.png'),
                   iconSize: 70,
@@ -362,13 +367,14 @@ class _page8State extends State<page8> {
                   onPressed: () {
                     if (characteristic != null) {
                       widget.characteristic!.write(utf8.encode('RY05#'));
+                    } else {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => page6(
+                                    characteristic: widget.characteristic,
+                                  )));
                     }
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => page6(
-                                  characteristic: widget.characteristic,
-                                )));
                   },
                   icon: Image.asset('lib/img/icon6.png'),
                   iconSize: 70,
@@ -377,17 +383,18 @@ class _page8State extends State<page8> {
                   onPressed: () {
                     if (characteristic != null) {
                       widget.characteristic!.write(utf8.encode('RY06#'));
+                    } else {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => page7(
+                                    characteristic: widget.characteristic,
+                                    value: 0,
+                                    value1: 0,
+                                    value2: 0,
+                                    value3: 0,
+                                  )));
                     }
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => page7(
-                                  characteristic: widget.characteristic,
-                                  value: 0,
-                                  value1: 0,
-                                  value2: 0,
-                                  value3: 0,
-                                )));
                   },
                   icon: Image.asset('lib/img/icon7.png'),
                   iconSize: 70,
@@ -411,27 +418,31 @@ class _page8State extends State<page8> {
                   onPressed: () {
                     if (characteristic != null) {
                       widget.characteristic!.write(utf8.encode('RY08#'));
+                    } else {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => page9(
+                                    characteristic: widget.characteristic,
+                                    value1: 0,
+                                  )));
                     }
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => page9(
-                                  characteristic: widget.characteristic,
-                                  value1: 0,
-                                )));
                   },
                   icon: Image.asset('lib/img/icon9.png'),
                   iconSize: 70,
                 ),
                 IconButton(
                   onPressed: () {
+                    // if (characteristic != null) {
+                    // } else {
+
+                    // }
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => page10(
                                   characteristic: widget.characteristic,
                                   value1: '',
-                 
                                 )));
                   },
                   icon: Image.asset('lib/img/icon10.png'),

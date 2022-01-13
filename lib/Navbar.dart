@@ -89,8 +89,10 @@ class NavBar extends StatelessWidget {
                 onPressed: () {
                   _launchURLBrowser('https://www.raceone.net');
                 },
+                // ต้องการคืนค่าโรงงาน
+                //  ยืนยัน    ยกเลิก
                 child: Text(
-                  'คืนค่าโรงงาน',
+                  'ล้างค่าการเชื่อมต่อ',
                   style: TextStyle(
                       color: Colors.white, fontSize: 15, fontFamily: 'Kanit'),
                 ),
