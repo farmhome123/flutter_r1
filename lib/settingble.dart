@@ -1,15 +1,8 @@
-// Copyright 2017, Paul DeMarco.
-// All rights reserved. Use of this source code is governed by a
-// BSD-style license that can be found in the LICENSE file.
-
 import 'dart:async';
 import 'dart:convert' show utf8;
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-
 import 'package:flutter_blue/flutter_blue.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:torqueair/page1.dart';
 import 'package:torqueair/page10.dart';
@@ -177,8 +170,10 @@ class FindDevicesScreen extends StatelessWidget {
             );
           } else {
             return FloatingActionButton(
-              backgroundColor: Colors.black,
-                child: Icon(Icons.search,),
+                backgroundColor: Colors.black,
+                child: Icon(
+                  Icons.search,
+                ),
                 onPressed: () => FlutterBlue.instance
                     .startScan(timeout: Duration(seconds: 4)));
           }
@@ -471,10 +466,6 @@ class _DeviceScreenState extends State<DeviceScreen> {
                     } else if (command.indexOf('LCX') != -1) {
                       // โหมดล็อคกันขโมย 00 - 01
                       final value1 = '${command[3]}${command[4]}';
-                      final value2 = '${command[5]}${command[6]}';
-                      final value3 = '${command[7]}${command[8]}';
-                      final value4 = '${command[9]}${command[10]}';
-                      final value5 = '${command[11]}${command[12]}';
                       print('โหมดล็อคกันขโมย');
                       Navigator.push(
                           context,
@@ -482,16 +473,15 @@ class _DeviceScreenState extends State<DeviceScreen> {
                               builder: (BuildContext context) => page10(
                                   valueTx: value,
                                   characteristic: _characteristic!,
-                                  value1: value1,
-                                  value2: value2,
-                                  value3: value3,
-                                  value4: value4,
-                                  value5: value5)));
+                                  value1: value1)));
                       setState(() {
                         _countPage = 0;
                       });
                     }
                     print('_valueNotify ${_valueNotify}');
+                    // if (characteristic != null) {
+                    //   characteristic.write(utf8.encode('REQ#'));
+                    // }
                   }
                 });
                 await characteristic
@@ -568,7 +558,6 @@ class _DeviceScreenState extends State<DeviceScreen> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          
           child: Column(
             children: <Widget>[
               StreamBuilder<BluetoothDeviceState>(

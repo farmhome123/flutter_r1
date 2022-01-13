@@ -324,10 +324,7 @@ class _page5State extends State<page5> {
                             builder: (context) => page10(
                                   characteristic: widget.characteristic,
                                   value1: '',
-                                  value2: '',
-                                  value3: '',
-                                  value4: '',
-                                  value5: '',
+                           
                                 )));
                   },
                   icon: Image.asset('lib/img/icon10.png'),

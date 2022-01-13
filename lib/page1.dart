@@ -70,6 +70,7 @@ class _page1State extends State<page1> {
     bool locationService;
     LocationPermission locationPermission;
 
+
     locationService = await Geolocator.isLocationServiceEnabled();
     if (locationService) {
       print('Service Location Open');
@@ -151,7 +152,7 @@ class _page1State extends State<page1> {
         // accuracy: LocationAccuracy.best,
         // distanceFilter: 2,
         // forceLocationManager: false,
-        intervalDuration: const Duration(seconds: 1),
+        intervalDuration: const Duration(milliseconds: 500),
       );
     } else if (defaultTargetPlatform == TargetPlatform.iOS ||
         defaultTargetPlatform == TargetPlatform.macOS) {
@@ -170,9 +171,9 @@ class _page1State extends State<page1> {
     Geolocator.getPositionStream(locationSettings: locationSettings)
         .listen((position) {
       var speedInMps = position.speed; // this is your speed
-      print('speedInMps = $speedInMps');
+      // print('speedInMps = $speedInMps');
       setState(() {
-        speed = double.parse('${speedInMps.toStringAsFixed(0)}');
+        speed = double.parse('${speedInMps}');
       });
     });
   }
@@ -254,7 +255,7 @@ class _page1State extends State<page1> {
                               ? Text(
                                   '${(speed! * 3.7).toStringAsFixed(0)}',
                                   style: TextStyle(
-                                    fontSize: 30,
+                                    fontSize: 70,
                                     fontFamily: 'ethnocentric',
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -264,28 +265,7 @@ class _page1State extends State<page1> {
                               : Text(
                                   " ",
                                   style: TextStyle(
-                                    fontSize: 30,
-                                    fontFamily: 'ethnocentric',
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                          speed != null
-                              ? Text(
-                                  '${(speed! * 3.65).toStringAsFixed(0)}',
-                                  style: TextStyle(
-                                    fontSize: 30,
-                                    fontFamily: 'ethnocentric',
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                )
-                              : Text(
-                                  " ",
-                                  style: TextStyle(
-                                    fontSize: 30,
+                                    fontSize: 70,
                                     fontFamily: 'ethnocentric',
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -485,10 +465,7 @@ class _page1State extends State<page1> {
                             builder: (context) => page10(
                                   characteristic: widget.characteristic,
                                   value1: '',
-                                  value2: '',
-                                  value3: '',
-                                  value4: '',
-                                  value5: '',
+                 
                                 )));
                   },
                   icon: Image.asset('lib/img/icon10.png'),

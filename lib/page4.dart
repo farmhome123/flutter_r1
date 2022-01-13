@@ -116,7 +116,7 @@ class _page4State extends State<page4> {
           IconButton(
             icon: Icon(Icons.bluetooth),
             onPressed: () {
-             Navigator.push(context,
+              Navigator.push(context,
                   MaterialPageRoute(builder: (context) => SettingBle()));
             },
           )
@@ -253,7 +253,7 @@ class _page4State extends State<page4> {
                                           ),
                                           //แท่ง1
                                           Text(
-                                            '${value1.toStringAsFixed(0)}',
+                                            '10',
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 12,
@@ -308,7 +308,7 @@ class _page4State extends State<page4> {
                                             height: 10,
                                           ),
                                           Text(
-                                            '${value2.toStringAsFixed(0)}',
+                                            '20',
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 12,
@@ -726,7 +726,19 @@ class _page4State extends State<page4> {
                       children: [
                         IconButton(
                           onPressed: () {
-                            setState(() {});
+                            setState(() {
+                              value1 = 0;
+                              value2 = 0;
+                              value3 = 0;
+                              value4 = 0;
+                              value5 = 0;
+                              value6 = 0;
+                              value7 = 0;
+                              value8 = 0;
+                              value9 = 0;
+                            });
+                            widget.characteristic!.write(utf8.encode(
+                                'RB${value1.toStringAsFixed(0).padLeft(2, '0') + value2.toStringAsFixed(0).padLeft(2, '0') + value3.toStringAsFixed(0).padLeft(2, '0') + value4.toStringAsFixed(0).padLeft(2, '0') + value5.toStringAsFixed(0).padLeft(2, '0') + value6.toStringAsFixed(0).padLeft(2, '0') + value7.toStringAsFixed(0).padLeft(2, '0') + value8.toStringAsFixed(0).padLeft(2, '0') + value9.toStringAsFixed(0).padLeft(2, '0')}'));
                           },
                           icon: Image.asset('lib/item/reset.png'),
                           iconSize: 50,
@@ -916,10 +928,6 @@ class _page4State extends State<page4> {
                             builder: (context) => page10(
                                   characteristic: widget.characteristic,
                                   value1: '',
-                                  value2: '',
-                                  value3: '',
-                                  value4: '',
-                                  value5: '',
                                 )));
                   },
                   icon: Image.asset('lib/img/icon10.png'),

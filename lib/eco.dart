@@ -80,7 +80,7 @@ class _ecoState extends State<eco> {
           IconButton(
             icon: Icon(Icons.bluetooth),
             onPressed: () {
-               Navigator.push(context,
+              Navigator.push(context,
                   MaterialPageRoute(builder: (context) => SettingBle()));
             },
           )
@@ -163,7 +163,6 @@ class _ecoState extends State<eco> {
                                                 builder: (context) => page2(
                                                     characteristic:
                                                         characteristic)));
-                                        
                                       },
                                       icon: Image.asset('lib/item/SPORT1.png'),
                                       iconSize: 60,
@@ -197,7 +196,7 @@ class _ecoState extends State<eco> {
                                           widget.characteristic!
                                               .write(utf8.encode('RY0103#'));
                                         }
-                                    Navigator.push(
+                                        Navigator.push(
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) => sport2(
@@ -410,10 +409,6 @@ class _ecoState extends State<eco> {
                             builder: (context) => page10(
                                   characteristic: widget.characteristic,
                                   value1: '',
-                                  value2: '',
-                                  value3: '',
-                                  value4: '',
-                                  value5: '',
                                 )));
                   },
                   icon: Image.asset('lib/img/icon10.png'),

@@ -24,19 +24,11 @@ class page10 extends StatefulWidget {
   final List<int>? valueTx;
   final BluetoothCharacteristic? characteristic;
   final String value1;
-  final String value2;
-  final String value3;
-  final String value4;
-  final String value5;
   const page10({
     Key? key,
     this.valueTx,
     required this.characteristic,
     required this.value1,
-    required this.value2,
-    required this.value3,
-    required this.value4,
-    required this.value5,
   }) : super(key: key);
 
   @override
@@ -48,11 +40,8 @@ class _page10State extends State<page10> {
       StreamController<bool>.broadcast();
 
   bool isAuthenticated = false;
-  String? value1;
-  String? value2;
-  String? value3;
-  String? value4;
-  String? value5;
+  bool? lockscreen = false;
+
   BluetoothCharacteristic? characteristic;
   @override
   void _showDialog(BuildContext context) {
@@ -81,7 +70,10 @@ class _page10State extends State<page10> {
     super.initState();
     setState(() {
       characteristic = widget.characteristic;
+      lockscreen = widget.value1 == '01' ? true : false;
+      isAuthenticated = widget.value1 == '01' ? true : false;
     });
+    print('########## value1 : ${lockscreen}');
   }
 
   @override
@@ -101,7 +93,7 @@ class _page10State extends State<page10> {
           IconButton(
             icon: Icon(Icons.bluetooth),
             onPressed: () {
-               Navigator.push(context,
+              Navigator.push(context,
                   MaterialPageRoute(builder: (context) => SettingBle()));
             },
           )
@@ -154,7 +146,7 @@ class _page10State extends State<page10> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      'คุณ${isAuthenticated ? 'ปลดล็อคแล้ว' : 'ยังไม่ล็อคกันขโมย'}',
+                      'คุณ${isAuthenticated ? 'ล็อคกันขโมย!' : 'ยังไม่ล็อคกันขโมย!'}',
                       style: TextStyle(color: Colors.white),
                     ),
                     _defaultLockScreenButton(context),
@@ -162,147 +154,174 @@ class _page10State extends State<page10> {
                 ),
               ),
             ),
-           Wrap(
+            Wrap(
               children: [
                 IconButton(
                   onPressed: () {
-                       if (characteristic != null) {
-                      widget.characteristic!.write(utf8.encode('RY00#'));
-                       }
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => page1(
-                              characteristic: widget.characteristic,
-                            )));
+                    if (!isAuthenticated) {
+                      if (characteristic != null) {
+                        widget.characteristic!.write(utf8.encode('RY00#'));
+                      }
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => page1(
+                                    characteristic: widget.characteristic,
+                                  )));
+                    }
                   },
                   icon: Image.asset('lib/img/icon1.png'),
                   iconSize: 70,
                 ),
                 IconButton(
                   onPressed: () {
-                           if (characteristic != null) {
-                      widget.characteristic!.write(utf8.encode('RY01#'));
-                           }
+                    if (!isAuthenticated) {
+                      if (characteristic != null) {
+                        widget.characteristic!.write(utf8.encode('RY01#'));
+                      }
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => page2(
                                     characteristic: widget.characteristic,
                                   )));
-                    
+                    }
                   },
                   icon: Image.asset('lib/img/icon2.png'),
                   iconSize: 70,
                 ),
                 IconButton(
-                  onPressed: () {         if (characteristic != null) {
-                    widget.characteristic!.write(utf8.encode('RY02#'));
-                  }
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => page3(
-                                  value: '0',
-                                  characteristic: widget.characteristic,
-                                )));
+                  onPressed: () {
+                    if (!isAuthenticated) {
+                      if (characteristic != null) {
+                        widget.characteristic!.write(utf8.encode('RY02#'));
+                      }
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => page3(
+                                    value: '0',
+                                    characteristic: widget.characteristic,
+                                  )));
+                    }
                   },
                   icon: Image.asset('lib/img/icon3.png'),
                   iconSize: 70,
                 ),
                 IconButton(
-                  onPressed: () {         if (characteristic != null) {
-                          widget.characteristic!.write(utf8.encode('RB#'));
-                  }
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => page4(
-                                  characteristic: widget.characteristic,
-                                  value1: 0,
-                                  value3: 0,
-                                  value2: 0,
-                                  value4: 0,
-                                  value5: 0,
-                                  value6: 0,
-                                  value7: 0,
-                                  value8: 0,
-                                  value9: 0,
-                                )));
+                  onPressed: () {
+                    if (!isAuthenticated) {
+                      if (characteristic != null) {
+                        widget.characteristic!.write(utf8.encode('RB#'));
+                      }
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => page4(
+                                    characteristic: widget.characteristic,
+                                    value1: 0,
+                                    value3: 0,
+                                    value2: 0,
+                                    value4: 0,
+                                    value5: 0,
+                                    value6: 0,
+                                    value7: 0,
+                                    value8: 0,
+                                    value9: 0,
+                                  )));
+                    }
                   },
                   icon: Image.asset('lib/img/icon4.png'),
                   iconSize: 70,
                 ),
                 IconButton(
-                  onPressed: () {         if (characteristic != null) {
-                    widget.characteristic!.write(utf8.encode('RY04#'));
-                  }
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => page5(
-                                  characteristic: widget.characteristic,
-                                )));
+                  onPressed: () {
+                    if (!isAuthenticated) {
+                      if (characteristic != null) {
+                        widget.characteristic!.write(utf8.encode('RY04#'));
+                      }
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => page5(
+                                    characteristic: widget.characteristic,
+                                  )));
+                    }
                   },
                   icon: Image.asset('lib/img/icon5.png'),
                   iconSize: 70,
                 ),
                 IconButton(
-                  onPressed: () {         if (characteristic != null) {
-                    widget.characteristic!.write(utf8.encode('RY05#'));
-                  }
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => page6(
-                                  characteristic: widget.characteristic,
-                                )));
+                  onPressed: () {
+                    if (!isAuthenticated) {
+                      if (characteristic != null) {
+                        widget.characteristic!.write(utf8.encode('RY05#'));
+                      }
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => page6(
+                                    characteristic: widget.characteristic,
+                                  )));
+                    }
                   },
                   icon: Image.asset('lib/img/icon6.png'),
                   iconSize: 70,
                 ),
                 IconButton(
-                  onPressed: () {         if (characteristic != null) {
-                    widget.characteristic!.write(utf8.encode('RY06#'));}
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => page7(
-                                  characteristic: widget.characteristic,
-                                  value: 0,
-                                  value1: 0,
-                                  value2: 0,
-                                  value3: 0,
-                                )));
+                  onPressed: () {
+                    if (!isAuthenticated) {
+                      if (characteristic != null) {
+                        widget.characteristic!.write(utf8.encode('RY06#'));
+                      }
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => page7(
+                                    characteristic: widget.characteristic,
+                                    value: 0,
+                                    value1: 0,
+                                    value2: 0,
+                                    value3: 0,
+                                  )));
+                    }
                   },
                   icon: Image.asset('lib/img/icon7.png'),
                   iconSize: 70,
                 ),
                 IconButton(
                   onPressed: () {
-                       if (characteristic != null) {
-                    widget.characteristic!.write(utf8.encode('RY07#'));
-                       }
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => page8(
-                                  characteristic: widget.characteristic,
-                                  value1: 0,
-                                  value2: 0,
-                                )));
+                    if (!isAuthenticated) {
+                      if (characteristic != null) {
+                        widget.characteristic!.write(utf8.encode('RY07#'));
+                      }
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => page8(
+                                    characteristic: widget.characteristic,
+                                    value1: 0,
+                                    value2: 0,
+                                  )));
+                    }
                   },
                   icon: Image.asset('lib/img/icon8.png'),
                   iconSize: 70,
                 ),
                 IconButton(
-                  onPressed: () {         if (characteristic != null) {
-                    widget.characteristic!.write(utf8.encode('RY08#'));
-                  }
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => page9(
-                                  characteristic: widget.characteristic,
-                                  value1: 0,
-                                )));
+                  onPressed: () {
+                    if (!isAuthenticated) {
+                      if (characteristic != null) {
+                        widget.characteristic!.write(utf8.encode('RY08#'));
+                      }
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => page9(
+                                    characteristic: widget.characteristic,
+                                    value1: 0,
+                                  )));
+                    }
                   },
                   icon: Image.asset('lib/img/icon9.png'),
                   iconSize: 70,
@@ -326,7 +345,7 @@ class _page10State extends State<page10> {
                 ),
               ],
             ),
-           ],
+          ],
         ),
       ),
     );
@@ -362,7 +381,6 @@ class _page10State extends State<page10> {
           opaque: opaque,
           pageBuilder: (context, animation, secondaryAnimation) =>
               PasscodeScreen(
-
             title: Text(
               'โปรดใส่รหัสผ่านของคุณ',
               textAlign: TextAlign.center,
@@ -393,7 +411,10 @@ class _page10State extends State<page10> {
     _verificationNotifier.add(isValid);
     if (isValid) {
       setState(() {
-        this.isAuthenticated = isValid;
+        this.isAuthenticated = !isAuthenticated;
+        if (characteristic != null) {
+          widget.characteristic!.write(utf8.encode('LCY0${isAuthenticated ? '1':'0'}#'));
+        }
       });
     }
   }
