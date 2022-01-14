@@ -245,10 +245,6 @@ class _page9State extends State<page9> {
                         child: Column(
                       children: [
                         Text(
-                          'send to esp RY0801${number.toString().padLeft(2, '0')}#',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        Text(
                           "โหมดคันเร่งอัตโนมัติ",
                           style: TextStyle(
                               color: Colors.white,
@@ -443,13 +439,13 @@ class _page9State extends State<page9> {
                     // if (characteristic != null) {
                     // } else {
                     // }
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => page10(
-                                    characteristic: widget.characteristic,
-                                    value1: '',
-                                  )));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => page10(
+                                  characteristic: widget.characteristic,
+                                  value1: '',
+                                )));
                   },
                   icon: Image.asset('lib/img/icon10.png'),
                   iconSize: 70,

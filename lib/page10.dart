@@ -374,7 +374,9 @@ class _page10State extends State<page10> {
   _defaultLockScreenButton(BuildContext context) => MaterialButton(
         color: Colors.grey,
         child: Text('เปิดหน้ารหัสผ่าน'),
-        onPressed: () {
+        onPressed: () async {
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.reload();
           _showLockScreen(
             context,
             opaque: false,
@@ -426,8 +428,11 @@ class _page10State extends State<page10> {
         ));
   }
 
-  _onPasscodeEntered(String enteredPasscode) {
-    bool isValid = storedPasscode == enteredPasscode;
+  _onPasscodeEntered(String enteredPasscode) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    var storpassword = prefs.getString('passwordCode');
+    bool isValid = storpassword == enteredPasscode;
     _verificationNotifier.add(isValid);
     if (isValid) {
       setState(() {
@@ -501,13 +506,16 @@ class _page10State extends State<page10> {
                   color: Colors.white,
                   fontWeight: FontWeight.w300),
             ),
-            onPressed: _resetAppPassword,
+
+            onPressed:
+                !isAuthenticated ? _resetAppPassword : null,
             // splashColor: Colors.white.withOpacity(0.4),
             // highlightColor: Colors.white.withOpacity(0.2),
             // ),
           ),
         ),
       );
+  
 
   _resetAppPassword() {
     Navigator.maybePop(context).then((result) {

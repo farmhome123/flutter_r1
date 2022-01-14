@@ -362,6 +362,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "random_string",
+      "rootUri": "file:///Users/farm24dec/flutter/.pub-cache/hosted/pub.dartlang.org/random_string-2.3.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "responsive_framework",
       "rootUri": "file:///Users/farm24dec/flutter/.pub-cache/hosted/pub.dartlang.org/responsive_framework-0.1.4",
       "packageUri": "lib/",
@@ -578,7 +584,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2022-01-13T18:02:44.567635Z",
+  "generated": "2022-01-14T17:49:44.172716Z",
   "generator": "pub",
   "generatorVersion": "2.15.1"
 }

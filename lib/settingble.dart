@@ -4,6 +4,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 import 'package:provider/provider.dart';
+import 'package:random_string/random_string.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:torqueair/page1.dart';
 import 'package:torqueair/page10.dart';
 import 'package:torqueair/page2.dart';
@@ -196,18 +198,11 @@ class DeviceScreen extends StatefulWidget {
 
 class _DeviceScreenState extends State<DeviceScreen> {
   BluetoothCharacteristic? _characteristic;
-  List<int> _getRandomBytes() {
-    final math = Random();
-    return [
-      math.nextInt(255),
-      math.nextInt(255),
-      math.nextInt(255),
-      math.nextInt(255)
-    ];
-  }
 
   // List<Widget> _buildServiceTiles(List<BluetoothService> services) {
   List<int>? _valueNotify;
+  String? genuidble;
+  String? uidble;
   String _dataParser(List<int> dataFromDevice) {
     return utf8.decode(dataFromDevice);
   }
@@ -221,11 +216,13 @@ class _DeviceScreenState extends State<DeviceScreen> {
   }
 
   Future connect() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     final String SERVICE_UUID = "0000ffe0-0000-1000-8000-00805f9b34fb";
     final String CHARACTERISTIC_UUID = "0000ffe1-0000-1000-8000-00805f9b34fb";
     await checkConnectDevice();
     await widget.device.connect();
     await widget.device.discoverServices();
+
     int _countPage = 0;
     if (widget.device != null) {
       List<BluetoothService> services = await widget.device.discoverServices();
@@ -489,6 +486,18 @@ class _DeviceScreenState extends State<DeviceScreen> {
                       setState(() {
                         _countPage = 0;
                       });
+                    } else if (command.indexOf('CN') != -1) {
+                      final value1 = '${command[2]}${command[3]}';
+                      if (value1 == '01') {
+                        widget.device.discoverServices();
+                        if (uidble == '') {
+                          prefs.setString('uidble', '${genuidble.toString()}');
+                        }
+                        sendPage();
+                      } else {
+                        checkConnectDevice();
+                        _showDialog(context);
+                      }
                     }
                     print('_valueNotify ${_valueNotify}');
                     // if (characteristic != null) {
@@ -521,10 +530,17 @@ class _DeviceScreenState extends State<DeviceScreen> {
     }
   }
 
+  getUIDBLE() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    uidble = prefs.getString('uidble');
+    print('###################### UIDBLE ===> ${uidble}');
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    getUIDBLE();
     connect();
   }
 
@@ -536,19 +552,37 @@ class _DeviceScreenState extends State<DeviceScreen> {
         backgroundColor: Colors.black,
         title: Text(widget.device.name),
         leading: FlatButton(
-            onPressed: () {
+            onPressed: () async {
               if (_characteristic != null) {
-                sendPage();
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                uidble = await prefs.getString('uidble');
+                print('UID BLE = ${uidble}');
+                if (uidble == '') {
+                  setState(() {
+                    genuidble = randomNumeric(6);
+                  });
+                  await _characteristic!
+                      .write(utf8.encode('NID=${genuidble}#'));
+                } else {
+                  await _characteristic!.write(utf8.encode('OID=${uidble}#'));
+                }
+                print('############ uidble == > ${uidble}');
+                // sendPage();
               } else {
-                Navigator.pop(context);
-                Navigator.pop(context);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => page1(
+                              characteristic: null,
+                            )));
               }
-              // Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //         builder: (context) => page1(
-              //               characteristic: null,
-              //             )));
+
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => page1(
+                            characteristic: null,
+                          )));
             },
             child: Icon(
               Icons.arrow_back,
@@ -563,11 +597,19 @@ class _DeviceScreenState extends State<DeviceScreen> {
               String text;
               switch (snapshot.data) {
                 case BluetoothDeviceState.connected:
-                  onPressed = () => widget.device.disconnect();
+                  onPressed = () async {
+                    await widget.device.disconnect();
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => SettingBle()));
+                  };
                   text = 'DISCONNECT';
                   break;
                 case BluetoothDeviceState.disconnected:
-                  onPressed = () => widget.device.connect();
+                  onPressed = () async {
+                    await checkConnectDevice();
+                    await widget.device.connect();
+                    await widget.device.discoverServices();
+                  };
                   text = 'CONNECT';
                   break;
                 default:
@@ -664,5 +706,30 @@ class _DeviceScreenState extends State<DeviceScreen> {
     } else {
       print('############# _characteristic == null ##############');
     }
+  }
+
+  void _showDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: new Text("แจ้งเตือน"),
+          content: new Text("การเชื่อมต่อล้มเหลว"),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text("OK"),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => page1(
+                              characteristic: null,
+                            )));
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }

@@ -714,12 +714,12 @@ class _page4State extends State<page4> {
                         ],
                       ),
                     ),
-                    Center(
-                      child: Text(
-                        'send to esp RY03${value1.toStringAsFixed(0).padLeft(2, '0') + value2.toStringAsFixed(0).padLeft(2, '0') + value3.toStringAsFixed(0).padLeft(2, '0') + value4.toStringAsFixed(0).padLeft(2, '0') + value5.toStringAsFixed(0).padLeft(2, '0') + value6.toStringAsFixed(0).padLeft(2, '0') + value7.toStringAsFixed(0).padLeft(2, '0') + value8.toStringAsFixed(0).padLeft(2, '0') + value9.toStringAsFixed(0).padLeft(2, '0')}#',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
+                    // Center(
+                    //   child: Text(
+                    //     'send to esp RY03${value1.toStringAsFixed(0).padLeft(2, '0') + value2.toStringAsFixed(0).padLeft(2, '0') + value3.toStringAsFixed(0).padLeft(2, '0') + value4.toStringAsFixed(0).padLeft(2, '0') + value5.toStringAsFixed(0).padLeft(2, '0') + value6.toStringAsFixed(0).padLeft(2, '0') + value7.toStringAsFixed(0).padLeft(2, '0') + value8.toStringAsFixed(0).padLeft(2, '0') + value9.toStringAsFixed(0).padLeft(2, '0')}#',
+                    //     style: TextStyle(color: Colors.white),
+                    //   ),
+                    // ),
                     Container(
                         child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,

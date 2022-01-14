@@ -34,6 +34,8 @@ class _MyAppState extends State<MyApp> {
     print(statuslock);
     if (statuslock != 'true') {
       prefs.setString('passwordCode', '1234');
+      prefs.setString('uidble', '');
+      prefs.setString('bleStep', '0');
       setState(() {
         prefs.setString('statuslock', 'true');
       });

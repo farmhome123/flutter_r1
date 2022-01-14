@@ -243,10 +243,6 @@ class _page3State extends State<page3> {
                         ),
                       ],
                     ),
-                    Text(
-                      widget.value.toString(),
-                      style: TextStyle(color: Colors.white),
-                    ),
                     SizedBox(
                       height: 10,
                     ),

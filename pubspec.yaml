@@ -40,6 +40,7 @@ dependencies:
   flutter_switch: ^0.3.2
   geolocator: ^8.0.1
   shared_preferences: ^2.0.12
+  random_string: ^2.3.1
   
 flutter_icons :
   android: true
@@ -95,6 +96,7 @@ flutter:
   - lib/img/icon9.1.png
   - lib/img/icon10.png
   - lib/img/icon10.1.png
+  - lib/img/resetpage.jpeg
   - lib/img/AI mode.png
   - lib/itemol/Ai mode.png
   - lib/itemol/Ai mode2.png
@@ -134,6 +136,7 @@ flutter:
   - lib/item/COMFORT2.png
   - lib/item/slide.png
   - lib/item/reset.png
+ 
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
