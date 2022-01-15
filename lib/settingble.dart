@@ -215,10 +215,10 @@ class _DeviceScreenState extends State<DeviceScreen> {
     }
   }
 
+  final String SERVICE_UUID = "0000ffe0-0000-1000-8000-00805f9b34fb";
+  final String CHARACTERISTIC_UUID = "0000ffe1-0000-1000-8000-00805f9b34fb";
   Future connect() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String SERVICE_UUID = "0000ffe0-0000-1000-8000-00805f9b34fb";
-    final String CHARACTERISTIC_UUID = "0000ffe1-0000-1000-8000-00805f9b34fb";
     await checkConnectDevice();
     await widget.device.connect();
     await widget.device.discoverServices();
@@ -234,8 +234,8 @@ class _DeviceScreenState extends State<DeviceScreen> {
           service.characteristics.forEach((characteristic) async {
             _characteristic = characteristic;
             print('_characteristic = ${_characteristic}');
-            if (characteristic.uuid.toString() ==
-                '0000ffe1-0000-1000-8000-00805f9b34fb') {
+            if (characteristic.uuid.toString().toLowerCase() ==
+                CHARACTERISTIC_UUID.toLowerCase()) {
               if (characteristic.properties.notify) {
                 characteristic.value.listen((value) {
                   if (value != null) {
@@ -246,7 +246,7 @@ class _DeviceScreenState extends State<DeviceScreen> {
                     final command = _dataParser(value).toString();
 
                     // print('111 ${command[4]} ${command[5]}');
-                    if (command.indexOf('RX00') != -1) {
+                    if (command.contains('RX00')) {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -258,7 +258,7 @@ class _DeviceScreenState extends State<DeviceScreen> {
                       setState(() {
                         _countPage = 0;
                       });
-                    } else if (command.indexOf('RX01') != -1) {
+                    } else if (command.contains('RX01')) {
                       if (command[4] == '0') {
                         switch (command[5]) {
                           case '0':
@@ -321,7 +321,7 @@ class _DeviceScreenState extends State<DeviceScreen> {
                       }
 
                       print('111 ${command[4]} ${command[5]}');
-                    } else if (command.indexOf('RX02') != -1) {
+                    } else if (command.contains('RX02')) {
                       print('RX02 ===== ${command[4]}${command[5]}');
                       final value2 = '${command[4]}${command[5]}';
                       Navigator.push(
@@ -335,7 +335,7 @@ class _DeviceScreenState extends State<DeviceScreen> {
                       setState(() {
                         _countPage = 0;
                       });
-                    } else if (command.indexOf('RA') != -1) {
+                    } else if (command.contains('RA')) {
                       print('command = ${command}');
                       final value1 = '${command[2]}${command[3]}';
                       final value2 = '${command[4]}${command[5]}';
@@ -365,7 +365,7 @@ class _DeviceScreenState extends State<DeviceScreen> {
                       setState(() {
                         _countPage = 0;
                       });
-                    } else if (command.indexOf('RX02') != -1) {
+                    } else if (command.contains('RX02')) {
                       print('RX02 ===== ${command[4]}${command[5]}');
                       final value2 = '${command[4]}${command[5]}';
                       Navigator.push(
@@ -379,7 +379,7 @@ class _DeviceScreenState extends State<DeviceScreen> {
                       setState(() {
                         _countPage = 0;
                       });
-                    } else if (command.indexOf('RX04') != -1) {
+                    } else if (command.contains('RX04')) {
                       print('PAGE5');
                       Navigator.push(
                           context,
@@ -390,7 +390,7 @@ class _DeviceScreenState extends State<DeviceScreen> {
                       setState(() {
                         _countPage = 0;
                       });
-                    } else if (command.indexOf('RX05') != -1) {
+                    } else if (command.contains('RX05')) {
                       print('PAGE 6');
                       Navigator.push(
                           context,
@@ -401,7 +401,7 @@ class _DeviceScreenState extends State<DeviceScreen> {
                       setState(() {
                         _countPage = 0;
                       });
-                    } else if (command.indexOf('RX06') != -1) {
+                    } else if (command.contains('RX06')) {
                       // โหมดเดินหอบ
                       print('PAGE 7');
                       final value1 = '${command[4]}${command[5]}';
@@ -422,7 +422,7 @@ class _DeviceScreenState extends State<DeviceScreen> {
                       setState(() {
                         _countPage = 0;
                       });
-                    } else if (command.indexOf('RX07') != -1) {
+                    } else if (command.contains('RX07')) {
                       var _value1 =
                           Provider.of<valueProvider>(context, listen: false);
                       // โหมดปิดควันดำ
@@ -458,7 +458,7 @@ class _DeviceScreenState extends State<DeviceScreen> {
                                     value1: double.parse(value1),
                                     value2: double.parse(value2))));
                       }
-                    } else if (command.indexOf('RX08') != -1) {
+                    } else if (command.contains('RX08')) {
                       // โหมดคันเร่งอัตโนมัติ
                       print('PAGE 9');
                       final value1 = '${command[4]}${command[5]}';
@@ -472,7 +472,7 @@ class _DeviceScreenState extends State<DeviceScreen> {
                       setState(() {
                         _countPage = 0;
                       });
-                    } else if (command.indexOf('LCX') != -1) {
+                    } else if (command.contains('LCX')) {
                       // โหมดล็อคกันขโมย 00 - 01
                       final value1 = '${command[3]}${command[4]}';
                       print('โหมดล็อคกันขโมย');
@@ -486,9 +486,11 @@ class _DeviceScreenState extends State<DeviceScreen> {
                       setState(() {
                         _countPage = 0;
                       });
-                    } else if (command.indexOf('CN') != -1) {
+                    } else if (command.contains('CN')) {
                       final value1 = '${command[2]}${command[3]}';
-                      if (value1 == '01') {
+                      // _showDialogTestText(context);
+
+                      if (command.contains('01#')) {
                         widget.device.discoverServices();
                         if (uidble == '') {
                           prefs.setString('uidble', '${genuidble.toString()}');
@@ -498,6 +500,16 @@ class _DeviceScreenState extends State<DeviceScreen> {
                         checkConnectDevice();
                         _showDialog(context);
                       }
+                      // if (value1 == '01') {
+                      //   widget.device.discoverServices();
+                      //   if (uidble == '') {
+                      //     prefs.setString('uidble', '${genuidble.toString()}');
+                      //   }
+                      //   sendPage();
+                      // } else {
+                      //   checkConnectDevice();
+                      //   _showDialog(context);
+                      // }
                     }
                     print('_valueNotify ${_valueNotify}');
                     // if (characteristic != null) {
@@ -577,12 +589,12 @@ class _DeviceScreenState extends State<DeviceScreen> {
                             )));
               }
 
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => page1(
-                            characteristic: null,
-                          )));
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (context) => page1(
+              //               characteristic: null,
+              //             )));
             },
             child: Icon(
               Icons.arrow_back,
@@ -695,7 +707,7 @@ class _DeviceScreenState extends State<DeviceScreen> {
     var res = await _characteristic;
     if (res != null) {
       if (_characteristic!.uuid.toString() ==
-          '6E400002-B5A3-F393-E0A9-E50EBBBBB000'.toLowerCase()) {
+          CHARACTERISTIC_UUID.toLowerCase()) {
         print('############# _characteristic!.uuid True ##############');
         _characteristic!.write(utf8.encode('REQ#'));
       } else {

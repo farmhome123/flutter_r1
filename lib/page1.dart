@@ -297,7 +297,7 @@ class _page1State extends State<page1> {
                           ),
                           Expanded(
                             child: Text(
-                              "จะไม่มีการปรับแต่งค่าใดระหว่าวการใช้งาน",
+                              "จะไม่มีการปรับแต่งค่าใดระหว่างการใช้งาน",
                               style: TextStyle(
                                   fontSize: 15,
                                   fontFamily: 'Kanit',

@@ -238,7 +238,7 @@ class _page2State extends State<page2> {
                         fontSize: 12, color: Colors.white, fontFamily: 'Kanit'),
                   ),
                   Text(
-                    'ให้ความรู้สึกสปร์ต',
+                    'ให้ความรู้สึกสปอร์ต',
                     style: TextStyle(
                         fontSize: 12, color: Colors.white, fontFamily: 'Kanit'),
                   ),
