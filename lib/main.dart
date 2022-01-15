@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -6,13 +7,17 @@ import 'package:torqueair/splash.dart';
 import 'package:torqueair/valueProvider.dart';
 
 void main() {
-  runApp(
-    MultiProvider(providers: [
-      ChangeNotifierProvider<valueProvider>(
-        create: (_) => valueProvider(),
-      ),
-    ], child: MyApp()),
-  );
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then((_) {
+    runApp(
+      MultiProvider(providers: [
+        ChangeNotifierProvider<valueProvider>(
+          create: (_) => valueProvider(),
+        ),
+      ], child: MyApp()),
+    );
+  });
 }
 
 class MyApp extends StatefulWidget {
@@ -46,6 +51,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([]);
     return MaterialApp(
       title: 'Flutter Demo',
       home: Splash(),

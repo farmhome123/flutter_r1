@@ -28,101 +28,104 @@
 16    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 16-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:9:5-85
 16-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:9:22-82
-17
-18    <application
-18-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:10:4-47:19
-19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-19-->[androidx.core:core:1.6.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/52e91e3727d636058e74af5729ccb413/core-1.6.0/AndroidManifest.xml:24:18-86
-20        android:icon="@mipmap/ic_launcher"
-20-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:12:9-43
-21        android:label="Torque" >
-21-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:11:9-31
-22        <activity
-22-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:13:9-41:20
-23            android:name="com.example.torqueair.MainActivity"
-23-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:14:13-41
-24            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-24-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:17:13-163
-25            android:hardwareAccelerated="true"
-25-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:18:13-47
-26            android:launchMode="singleTop"
-26-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:15:13-43
-27            android:theme="@style/LaunchTheme"
-27-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:16:13-47
-28            android:windowSoftInputMode="adjustResize" >
-28-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:19:13-55
-29
-30            <!--
-31                 Specifies an Android theme to apply to this Activity as soon as
-32                 the Android process has started. This theme is visible to the user
-33                 while the Flutter UI initializes. After that, this theme continues
-34                 to determine the Window background behind the Flutter UI.
-35            -->
-36            <meta-data
-36-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:24:13-27:17
-37                android:name="io.flutter.embedding.android.NormalTheme"
-37-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:25:15-70
-38                android:resource="@style/NormalTheme" />
-38-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:26:15-52
-39            <!--
-40                 Displays an Android View that continues showing the launch screen
-41                 Drawable until Flutter paints its first frame, then this splash
-42                 screen fades out. A splash screen is useful to avoid any visual
-43                 gap between the end of Android's launch screen and the painting of
-44                 Flutter's first frame.
-45            -->
-46            <meta-data
-46-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:33:13-36:17
-47                android:name="io.flutter.embedding.android.SplashScreenDrawable"
-47-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:34:15-79
-48                android:resource="@drawable/launch_background" />
-48-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:35:15-61
-49
-50            <intent-filter>
-50-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:37:13-40:29
-51                <action android:name="android.intent.action.MAIN" />
-51-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:38:17-68
-51-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:38:25-66
-52
-53                <category android:name="android.intent.category.LAUNCHER" />
-53-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:39:17-76
-53-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:39:27-74
-54            </intent-filter>
-55        </activity>
-56        <!--
-57             Don't delete the meta-data below.
-58             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
-59        -->
-60        <meta-data
-60-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:44:9-46:33
-61            android:name="flutterEmbedding"
-61-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:45:13-44
-62            android:value="2" />
-62-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:46:13-30
-63
-64        <activity
-64-->[:url_launcher_android] /Users/farm24dec/Desktop/torqueair/build/url_launcher_android/intermediates/library_manifest/release/AndroidManifest.xml:8:9-11:74
-65            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
-65-->[:url_launcher_android] /Users/farm24dec/Desktop/torqueair/build/url_launcher_android/intermediates/library_manifest/release/AndroidManifest.xml:9:13-74
-66            android:exported="false"
-66-->[:url_launcher_android] /Users/farm24dec/Desktop/torqueair/build/url_launcher_android/intermediates/library_manifest/release/AndroidManifest.xml:10:13-37
-67            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-67-->[:url_launcher_android] /Users/farm24dec/Desktop/torqueair/build/url_launcher_android/intermediates/library_manifest/release/AndroidManifest.xml:11:13-71
-68        <activity
-68-->[com.google.android.gms:play-services-base:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/b71d60045584a8b6c65c6769ba846940/jetified-play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
-69            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-69-->[com.google.android.gms:play-services-base:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/b71d60045584a8b6c65c6769ba846940/jetified-play-services-base-17.0.0/AndroidManifest.xml:24:13-79
-70            android:exported="false"
-70-->[com.google.android.gms:play-services-base:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/b71d60045584a8b6c65c6769ba846940/jetified-play-services-base-17.0.0/AndroidManifest.xml:25:13-37
-71            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-71-->[com.google.android.gms:play-services-base:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/b71d60045584a8b6c65c6769ba846940/jetified-play-services-base-17.0.0/AndroidManifest.xml:26:13-72
-72
-73        <meta-data
-73-->[com.google.android.gms:play-services-basement:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/cf20c1ec0b354f39a5c38de315d6e8fa/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
-74            android:name="com.google.android.gms.version"
-74-->[com.google.android.gms:play-services-basement:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/cf20c1ec0b354f39a5c38de315d6e8fa/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
-75            android:value="@integer/google_play_services_version" />
-75-->[com.google.android.gms:play-services-basement:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/cf20c1ec0b354f39a5c38de315d6e8fa/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
-76    </application>
-77
-78</manifest>
+17    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+17-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:10:5-76
+17-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:10:22-74
+18
+19    <application
+19-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:11:4-48:19
+20        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+20-->[androidx.core:core:1.6.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/52e91e3727d636058e74af5729ccb413/core-1.6.0/AndroidManifest.xml:24:18-86
+21        android:icon="@mipmap/ic_launcher"
+21-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:13:9-43
+22        android:label="Torque" >
+22-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:12:9-31
+23        <activity
+23-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:14:9-42:20
+24            android:name="com.example.torqueair.MainActivity"
+24-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:15:13-41
+25            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+25-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:18:13-163
+26            android:hardwareAccelerated="true"
+26-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:19:13-47
+27            android:launchMode="singleTop"
+27-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:16:13-43
+28            android:theme="@style/LaunchTheme"
+28-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:17:13-47
+29            android:windowSoftInputMode="adjustResize" >
+29-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:20:13-55
+30
+31            <!--
+32                 Specifies an Android theme to apply to this Activity as soon as
+33                 the Android process has started. This theme is visible to the user
+34                 while the Flutter UI initializes. After that, this theme continues
+35                 to determine the Window background behind the Flutter UI.
+36            -->
+37            <meta-data
+37-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:25:13-28:17
+38                android:name="io.flutter.embedding.android.NormalTheme"
+38-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:26:15-70
+39                android:resource="@style/NormalTheme" />
+39-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:27:15-52
+40            <!--
+41                 Displays an Android View that continues showing the launch screen
+42                 Drawable until Flutter paints its first frame, then this splash
+43                 screen fades out. A splash screen is useful to avoid any visual
+44                 gap between the end of Android's launch screen and the painting of
+45                 Flutter's first frame.
+46            -->
+47            <meta-data
+47-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:34:13-37:17
+48                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+48-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:35:15-79
+49                android:resource="@drawable/launch_background" />
+49-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:36:15-61
+50
+51            <intent-filter>
+51-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:38:13-41:29
+52                <action android:name="android.intent.action.MAIN" />
+52-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:39:17-68
+52-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:39:25-66
+53
+54                <category android:name="android.intent.category.LAUNCHER" />
+54-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:40:17-76
+54-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:40:27-74
+55            </intent-filter>
+56        </activity>
+57        <!--
+58             Don't delete the meta-data below.
+59             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+60        -->
+61        <meta-data
+61-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:45:9-47:33
+62            android:name="flutterEmbedding"
+62-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:46:13-44
+63            android:value="2" />
+63-->/Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:47:13-30
+64
+65        <activity
+65-->[:url_launcher_android] /Users/farm24dec/Desktop/torqueair/build/url_launcher_android/intermediates/library_manifest/release/AndroidManifest.xml:8:9-11:74
+66            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+66-->[:url_launcher_android] /Users/farm24dec/Desktop/torqueair/build/url_launcher_android/intermediates/library_manifest/release/AndroidManifest.xml:9:13-74
+67            android:exported="false"
+67-->[:url_launcher_android] /Users/farm24dec/Desktop/torqueair/build/url_launcher_android/intermediates/library_manifest/release/AndroidManifest.xml:10:13-37
+68            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+68-->[:url_launcher_android] /Users/farm24dec/Desktop/torqueair/build/url_launcher_android/intermediates/library_manifest/release/AndroidManifest.xml:11:13-71
+69        <activity
+69-->[com.google.android.gms:play-services-base:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/b71d60045584a8b6c65c6769ba846940/jetified-play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
+70            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+70-->[com.google.android.gms:play-services-base:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/b71d60045584a8b6c65c6769ba846940/jetified-play-services-base-17.0.0/AndroidManifest.xml:24:13-79
+71            android:exported="false"
+71-->[com.google.android.gms:play-services-base:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/b71d60045584a8b6c65c6769ba846940/jetified-play-services-base-17.0.0/AndroidManifest.xml:25:13-37
+72            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+72-->[com.google.android.gms:play-services-base:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/b71d60045584a8b6c65c6769ba846940/jetified-play-services-base-17.0.0/AndroidManifest.xml:26:13-72
+73
+74        <meta-data
+74-->[com.google.android.gms:play-services-basement:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/cf20c1ec0b354f39a5c38de315d6e8fa/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
+75            android:name="com.google.android.gms.version"
+75-->[com.google.android.gms:play-services-basement:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/cf20c1ec0b354f39a5c38de315d6e8fa/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
+76            android:value="@integer/google_play_services_version" />
+76-->[com.google.android.gms:play-services-basement:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/cf20c1ec0b354f39a5c38de315d6e8fa/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
+77    </application>
+78
+79</manifest>

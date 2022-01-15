@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:1:1-48:12
-INJECTED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:1:1-48:12
-INJECTED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:1:1-48:12
-INJECTED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:1:1-48:12
+ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:1:1-49:12
+INJECTED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:1:1-49:12
+INJECTED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:1:1-49:12
+INJECTED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:1:1-49:12
 MERGED from [:shared_preferences_android] /Users/farm24dec/Desktop/torqueair/build/shared_preferences_android/intermediates/library_manifest/release/AndroidManifest.xml:2:1-7:12
 MERGED from [:geolocator_android] /Users/farm24dec/Desktop/torqueair/build/geolocator_android/intermediates/library_manifest/release/AndroidManifest.xml:2:1-7:12
 MERGED from [:url_launcher_android] /Users/farm24dec/Desktop/torqueair/build/url_launcher_android/intermediates/library_manifest/release/AndroidManifest.xml:2:1-14:12
@@ -28,20 +28,20 @@ MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/farm24dec/.gradle/cac
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/920818a04b5fa3cc5a11c8de6cc6b54c/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/b2f4938db52d0d85f1b8b592c714b135/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/5542c6246a5cf78fa359548e9b2b3615/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:17:1-24:12
-INJECTED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:1:1-48:12
-INJECTED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:1:1-48:12
-INJECTED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:1:1-48:12
+INJECTED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:1:1-49:12
+INJECTED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:1:1-49:12
+INJECTED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:1:1-49:12
 	package
 		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:2:5-36
 		INJECTED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:1:1-48:12
+		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:1:1-49:12
 		INJECTED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:1:1-48:12
+		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:1:1-49:12
 		INJECTED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:1:11-69
@@ -71,8 +71,12 @@ uses-permission#android.permission.ACCESS_BACKGROUND_LOCATION
 ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:9:5-85
 	android:name
 		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:9:22-82
+uses-permission#android.permission.QUERY_ALL_PACKAGES
+ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:10:5-76
+	android:name
+		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:10:22-74
 application
-ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:10:4-47:19
+ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:11:4-48:19
 MERGED from [:url_launcher_android] /Users/farm24dec/Desktop/torqueair/build/url_launcher_android/intermediates/library_manifest/release/AndroidManifest.xml:7:5-12:19
 MERGED from [:url_launcher_android] /Users/farm24dec/Desktop/torqueair/build/url_launcher_android/intermediates/library_manifest/release/AndroidManifest.xml:7:5-12:19
 MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/d136cdf3e272b19dcac156ba21e2f03a/jetified-play-services-location-17.0.0/AndroidManifest.xml:7:5-20
@@ -92,51 +96,51 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/farm
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.6.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/52e91e3727d636058e74af5729ccb413/core-1.6.0/AndroidManifest.xml:24:18-86
 	android:label
-		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:11:9-31
+		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:12:9-31
 	android:icon
-		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:12:9-43
+		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:13:9-43
 activity#com.example.torqueair.MainActivity
-ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:13:9-41:20
+ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:14:9-42:20
 	android:launchMode
-		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:15:13-43
+		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:16:13-43
 	android:hardwareAccelerated
-		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:18:13-47
+		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:19:13-47
 	android:windowSoftInputMode
-		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:19:13-55
+		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:20:13-55
 	android:configChanges
-		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:17:13-163
+		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:18:13-163
 	android:theme
-		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:16:13-47
+		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:17:13-47
 	android:name
-		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:14:13-41
+		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:15:13-41
 meta-data#io.flutter.embedding.android.NormalTheme
-ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:24:13-27:17
+ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:25:13-28:17
 	android:resource
-		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:26:15-52
+		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:27:15-52
 	android:name
-		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:25:15-70
+		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:26:15-70
 meta-data#io.flutter.embedding.android.SplashScreenDrawable
-ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:33:13-36:17
+ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:34:13-37:17
 	android:resource
-		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:35:15-61
+		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:36:15-61
 	android:name
-		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:34:15-79
+		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:35:15-79
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:37:13-40:29
+ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:38:13-41:29
 action#android.intent.action.MAIN
-ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:38:17-68
+ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:39:17-68
 	android:name
-		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:38:25-66
+		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:39:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:39:17-76
+ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:40:17-76
 	android:name
-		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:39:27-74
+		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:40:27-74
 meta-data#flutterEmbedding
-ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:44:9-46:33
+ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:45:9-47:33
 	android:value
-		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:46:13-30
+		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:47:13-30
 	android:name
-		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:45:13-44
+		ADDED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml:46:13-44
 uses-sdk
 INJECTED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/farm24dec/Desktop/torqueair/android/app/src/main/AndroidManifest.xml
