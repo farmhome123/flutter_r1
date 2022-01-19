@@ -42,7 +42,7 @@ class page7 extends StatefulWidget {
 
 class _page7State extends State<page7> {
   bool isSwitched = false;
-  final double minlevel = 0;
+  final double minlevel = 1;
   final double maxlevel = 24;
   final double minsound = 0;
   final double maxsound = 50;
@@ -94,6 +94,8 @@ class _page7State extends State<page7> {
         if (command.contains('HX01')) {
           // print('index --------------- #######---------> ${index}');
           var data = dataValue[index]![1];
+          data = data.replaceAll(
+              'HY', 'HY${value1.round().toString().padLeft(2, '0')}');
           print('#### DART ----- > ${data}');
           // await _characteristicTX!.write(
           //   utf8.encode(data),
@@ -101,6 +103,8 @@ class _page7State extends State<page7> {
           sendData(data);
         } else if (command.contains('HX02')) {
           var data = dataValue[index]![2];
+          data = data.replaceAll(
+              'HY', 'HY${value1.round().toString().padLeft(2, '0')}');
           print('#### DART ----- > ${data}');
           // await _characteristicTX!.write(
           //   utf8.encode(data),
@@ -108,6 +112,8 @@ class _page7State extends State<page7> {
           sendData(data);
         } else if (command.contains('HX03')) {
           var data = dataValue[index]![3];
+          data = data.replaceAll(
+              'HY', 'HY${value1.round().toString().padLeft(2, '0')}');
           print('#### DART ----- > ${data}');
           // await _characteristicTX!.write(
           //   utf8.encode(data),
@@ -115,6 +121,8 @@ class _page7State extends State<page7> {
           sendData(data);
         } else if (command.contains('HX04')) {
           var data = dataValue[index]![4];
+          data = data.replaceAll(
+              'HY', 'HY${value1.round().toString().padLeft(2, '0')}');
           print('#### DART ----- > ${data}');
           // await _characteristicTX!.write(
           //   utf8.encode(data),
@@ -122,6 +130,8 @@ class _page7State extends State<page7> {
           sendData(data);
         } else if (command.contains('HX05')) {
           var data = dataValue[index]![5];
+          data = data.replaceAll(
+              'HY', 'HY${value1.round().toString().padLeft(2, '0')}');
           print('#### DART ----- > ${data}');
           // await _characteristicTX!.write(
           //   utf8.encode(data),
@@ -516,7 +526,13 @@ class _page7State extends State<page7> {
                                                     onChangeEnd:
                                                         (value1) async {
                                                       setState(() {
-                                                        index = value1.toInt();
+                                                        index = value1.round();
+                                                        // widget.characteristic!
+                                                        //     .write(
+                                                        //         utf8.encode(
+                                                        //             'RY06${'${status == true ? '01' : '00'}${value1.toStringAsFixed(0).padLeft(2, '0')}' + '${value2.toStringAsFixed(0).padLeft(2, '0')}' + '${value3.toStringAsFixed(0).padLeft(2, '0')}'}#'),
+                                                        //         withoutResponse:
+                                                        //             true);
                                                       });
                                                       // context
                                                       //     .read<valueProvider>()
@@ -525,23 +541,19 @@ class _page7State extends State<page7> {
 
                                                       print(
                                                           'RY06${1.toString().padLeft(2, '0') + '${value1.toStringAsFixed(0).padLeft(2, '0')}' + '${value2.toStringAsFixed(0).padLeft(2, '0')}' + '${value3.toStringAsFixed(0).padLeft(2, '0')}'}#');
-                                                      if (widget.characteristic !=
-                                                              null &&
-                                                          value1 != 0) {
-                                                        // widget.characteristic!
-                                                        //     .write(
-                                                        //   utf8.encode(
-                                                        //       'RY06${'${status == true ? '01' : '00'}${value1.toStringAsFixed(0).padLeft(2, '0')}' + '${value2.toStringAsFixed(0).padLeft(2, '0')}' + '${value3.toStringAsFixed(0).padLeft(2, '0')}'}#'),
-                                                        // ),
+                                                      if (widget
+                                                              .characteristic !=
+                                                          null) {
                                                         print(value1.toInt());
 
-                                                        var data =
-                                                            await dataValue[value1
-                                                                .toInt()]![0];
+                                                        var data = dataValue[
+                                                            value1.toInt()]![0];
+                                                        data = data.replaceAll(
+                                                            'HY',
+                                                            'HY${value1.round().toString().padLeft(2, '0')}');
                                                         print(
-                                                            '#### DARA ----- > ${data}');
-                                                        await widget
-                                                            .characteristic!
+                                                            '#### DATA ----- > ${data}');
+                                                        widget.characteristic!
                                                             .write(
                                                           utf8.encode(data),
                                                         );

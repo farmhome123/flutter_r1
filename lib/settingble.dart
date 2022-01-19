@@ -33,6 +33,7 @@ class SettingBle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       color: Colors.lightBlue,
       home: StreamBuilder<BluetoothState>(
           stream: FlutterBlue.instance.state,
@@ -87,11 +88,6 @@ class FindDevicesScreen extends StatefulWidget {
 
 class _FindDevicesScreenState extends State<FindDevicesScreen> {
   final String NAME_DIVCE = "r1 store";
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -267,6 +263,7 @@ class _DeviceScreenState extends State<DeviceScreen> {
   final String SERVICE_UUID = "0000ffe0-0000-1000-8000-00805f9b34fb";
   final String CHARACTERISTIC_UUID_TX = "0000ffe1-0000-1000-8000-00805f9b34fb";
   final String CHARACTERISTIC_UUID_RX = "0000ffe1-0000-1000-8000-00805f9b34fb";
+
   void _handleBleValue() async {
     // int index = context.watch<valueProvider>().count;
     var dataProtocal = {
@@ -471,10 +468,6 @@ class _DeviceScreenState extends State<DeviceScreen> {
       if (charateristic.uuid.toString().toLowerCase() ==
           CHARACTERISTIC_UUID_TX.toString().toLowerCase()) {
         _characteristicTX = charateristic;
-      }
-      if (charateristic.uuid.toString().toLowerCase() ==
-          CHARACTERISTIC_UUID_RX.toString().toLowerCase()) {
-        _characteristicRX = charateristic;
       }
     });
 
@@ -726,6 +719,7 @@ class _DeviceScreenState extends State<DeviceScreen> {
           final value1 = '${command[2]}${command[3]}';
           // _showDialogTestText(context);
 
+          uidble = prefs.getString('uidble');
           if (command.contains('01#')) {
             widget.device.discoverServices();
             if (uidble == '') {
@@ -755,15 +749,46 @@ class _DeviceScreenState extends State<DeviceScreen> {
     }
   }
 
+  void getStatusBle() async {
+    if (_characteristicTX != null &&
+        _characteristicTX!.uuid.toString().toLowerCase() ==
+            CHARACTERISTIC_UUID_TX.toLowerCase()) {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      uidble = prefs.getString('uidble');
+      print('UID BLE = ${uidble}');
+      if (uidble == '') {
+        setState(() {
+          genuidble = randomNumeric(6);
+        });
+        // sendData('NID=${genuidble}#');
+        if (_characteristicTX != null) {
+          _characteristicTX!.write(utf8.encode('NID=${genuidble}#'));
+        }
+
+        prefs.setString('uidble', '${genuidble.toString()}');
+      } else {
+        // sendData('OID=${uidble}#');
+        if (_characteristicTX != null) {
+          _characteristicTX!.write(utf8.encode('OID=${uidble}#'));
+        }
+      }
+      print('############ uidble == > ${uidble}');
+    } else {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => page1(
+                    characteristic: null,
+                  )));
+    }
+  }
+
   Future connect() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await checkConnectDevice();
     await widget.device.connect();
-    await widget.device.discoverServices();
+    // await widget.device.discoverServices();
 
-    var res = FlutterBlue.instance.connectedDevices;
-    print(res);
-    int _countPage = 0;
     // List<BluetoothService> services = await widget.device.discoverServices();
     widget.device.discoverServices().then((services) => {
           services.forEach((service) {
@@ -773,6 +798,23 @@ class _DeviceScreenState extends State<DeviceScreen> {
               print("service ====>" + services.toString());
               _bleService = service;
               _handleBleValue();
+              widget.device.state.listen((event) {
+                if (_characteristicTX != null &&
+                    _characteristicTX!.uuid.toString().toLowerCase() ==
+                        CHARACTERISTIC_UUID_TX.toLowerCase()) {
+                  if (event == BluetoothDeviceState.connected) {
+                    print(
+                        'Device State -------> BluetoothDeviceState.connected');
+                    // getStatusBle();
+                    Future.delayed(const Duration(seconds: 2), () {
+                      if (event != BluetoothDeviceState.disconnected) {
+                        getStatusBle();
+                      }
+                    });
+                    // sendData('REQ#');
+                  }
+                }
+              });
             }
           })
         });
@@ -800,38 +842,15 @@ class _DeviceScreenState extends State<DeviceScreen> {
         backgroundColor: Colors.black,
         title: Text(widget.device.name),
         leading: FlatButton(
-            onPressed: () async {
-              if (_characteristicTX != null) {
-                SharedPreferences prefs = await SharedPreferences.getInstance();
-                uidble = await prefs.getString('uidble');
-                print('UID BLE = ${uidble}');
-                if (uidble == '') {
-                  setState(() {
-                    genuidble = randomNumeric(6);
-                  });
-                  await _characteristicTX!
-                      .write(utf8.encode('NID=${genuidble}#'));
-                } else {
-                  sendData('OID=${uidble}#');
-                  await _characteristicTX!.write(utf8.encode('OID=${uidble}#'));
-                }
-                print('############ uidble == > ${uidble}');
-              } else {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => page1(
-                              characteristic: null,
-                            )));
-              }
-
-              // Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //         builder: (context) => page1(
-              //               characteristic: null,
-              //             )));
-            },
+            onPressed: getStatusBle,
+            //   getStatusBle();
+            //   // Navigator.push(
+            //   //     context,
+            //   //     MaterialPageRoute(
+            //   //         builder: (context) => page1(
+            //   //               characteristic: null,
+            //   //             )));
+            // },
             child: Icon(
               Icons.arrow_back,
               color: Colors.white,
@@ -931,20 +950,20 @@ class _DeviceScreenState extends State<DeviceScreen> {
               //     ),
               //   ),
               // ),
-              FlatButton(
-                  onPressed: () {
-                    //  _characteristicTX!.write(utf8.encode('Test'));
+              // FlatButton(
+              //     onPressed: () {
+              //       //  _characteristicTX!.write(utf8.encode('Test'));
 
-                    if (_characteristicTX != null) {
-                      // print('_characteristicTX -------> null');
-                      // _characteristicTX!.write(utf8.encode('Test'));
-                      sendData('Test sendData');
-                    } else {
-                      print('_characteristicTX -------> null');
-                    }
-                    // print('Test');
-                  },
-                  child: Text('sendData')),
+              //       if (_characteristicTX != null) {
+              //         // print('_characteristicTX -------> null');
+              //         // _characteristicTX!.write(utf8.encode('Test'));
+              //         sendData('Test sendData');
+              //       } else {
+              //         print('_characteristicTX -------> null');
+              //       }
+              //       // print('Test');
+              //     },
+              //     child: Text('sendData')),
             ],
           ),
         ),
@@ -952,8 +971,11 @@ class _DeviceScreenState extends State<DeviceScreen> {
     );
   }
 
-  sendData(String value) async {
-    if (_characteristicTX != null) {
+  void sendData(String value) async {
+    if (_characteristicTX!.uuid != null &&
+        _characteristicTX!.uuid.toString().toLowerCase() ==
+            CHARACTERISTIC_UUID_TX.toLowerCase()) {
+      print('rady send data');
       _characteristicTX!.write(utf8.encode(value));
     }
   }
