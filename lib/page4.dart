@@ -727,18 +727,20 @@ class _page4State extends State<page4> {
                         IconButton(
                           onPressed: () {
                             setState(() {
-                              value1 = 0;
-                              value2 = 0;
-                              value3 = 0;
-                              value4 = 0;
-                              value5 = 0;
-                              value6 = 0;
-                              value7 = 0;
-                              value8 = 0;
-                              value9 = 0;
+                              value1 = 10;
+                              value2 = 20;
+                              value3 = 30;
+                              value4 = 40;
+                              value5 = 50;
+                              value6 = 60;
+                              value7 = 70;
+                              value8 = 80;
+                              value9 = 90;
                             });
-                            widget.characteristic!.write(utf8.encode(
-                                'RB${value1.toStringAsFixed(0).padLeft(2, '0') + value2.toStringAsFixed(0).padLeft(2, '0') + value3.toStringAsFixed(0).padLeft(2, '0') + value4.toStringAsFixed(0).padLeft(2, '0') + value5.toStringAsFixed(0).padLeft(2, '0') + value6.toStringAsFixed(0).padLeft(2, '0') + value7.toStringAsFixed(0).padLeft(2, '0') + value8.toStringAsFixed(0).padLeft(2, '0') + value9.toStringAsFixed(0).padLeft(2, '0')}'));
+                            if (characteristic != null) {
+                              widget.characteristic!.write(utf8.encode(
+                                  'RB${value1.toStringAsFixed(0).padLeft(2, '0') + value2.toStringAsFixed(0).padLeft(2, '0') + value3.toStringAsFixed(0).padLeft(2, '0') + value4.toStringAsFixed(0).padLeft(2, '0') + value5.toStringAsFixed(0).padLeft(2, '0') + value6.toStringAsFixed(0).padLeft(2, '0') + value7.toStringAsFixed(0).padLeft(2, '0') + value8.toStringAsFixed(0).padLeft(2, '0') + value9.toStringAsFixed(0).padLeft(2, '0')}'));
+                            }
                           },
                           icon: Image.asset('lib/item/reset.png'),
                           iconSize: 50,

@@ -1,8 +1,9 @@
-import 'dart:convert' show utf8;
+import 'dart:convert' show json, utf8;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:provider/src/provider.dart';
 
 import 'package:torqueair/Navbar.dart';
 import 'package:torqueair/page1.dart';
@@ -15,6 +16,8 @@ import 'package:torqueair/page6.dart';
 import 'package:torqueair/page8.dart';
 import 'package:torqueair/page9.dart';
 import 'package:torqueair/settingble.dart';
+
+import 'valueProvider.dart';
 
 class page7 extends StatefulWidget {
   final double value;
@@ -51,6 +54,7 @@ class _page7State extends State<page7> {
   double value3 = 10;
   BluetoothCharacteristic? characteristic;
   bool status = false;
+  int index = 0;
   @override
   void _showDialog(BuildContext context) {
     showDialog(
@@ -72,10 +76,67 @@ class _page7State extends State<page7> {
     );
   }
 
+  String _dataParser(List<int> dataFromDevice) {
+    return utf8.decode(dataFromDevice);
+  }
+
+  sendData(String value) async {
+    if (widget.characteristic != null) {
+      widget.characteristic!.write(utf8.encode(value));
+    }
+  }
+
+  void readC() {
+    if (widget.characteristic != null) {
+      widget.characteristic!.value.listen((data) {
+        final command = _dataParser(data).toString();
+        print('data page7 ========= > ${data}');
+        if (command.contains('HX01')) {
+          // print('index --------------- #######---------> ${index}');
+          var data = dataValue[index]![1];
+          print('#### DART ----- > ${data}');
+          // await _characteristicTX!.write(
+          //   utf8.encode(data),
+          // );
+          sendData(data);
+        } else if (command.contains('HX02')) {
+          var data = dataValue[index]![2];
+          print('#### DART ----- > ${data}');
+          // await _characteristicTX!.write(
+          //   utf8.encode(data),
+          // );
+          sendData(data);
+        } else if (command.contains('HX03')) {
+          var data = dataValue[index]![3];
+          print('#### DART ----- > ${data}');
+          // await _characteristicTX!.write(
+          //   utf8.encode(data),
+          // );
+          sendData(data);
+        } else if (command.contains('HX04')) {
+          var data = dataValue[index]![4];
+          print('#### DART ----- > ${data}');
+          // await _characteristicTX!.write(
+          //   utf8.encode(data),
+          // );
+          sendData(data);
+        } else if (command.contains('HX05')) {
+          var data = dataValue[index]![5];
+          print('#### DART ----- > ${data}');
+          // await _characteristicTX!.write(
+          //   utf8.encode(data),
+          // );
+          sendData(data);
+        }
+      });
+    }
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    readC();
     setState(() {
       status = widget.value == 0 ? false : true;
       value = widget.value;
@@ -86,8 +147,206 @@ class _page7State extends State<page7> {
     });
   }
 
+  final dataValue = {
+    1: [
+      'HY0103000200#',
+      'HY0203000200#',
+      'HY0303000200#',
+      'HY0403000200#',
+      'HY0503000200#',
+      'HY0603000200#'
+    ],
+    2: [
+      'HY0102000260#',
+      'HY0202000260#',
+      'HY0302000260#',
+      'HY0402000260#',
+      'HY0502000260#',
+      'HY0602000260#',
+    ],
+    3: [
+      'HY0102000320#',
+      'HY0202000320#',
+      'HY0302000320#',
+      'HY0402000320#',
+      'HY0502000320#',
+      'HY0602000320#'
+    ],
+    4: [
+      'HY0102000380#',
+      'HY0202000380#',
+      'HY0302000380#',
+      'HY0402000380#',
+      'HY0502000380#',
+      'HY0602000380#',
+    ],
+    5: [
+      'HY0102000440#',
+      'HY0202000440#',
+      'HY0302000440#',
+      'HY0402000440#',
+      'HY0502000440#',
+      'HY0602000440#',
+    ],
+    6: [
+      'HY0102000500#',
+      'HY0202000500#',
+      'HY0302000500#',
+      'HY0402000500#',
+      'HY0502000500#',
+      'HY0602000500#',
+    ],
+    7: [
+      'HY0102000560#',
+      'HY0202000560#',
+      'HY0302000560#',
+      'HY0402000560#',
+      'HY0502000560#',
+      'HY0602000560#',
+    ],
+    8: [
+      'HY0102000620#',
+      'HY0202000620#',
+      'HY0302000620#',
+      'HY0402000620#',
+      'HY0502000620#',
+      'HY0602000620#',
+    ],
+    9: [
+      'HY0102000680#',
+      'HY0202000680#',
+      'HY0302000680#',
+      'HY0402000680#',
+      'HY0502000680#',
+      'HY0602000680#',
+    ],
+    10: [
+      'HY0102000740#',
+      'HY0202000740#',
+      'HY0302000740#',
+      'HY0402000740#',
+      'HY0502000740#',
+      'HY0602000740#',
+    ],
+    11: [
+      'HY0102000800#',
+      'HY0202000800#',
+      'HY0302000800#',
+      'HY0402000800#',
+      'HY0502000800#',
+      'HY0602000800#',
+    ],
+    12: [
+      'HY0102000860#',
+      'HY0202000860#',
+      'HY0302000860#',
+      'HY0402000860#',
+      'HY0502000860#',
+      'HY0602000860#',
+    ],
+    13: [
+      'HY0102000860#',
+      'HY0202000860#',
+      'HY0302000860#',
+      'HY0402000860#',
+      'HY0502000860#',
+      'HY0602000860#',
+    ],
+    14: [
+      'HY0102000980#',
+      'HY0202000980#',
+      'HY0302000980#',
+      'HY0402000980#',
+      'HY0502000980#',
+      'HY0602000980#',
+    ],
+    15: [
+      'HY0101001000#',
+      'HY0201001000#',
+      'HY0301001000#',
+      'HY0401001000#',
+      'HY0501001000#',
+      'HY0601001000#',
+    ],
+    16: [
+      'HY0101000300#',
+      'HY0201000300#',
+      'HY0301000300#',
+      'HY0401000300#',
+      'HY0501000300#',
+      'HY0601000300#',
+    ],
+    17: [
+      'HY0101000200#',
+      'HY0201000200#',
+      'HY0301000200#',
+      'HY0401000200#',
+      'HY0501000200#',
+      'HY0601000200#',
+    ],
+    18: [
+      'HY0101000100#',
+      'HY0201000200#',
+      'HY0301000100#',
+      'HY0401000200#',
+      'HY0501000100#',
+      'HY0601000200#',
+    ],
+    19: [
+      'HY0100500100#',
+      'HY0201000150#',
+      'HY0300500100#',
+      'HY0401000150#',
+      'HY0500500100#',
+      'HY0601000150#',
+    ],
+    20: [
+      'HY0100500100#',
+      'HY0201000150#',
+      'HY0300500100#',
+      'HY0401000150#',
+      'HY0500500100#',
+      'HY0601000150#',
+    ],
+    21: [
+      'HY0101002500#',
+      'HY0201000500#',
+      'HY0301000500#',
+      'HY0401000500#',
+      'HY0501002500#',
+      'HY0601000550#',
+    ],
+    22: [
+      'HY0101000500#',
+      'HY0201002500#',
+      'HY0301000500#',
+      'HY0401000500#',
+      'HY0501000500#',
+      'HY0601002500#',
+    ],
+    23: [
+      'HY0101000250#',
+      'HY0201001500#',
+      'HY0301000250#',
+      'HY0401000250#',
+      'HY0501000250#',
+      'HY0601002500#',
+    ],
+    24: [
+      'HY0101000200#',
+      'HY0201000200#',
+      'HY0301002500#',
+      'HY0401002500#',
+      'HY0501000200#',
+      'HY0601000200#',
+    ],
+  };
+
   @override
   Widget build(BuildContext context) {
+    // print(dataValue[2]![1]);
+
+    var arry = 1;
     var statusval;
     return Scaffold(
       drawer: NavBar(),
@@ -150,6 +409,11 @@ class _page7State extends State<page7> {
                         ),
                         textAlign: TextAlign.start,
                       ),
+                      // Text(
+                      //   '  ${index}',
+                      //   style: TextStyle(
+                      //       color: Colors.white, fontWeight: FontWeight.bold),
+                      // )
                     ],
                   )),
             ),
@@ -249,19 +513,39 @@ class _page7State extends State<page7> {
                                                     onChanged: (value1) =>
                                                         setState(() => this
                                                             .value1 = value1),
-                                                    onChangeEnd: (value1) => {
+                                                    onChangeEnd:
+                                                        (value1) async {
+                                                      setState(() {
+                                                        index = value1.toInt();
+                                                      });
+                                                      // context
+                                                      //     .read<valueProvider>()
+                                                      //     .value(
+                                                      //         value1.toInt());
+
                                                       print(
-                                                          'RY06${1.toString().padLeft(2, '0') + '${value1.toStringAsFixed(0).padLeft(2, '0')}' + '${value2.toStringAsFixed(0).padLeft(2, '0')}' + '${value3.toStringAsFixed(0).padLeft(2, '0')}'}#'),
-                                                      if (widget
-                                                              .characteristic !=
-                                                          null)
-                                                        {
-                                                          widget.characteristic!
-                                                              .write(
-                                                            utf8.encode(
-                                                                'RY06${'${status == true ? '01' : '00'}${value1.toStringAsFixed(0).padLeft(2, '0')}' + '${value2.toStringAsFixed(0).padLeft(2, '0')}' + '${value3.toStringAsFixed(0).padLeft(2, '0')}'}#'),
-                                                          ),
-                                                        }
+                                                          'RY06${1.toString().padLeft(2, '0') + '${value1.toStringAsFixed(0).padLeft(2, '0')}' + '${value2.toStringAsFixed(0).padLeft(2, '0')}' + '${value3.toStringAsFixed(0).padLeft(2, '0')}'}#');
+                                                      if (widget.characteristic !=
+                                                              null &&
+                                                          value1 != 0) {
+                                                        // widget.characteristic!
+                                                        //     .write(
+                                                        //   utf8.encode(
+                                                        //       'RY06${'${status == true ? '01' : '00'}${value1.toStringAsFixed(0).padLeft(2, '0')}' + '${value2.toStringAsFixed(0).padLeft(2, '0')}' + '${value3.toStringAsFixed(0).padLeft(2, '0')}'}#'),
+                                                        // ),
+                                                        print(value1.toInt());
+
+                                                        var data =
+                                                            await dataValue[value1
+                                                                .toInt()]![0];
+                                                        print(
+                                                            '#### DARA ----- > ${data}');
+                                                        await widget
+                                                            .characteristic!
+                                                            .write(
+                                                          utf8.encode(data),
+                                                        );
+                                                      }
                                                     },
                                                   ),
                                                 ),
@@ -626,15 +910,15 @@ class _page7State extends State<page7> {
                   onPressed: () {
                     // if (characteristic != null) {
                     // } else {
-                     
+
                     // }
-                     Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => page10(
-                                    characteristic: widget.characteristic,
-                                    value1: '',
-                                  )));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => page10(
+                                  characteristic: widget.characteristic,
+                                  value1: '',
+                                )));
                   },
                   icon: Image.asset('lib/img/icon10.png'),
                   iconSize: 70,
