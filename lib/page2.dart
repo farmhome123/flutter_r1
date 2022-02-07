@@ -2,6 +2,7 @@ import 'dart:convert' show utf8;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
+import 'package:page_transition/page_transition.dart';
 
 import 'package:torqueair/Navbar.dart';
 import 'package:torqueair/comfort.dart';
@@ -19,9 +20,14 @@ import 'package:torqueair/settingble.dart';
 import 'package:torqueair/sport2.dart';
 
 class page2 extends StatefulWidget {
+  final BluetoothDevice? device;
   final List<int>? valueTx;
   final BluetoothCharacteristic? characteristic;
-  const page2({Key? key, this.valueTx, required this.characteristic})
+  const page2(
+      {Key? key,
+      this.valueTx,
+      required this.characteristic,
+      required this.device})
       : super(key: key);
 
   @override
@@ -30,6 +36,7 @@ class page2 extends StatefulWidget {
 
 class _page2State extends State<page2> {
   BluetoothCharacteristic? characteristic;
+  bool statusconnect = false;
   void _showDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -59,6 +66,29 @@ class _page2State extends State<page2> {
         characteristic = widget.characteristic;
       });
     });
+    statusconnecttion();
+  }
+
+  void statusconnecttion() async {
+    if (widget.device != null) {
+      widget.device!.state.listen((status) {
+        print('######### -------- Status ble ---- > ${status}');
+        if (status == BluetoothDeviceState.connected) {
+          print('connected !!!!!!');
+          setState(() {
+            statusconnect = true;
+          });
+        } else {
+          print('disconnected !!!!!!');
+          setState(() {
+            statusconnect = false;
+          });
+          if (widget.device != null) {
+            widget.device!.disconnect();
+          }
+        }
+      });
+    }
   }
 
   @override
@@ -75,13 +105,29 @@ class _page2State extends State<page2> {
         ),
         centerTitle: true,
         actions: [
-          IconButton(
-            icon: Icon(Icons.bluetooth),
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SettingBle()));
-            },
-          )
+          Stack(
+            alignment: Alignment.centerLeft,
+            children: [
+              IconButton(
+                icon: Icon(
+                  Icons.bluetooth,
+                  size: 30,
+                ),
+                onPressed: () {
+                  // _showDialog(context);
+                  Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.fade,
+                        child: SettingBle(),
+                      ));
+                },
+              ),
+              Icon(Icons.circle,
+                  color: statusconnect == false ? Colors.red : Colors.green,
+                  size: 10),
+            ],
+          ),
         ],
       ),
       body: Container(
@@ -171,10 +217,13 @@ class _page2State extends State<page2> {
                                         }
                                         Navigator.push(
                                             context,
-                                            MaterialPageRoute(
-                                                builder: (context) => comfort(
-                                                    characteristic:
-                                                        characteristic)));
+                                            PageTransition(
+                                              type: PageTransitionType.fade,
+                                              child: comfort(
+                                                  characteristic:
+                                                      characteristic,
+                                                  device: widget.device),
+                                            ));
                                       },
                                       icon:
                                           Image.asset('lib/item/COMFORT1.png'),
@@ -188,10 +237,13 @@ class _page2State extends State<page2> {
                                         }
                                         Navigator.push(
                                             context,
-                                            MaterialPageRoute(
-                                                builder: (context) => sport2(
-                                                    characteristic:
-                                                        characteristic)));
+                                            PageTransition(
+                                              type: PageTransitionType.fade,
+                                              child: sport2(
+                                                  characteristic:
+                                                      characteristic,
+                                                  device: widget.device),
+                                            ));
                                       },
                                       icon: Image.asset('lib/item/SPORT+1.png'),
                                       iconSize: 60,
@@ -210,10 +262,13 @@ class _page2State extends State<page2> {
                                         }
                                         Navigator.push(
                                             context,
-                                            MaterialPageRoute(
-                                                builder: (context) => eco(
-                                                    characteristic:
-                                                        characteristic)));
+                                            PageTransition(
+                                              type: PageTransitionType.fade,
+                                              child: eco(
+                                                  characteristic:
+                                                      characteristic,
+                                                  device: widget.device),
+                                            ));
                                       },
                                       icon: Image.asset('lib/item/ECO1.png'),
                                       iconSize: 60,
@@ -254,10 +309,13 @@ class _page2State extends State<page2> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page1(
-                                    characteristic: widget.characteristic,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page1(
+                              characteristic: widget.characteristic,
+                              device: widget.device,
+                            ),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon1.png'),
@@ -287,11 +345,13 @@ class _page2State extends State<page2> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page3(
-                                    value: '0',
-                                    characteristic: widget.characteristic,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page3(
+                                value: '0',
+                                characteristic: widget.characteristic,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon3.png'),
@@ -304,19 +364,21 @@ class _page2State extends State<page2> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page4(
-                                    characteristic: widget.characteristic,
-                                    value1: 0,
-                                    value3: 0,
-                                    value2: 0,
-                                    value4: 0,
-                                    value5: 0,
-                                    value6: 0,
-                                    value7: 0,
-                                    value8: 0,
-                                    value9: 0,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page4(
+                                characteristic: widget.characteristic,
+                                value1: 0,
+                                value3: 0,
+                                value2: 0,
+                                value4: 0,
+                                value5: 0,
+                                value6: 0,
+                                value7: 0,
+                                value8: 0,
+                                value9: 0,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon4.png'),
@@ -329,10 +391,12 @@ class _page2State extends State<page2> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page5(
-                                    characteristic: widget.characteristic,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page5(
+                                characteristic: widget.characteristic,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon5.png'),
@@ -345,10 +409,12 @@ class _page2State extends State<page2> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page6(
-                                    characteristic: widget.characteristic,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page6(
+                                characteristic: widget.characteristic,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon6.png'),
@@ -361,14 +427,16 @@ class _page2State extends State<page2> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page7(
-                                    characteristic: widget.characteristic,
-                                    value: 0,
-                                    value1: 0,
-                                    value2: 0,
-                                    value3: 0,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page7(
+                                characteristic: widget.characteristic,
+                                value: 0,
+                                value1: 0,
+                                value2: 0,
+                                value3: 0,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon7.png'),
@@ -381,12 +449,14 @@ class _page2State extends State<page2> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page8(
-                                    characteristic: widget.characteristic,
-                                    value1: 0,
-                                    value2: 0,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page8(
+                                characteristic: widget.characteristic,
+                                value1: 0,
+                                value2: 0,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon8.png'),
@@ -399,11 +469,13 @@ class _page2State extends State<page2> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page9(
-                                    characteristic: widget.characteristic,
-                                    value1: 0,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page9(
+                                characteristic: widget.characteristic,
+                                value1: 0,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon9.png'),
@@ -418,11 +490,13 @@ class _page2State extends State<page2> {
                     // }
                     Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => page10(
-                                  characteristic: widget.characteristic,
-                                  value1: '',
-                                )));
+                        PageTransition(
+                          type: PageTransitionType.fade,
+                          child: page10(
+                              characteristic: widget.characteristic,
+                              value1: '',
+                              device: widget.device),
+                        ));
                   },
                   icon: Image.asset('lib/img/icon10.png'),
                   iconSize: 70,

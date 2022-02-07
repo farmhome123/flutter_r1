@@ -2,6 +2,7 @@ import 'dart:convert' show utf8;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
+import 'package:page_transition/page_transition.dart';
 
 import 'package:torqueair/Navbar.dart';
 import 'package:torqueair/page1.dart';
@@ -16,6 +17,7 @@ import 'package:torqueair/page9.dart';
 import 'package:torqueair/settingble.dart';
 
 class page4 extends StatefulWidget {
+  final BluetoothDevice? device;
   final List<int>? valueTx;
   final BluetoothCharacteristic? characteristic;
   final double value1;
@@ -39,7 +41,8 @@ class page4 extends StatefulWidget {
       required this.value6,
       required this.value7,
       required this.value8,
-      required this.value9})
+      required this.value9,
+      required this.device})
       : super(key: key);
 
   @override
@@ -48,6 +51,7 @@ class page4 extends StatefulWidget {
 
 class _page4State extends State<page4> {
   BluetoothCharacteristic? characteristic;
+  bool statusconnect = false;
   final double min = 0;
   final double max = 99;
   double value1 = 10;
@@ -97,6 +101,29 @@ class _page4State extends State<page4> {
       value9 = widget.value9;
       characteristic = widget.characteristic;
     });
+    statusconnecttion();
+  }
+
+  void statusconnecttion() async {
+    if (widget.device != null) {
+      widget.device!.state.listen((status) {
+        print('######### -------- Status ble ---- > ${status}');
+        if (status == BluetoothDeviceState.connected) {
+          print('connected !!!!!!');
+          setState(() {
+            statusconnect = true;
+          });
+        } else {
+          print('disconnected !!!!!!');
+          setState(() {
+            statusconnect = false;
+          });
+          if (widget.device != null) {
+            widget.device!.disconnect();
+          }
+        }
+      });
+    }
   }
 
   @override
@@ -113,13 +140,29 @@ class _page4State extends State<page4> {
         ),
         centerTitle: true,
         actions: [
-          IconButton(
-            icon: Icon(Icons.bluetooth),
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SettingBle()));
-            },
-          )
+          Stack(
+            alignment: Alignment.centerLeft,
+            children: [
+              IconButton(
+                icon: Icon(
+                  Icons.bluetooth,
+                  size: 30,
+                ),
+                onPressed: () {
+                  // _showDialog(context);
+                  Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.fade,
+                        child: SettingBle(),
+                      ));
+                },
+              ),
+              Icon(Icons.circle,
+                  color: statusconnect == false ? Colors.red : Colors.green,
+                  size: 10),
+            ],
+          ),
         ],
       ),
       body: Container(
@@ -225,13 +268,16 @@ class _page4State extends State<page4> {
                                                     activeColor: Colors.white,
                                                     min: min,
                                                     max: max,
-                                                    divisions: 20,
+                                                    divisions: 99,
                                                     label: value1
                                                         .round()
                                                         .toString(),
-                                                    onChanged: (value1) =>
+                                                    onChanged: (value1) {
+                                                      if (value1 <= 50) {
                                                         setState(() => this
-                                                            .value1 = value1),
+                                                            .value1 = value1);
+                                                      }
+                                                    },
                                                     onChangeEnd: (value1) {
                                                       if (characteristic !=
                                                           null) {
@@ -270,7 +316,7 @@ class _page4State extends State<page4> {
                                             MainAxisAlignment.center,
                                         children: [
                                           RotatedBox(
-                                            quarterTurns: 3,
+                                            quarterTurns: 7,
                                             child: Column(
                                               children: [
                                                 ClipRRect(
@@ -281,7 +327,7 @@ class _page4State extends State<page4> {
                                                     activeColor: Colors.white,
                                                     min: min,
                                                     max: max,
-                                                    divisions: 20,
+                                                    divisions: 99,
                                                     label: value2
                                                         .round()
                                                         .toString(),
@@ -336,7 +382,7 @@ class _page4State extends State<page4> {
                                                     activeColor: Colors.white,
                                                     min: min,
                                                     max: max,
-                                                    divisions: 20,
+                                                    divisions: 99,
                                                     label: value3
                                                         .round()
                                                         .toString(),
@@ -391,7 +437,7 @@ class _page4State extends State<page4> {
                                                     activeColor: Colors.white,
                                                     min: min,
                                                     max: max,
-                                                    divisions: 20,
+                                                    divisions: 99,
                                                     label: value4
                                                         .round()
                                                         .toString(),
@@ -446,7 +492,7 @@ class _page4State extends State<page4> {
                                                     activeColor: Colors.white,
                                                     min: min,
                                                     max: max,
-                                                    divisions: 20,
+                                                    divisions: 99,
                                                     label: value5
                                                         .round()
                                                         .toString(),
@@ -501,7 +547,7 @@ class _page4State extends State<page4> {
                                                     activeColor: Colors.white,
                                                     min: min,
                                                     max: max,
-                                                    divisions: 20,
+                                                    divisions: 99,
                                                     label: value6
                                                         .round()
                                                         .toString(),
@@ -556,7 +602,7 @@ class _page4State extends State<page4> {
                                                     activeColor: Colors.white,
                                                     min: min,
                                                     max: max,
-                                                    divisions: 20,
+                                                    divisions: 99,
                                                     label: value7
                                                         .round()
                                                         .toString(),
@@ -611,7 +657,7 @@ class _page4State extends State<page4> {
                                                     activeColor: Colors.white,
                                                     min: min,
                                                     max: max,
-                                                    divisions: 20,
+                                                    divisions: 99,
                                                     label: value8
                                                         .round()
                                                         .toString(),
@@ -666,7 +712,7 @@ class _page4State extends State<page4> {
                                                     activeColor: Colors.white,
                                                     min: min,
                                                     max: max,
-                                                    divisions: 20,
+                                                    divisions: 99,
                                                     label: value9
                                                         .round()
                                                         .toString(),
@@ -778,10 +824,13 @@ class _page4State extends State<page4> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page1(
-                                    characteristic: widget.characteristic,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page1(
+                              characteristic: widget.characteristic,
+                              device: widget.device,
+                            ),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon1.png'),
@@ -794,10 +843,12 @@ class _page4State extends State<page4> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page2(
-                                    characteristic: widget.characteristic,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page2(
+                                characteristic: widget.characteristic,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon2.png'),
@@ -810,11 +861,13 @@ class _page4State extends State<page4> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page3(
-                                    value: '0',
-                                    characteristic: widget.characteristic,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page3(
+                                value: '0',
+                                characteristic: widget.characteristic,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon3.png'),
@@ -850,10 +903,12 @@ class _page4State extends State<page4> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page5(
-                                    characteristic: widget.characteristic,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page5(
+                                characteristic: widget.characteristic,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon5.png'),
@@ -866,10 +921,12 @@ class _page4State extends State<page4> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page6(
-                                    characteristic: widget.characteristic,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page6(
+                                characteristic: widget.characteristic,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon6.png'),
@@ -882,14 +939,16 @@ class _page4State extends State<page4> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page7(
-                                    characteristic: widget.characteristic,
-                                    value: 0,
-                                    value1: 0,
-                                    value2: 0,
-                                    value3: 0,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page7(
+                                characteristic: widget.characteristic,
+                                value: 0,
+                                value1: 0,
+                                value2: 0,
+                                value3: 0,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon7.png'),
@@ -902,12 +961,14 @@ class _page4State extends State<page4> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page8(
-                                    characteristic: widget.characteristic,
-                                    value1: 0,
-                                    value2: 0,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page8(
+                                characteristic: widget.characteristic,
+                                value1: 0,
+                                value2: 0,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon8.png'),
@@ -920,11 +981,13 @@ class _page4State extends State<page4> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page9(
-                                    characteristic: widget.characteristic,
-                                    value1: 0,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page9(
+                                characteristic: widget.characteristic,
+                                value1: 0,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon9.png'),
@@ -939,11 +1002,13 @@ class _page4State extends State<page4> {
                     // }
                     Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => page10(
-                                  characteristic: widget.characteristic,
-                                  value1: '',
-                                )));
+                        PageTransition(
+                          type: PageTransitionType.fade,
+                          child: page10(
+                              characteristic: widget.characteristic,
+                              value1: '',
+                              device: widget.device),
+                        ));
                   },
                   icon: Image.asset('lib/img/icon10.png'),
                   iconSize: 70,

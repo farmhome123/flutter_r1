@@ -2,6 +2,7 @@ import 'dart:convert' show utf8;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
+import 'package:page_transition/page_transition.dart';
 
 import 'package:provider/provider.dart';
 import 'package:torqueair/Navbar.dart';
@@ -18,6 +19,7 @@ import 'package:torqueair/settingble.dart';
 import 'package:torqueair/valueProvider.dart';
 
 class page8 extends StatefulWidget {
+  final BluetoothDevice? device;
   final List<int>? valueTx;
   final double value1;
   final double value2;
@@ -27,7 +29,8 @@ class page8 extends StatefulWidget {
       this.valueTx,
       required this.characteristic,
       required this.value1,
-      required this.value2})
+      required this.value2,
+      required this.device})
       : super(key: key);
 
   @override
@@ -36,6 +39,7 @@ class page8 extends StatefulWidget {
 
 class _page8State extends State<page8> {
   BluetoothCharacteristic? characteristic;
+  bool statusconnect = false;
   bool isSwitched = false;
   double value1 = 50;
   double value2 = 50;
@@ -50,10 +54,14 @@ class _page8State extends State<page8> {
     setState(() {
       if (_value1.value1 != null && _value1.value2 != null) {
         value1 = _value1.value1!;
-        value1 = _value1.value2!;
+        value2 = _value1.value2!;
       }
     });
-    characteristic = widget.characteristic;
+    if (widget.characteristic != null) {
+      characteristic = widget.characteristic;
+    }
+
+    statusconnecttion();
   }
 
   @override
@@ -77,6 +85,28 @@ class _page8State extends State<page8> {
     );
   }
 
+  void statusconnecttion() async {
+    if (widget.device != null) {
+      widget.device!.state.listen((status) {
+        print('######### -------- Status ble ---- > ${status}');
+        if (status == BluetoothDeviceState.connected) {
+          print('connected !!!!!!');
+          setState(() {
+            statusconnect = true;
+          });
+        } else {
+          print('disconnected !!!!!!');
+          setState(() {
+            statusconnect = false;
+          });
+          if (widget.device != null) {
+            widget.device!.disconnect();
+          }
+        }
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var _value1 = Provider.of<valueProvider>(context, listen: false);
@@ -92,13 +122,29 @@ class _page8State extends State<page8> {
         ),
         centerTitle: true,
         actions: [
-          IconButton(
-            icon: Icon(Icons.bluetooth),
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SettingBle()));
-            },
-          )
+          Stack(
+            alignment: Alignment.centerLeft,
+            children: [
+              IconButton(
+                icon: Icon(
+                  Icons.bluetooth,
+                  size: 30,
+                ),
+                onPressed: () {
+                  // _showDialog(context);
+                  Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.fade,
+                        child: SettingBle(),
+                      ));
+                },
+              ),
+              Icon(Icons.circle,
+                  color: statusconnect == false ? Colors.red : Colors.green,
+                  size: 10),
+            ],
+          ),
         ],
       ),
       body: Container(
@@ -280,10 +326,13 @@ class _page8State extends State<page8> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page1(
-                                    characteristic: widget.characteristic,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page1(
+                              characteristic: widget.characteristic,
+                              device: widget.device,
+                            ),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon1.png'),
@@ -296,10 +345,12 @@ class _page8State extends State<page8> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page2(
-                                    characteristic: widget.characteristic,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page2(
+                                characteristic: widget.characteristic,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon2.png'),
@@ -312,11 +363,13 @@ class _page8State extends State<page8> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page3(
-                                    value: '0',
-                                    characteristic: widget.characteristic,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page3(
+                                value: '0',
+                                characteristic: widget.characteristic,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon3.png'),
@@ -329,19 +382,21 @@ class _page8State extends State<page8> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page4(
-                                    characteristic: widget.characteristic,
-                                    value1: 0,
-                                    value3: 0,
-                                    value2: 0,
-                                    value4: 0,
-                                    value5: 0,
-                                    value6: 0,
-                                    value7: 0,
-                                    value8: 0,
-                                    value9: 0,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page4(
+                                characteristic: widget.characteristic,
+                                value1: 0,
+                                value3: 0,
+                                value2: 0,
+                                value4: 0,
+                                value5: 0,
+                                value6: 0,
+                                value7: 0,
+                                value8: 0,
+                                value9: 0,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon4.png'),
@@ -354,10 +409,12 @@ class _page8State extends State<page8> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page5(
-                                    characteristic: widget.characteristic,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page5(
+                                characteristic: widget.characteristic,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon5.png'),
@@ -370,10 +427,12 @@ class _page8State extends State<page8> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page6(
-                                    characteristic: widget.characteristic,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page6(
+                                characteristic: widget.characteristic,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon6.png'),
@@ -386,14 +445,16 @@ class _page8State extends State<page8> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page7(
-                                    characteristic: widget.characteristic,
-                                    value: 0,
-                                    value1: 0,
-                                    value2: 0,
-                                    value3: 0,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page7(
+                                characteristic: widget.characteristic,
+                                value: 0,
+                                value1: 0,
+                                value2: 0,
+                                value3: 0,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon7.png'),
@@ -421,11 +482,13 @@ class _page8State extends State<page8> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page9(
-                                    characteristic: widget.characteristic,
-                                    value1: 0,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page9(
+                                characteristic: widget.characteristic,
+                                value1: 0,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon9.png'),
@@ -439,11 +502,13 @@ class _page8State extends State<page8> {
                     // }
                     Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => page10(
-                                  characteristic: widget.characteristic,
-                                  value1: '',
-                                )));
+                        PageTransition(
+                          type: PageTransitionType.fade,
+                          child: page10(
+                              characteristic: widget.characteristic,
+                              value1: '',
+                              device: widget.device),
+                        ));
                   },
                   icon: Image.asset('lib/img/icon10.png'),
                   iconSize: 70,

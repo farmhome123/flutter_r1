@@ -31,7 +31,7 @@ dependencies:
   flutter_launcher_icons: ^0.9.2
   flutter_glow: ^0.2.0
   passcode_screen: ^2.0.0
-  animated_splash_screen: ^1.1.0
+  page_transition: ^2.0.4  
   responsive_framework: ^0.1.4
   syncfusion_flutter_sliders: ^19.4.42
   url_launcher: ^6.0.18

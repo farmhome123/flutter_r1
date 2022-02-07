@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:page_transition/page_transition.dart';
 
 import 'package:torqueair/Navbar.dart';
 import 'package:torqueair/page10.dart';
@@ -19,9 +20,14 @@ import 'package:torqueair/page9.dart';
 import 'package:torqueair/settingble.dart';
 
 class page1 extends StatefulWidget {
+  final BluetoothDevice? device;
   final List<int>? valueTx;
   final BluetoothCharacteristic? characteristic;
-  const page1({Key? key, this.valueTx, required this.characteristic})
+  const page1(
+      {Key? key,
+      this.valueTx,
+      required this.characteristic,
+      required this.device})
       : super(key: key);
 
   @override
@@ -32,6 +38,7 @@ class _page1State extends State<page1> {
   BluetoothCharacteristic? characteristic;
   double? speed;
   double? speed2;
+  bool statusconnect = false;
   void _showDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -64,16 +71,15 @@ class _page1State extends State<page1> {
         characteristic = widget.characteristic;
       });
     });
+    statusconnecttion();
   }
 
   Future<Null> checkPermission() async {
     bool locationService;
     LocationPermission locationPermission;
-
     locationService = await Geolocator.isLocationServiceEnabled();
     if (locationService) {
       print('Service Location Open');
-
       locationPermission = await Geolocator.checkPermission();
       if (locationPermission == LocationPermission.denied) {
         locationPermission = await Geolocator.requestPermission();
@@ -82,12 +88,16 @@ class _page1State extends State<page1> {
             context: context,
             builder: (context) => AlertDialog(
               title: Text('Localtion Service ปิดอยู่ ?'),
-              content: Text('กรุณาเปิด Localtion Service'),
+              content: Text(
+                  'กรุณาเปิด Localtion Service เพื่อเข้าใช้งานตำแหน่งเพื่ออ่านค่าความเร็วรถยนต์'),
               actions: [
                 TextButton(
                   onPressed: () async {
-                    await Geolocator.openLocationSettings();
-                    exit(0);
+                    // await Geolocator.openAppSettings();
+                    // await Geolocator.openLocationSettings();
+                    // exit(0);
+                    // Find LatLang
+                    Navigator.pop(context);
                   },
                   child: Text('OK'),
                 ),
@@ -104,12 +114,16 @@ class _page1State extends State<page1> {
             context: context,
             builder: (context) => AlertDialog(
               title: Text('Localtion Service ปิดอยู่ ?'),
-              content: Text('กรุณาเปิด Localtion Service'),
+              content: Text(
+                  'กรุณาเปิด Localtion Service เพื่อเข้าใช้งานตำแหน่งเพื่ออ่านค่าความเร็วรถยนต์'),
               actions: [
                 TextButton(
                   onPressed: () async {
-                    await Geolocator.openLocationSettings();
-                    exit(0);
+                    // await Geolocator.openAppSettings();
+                    // await Geolocator.openLocationSettings();
+                    // exit(0);
+                    // Find LatLang
+                    Navigator.pop(context);
                   },
                   child: Text('OK'),
                 ),
@@ -127,12 +141,16 @@ class _page1State extends State<page1> {
         context: context,
         builder: (context) => AlertDialog(
           title: Text('Localtion Service ปิดอยู่ ?'),
-          content: Text('กรุณาเปิด Localtion Service'),
+          content: Text(
+              'กรุณาเปิด Localtion Service เพื่อเข้าใช้งานตำแหน่งเพื่ออ่านค่าความเร็วรถยนต์'),
           actions: [
             TextButton(
               onPressed: () async {
-                await Geolocator.openLocationSettings();
-                exit(0);
+                // await Geolocator.openAppSettings();
+                // await Geolocator.openLocationSettings();
+                // exit(0);
+                // Find LatLang
+                Navigator.pop(context);
               },
               child: Text('OK'),
             ),
@@ -156,10 +174,11 @@ class _page1State extends State<page1> {
     } else if (defaultTargetPlatform == TargetPlatform.iOS ||
         defaultTargetPlatform == TargetPlatform.macOS) {
       locationSettings = AppleSettings(
-        accuracy: LocationAccuracy.high,
-        distanceFilter: 100,
-        pauseLocationUpdatesAutomatically: true,
-      );
+          // accuracy: LocationAccuracy.high,
+          // distanceFilter: 100,
+          // pauseLocationUpdatesAutomatically: true,
+
+          );
     } else {
       print('locationSettings orter');
       locationSettings = LocationSettings(
@@ -177,6 +196,28 @@ class _page1State extends State<page1> {
     });
   }
 
+  void statusconnecttion() async {
+    if (widget.device != null) {
+      widget.device!.state.listen((status) {
+        print('######### -------- Status ble ---- > ${status}');
+        if (status == BluetoothDeviceState.connected) {
+          print('connected !!!!!!');
+          setState(() {
+            statusconnect = true;
+          });
+        } else {
+          print('disconnected !!!!!!');
+          setState(() {
+            statusconnect = false;
+          });
+          if (widget.device != null) {
+            widget.device!.disconnect();
+          }
+        }
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -191,14 +232,30 @@ class _page1State extends State<page1> {
         ),
         centerTitle: true,
         actions: [
-          IconButton(
-            icon: Icon(Icons.bluetooth),
-            onPressed: () {
-              // _showDialog(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SettingBle()));
-            },
-          )
+          Stack(
+            alignment: Alignment.centerLeft,
+            children: [
+              IconButton(
+                icon: Icon(
+                  Icons.bluetooth,
+                  size: 30,
+                ),
+                onPressed: () {
+                  // _showDialog(context);
+
+                  Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.fade,
+                        child: SettingBle(),
+                      ));
+                },
+              ),
+              Icon(Icons.circle,
+                  color: statusconnect == false ? Colors.red : Colors.green,
+                  size: 10),
+            ],
+          ),
         ],
       ),
       body: Container(
@@ -326,10 +383,12 @@ class _page1State extends State<page1> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page2(
-                                    characteristic: widget.characteristic,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page2(
+                                characteristic: widget.characteristic,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon2.png'),
@@ -342,11 +401,13 @@ class _page1State extends State<page1> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page3(
-                                    value: '0',
-                                    characteristic: widget.characteristic,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page3(
+                                value: '0',
+                                characteristic: widget.characteristic,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon3.png'),
@@ -359,19 +420,21 @@ class _page1State extends State<page1> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page4(
-                                    characteristic: widget.characteristic,
-                                    value1: 0,
-                                    value3: 0,
-                                    value2: 0,
-                                    value4: 0,
-                                    value5: 0,
-                                    value6: 0,
-                                    value7: 0,
-                                    value8: 0,
-                                    value9: 0,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page4(
+                                characteristic: widget.characteristic,
+                                value1: 0,
+                                value3: 0,
+                                value2: 0,
+                                value4: 0,
+                                value5: 0,
+                                value6: 0,
+                                value7: 0,
+                                value8: 0,
+                                value9: 0,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon4.png'),
@@ -384,10 +447,12 @@ class _page1State extends State<page1> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page5(
-                                    characteristic: widget.characteristic,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page5(
+                                characteristic: widget.characteristic,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon5.png'),
@@ -400,10 +465,12 @@ class _page1State extends State<page1> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page6(
-                                    characteristic: widget.characteristic,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page6(
+                                characteristic: widget.characteristic,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon6.png'),
@@ -416,14 +483,16 @@ class _page1State extends State<page1> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page7(
-                                    characteristic: widget.characteristic,
-                                    value: 0,
-                                    value1: 0,
-                                    value2: 0,
-                                    value3: 0,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page7(
+                                characteristic: widget.characteristic,
+                                value: 0,
+                                value1: 0,
+                                value2: 0,
+                                value3: 0,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon7.png'),
@@ -436,12 +505,14 @@ class _page1State extends State<page1> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page8(
-                                    characteristic: widget.characteristic,
-                                    value1: 0,
-                                    value2: 0,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page8(
+                                characteristic: widget.characteristic,
+                                value1: 0,
+                                value2: 0,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon8.png'),
@@ -454,11 +525,13 @@ class _page1State extends State<page1> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page9(
-                                    characteristic: widget.characteristic,
-                                    value1: 0,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page9(
+                                characteristic: widget.characteristic,
+                                value1: 0,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon9.png'),
@@ -470,14 +543,17 @@ class _page1State extends State<page1> {
                     //   // widget.characteristic!.write(utf8.encode('RY08#'));
                     // } else {
                     // }
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => page10(
-                                    characteristic: widget.characteristic,
-                                    value1: '',
-                                  )));
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.fade,
+                          child: page10(
+                              characteristic: widget.characteristic,
+                              value1: '',
+                              device: widget.device),
+                        ));
                   },
+
                   icon: Image.asset('lib/img/icon10.png'),
                   iconSize: 70,
                 ),

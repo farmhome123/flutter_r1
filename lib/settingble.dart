@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:convert' show utf8;
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:random_string/random_string.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -87,7 +87,7 @@ class FindDevicesScreen extends StatefulWidget {
 }
 
 class _FindDevicesScreenState extends State<FindDevicesScreen> {
-  final String NAME_DIVCE = "r1 store";
+  final String NAME_DIVCE = "TORQUE-AIR";
 
   @override
   Widget build(BuildContext context) {
@@ -100,10 +100,13 @@ class _FindDevicesScreenState extends State<FindDevicesScreen> {
           onPressed: () {
             Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => page1(
-                          characteristic: null,
-                        )));
+                PageTransition(
+                  type: PageTransitionType.fade,
+                  child: page1(
+                    characteristic: null,
+                    device: null,
+                  ),
+                ));
           },
           child: Icon(
             Icons.arrow_back,
@@ -133,13 +136,22 @@ class _FindDevicesScreenState extends State<FindDevicesScreen> {
                                 if (snapshot.data ==
                                     BluetoothDeviceState.connected) {
                                   return RaisedButton(
-                                      child: Text('OPEN'),
+                                      child: Text('Disconnect'),
                                       onPressed: () => {
-                                            Navigator.of(context).push(
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        DeviceScreen(
-                                                            device: d))),
+                                            // Navigator.of(context)
+                                            //     .push(PageTransition(
+                                            //   type: PageTransitionType.fade,
+                                            //   child: DeviceScreen(device: d),
+                                            // )),
+                                            d.disconnect(),
+                                            Navigator.of(context)
+                                                .push(PageTransition(
+                                              type: PageTransitionType.fade,
+                                              child: page1(
+                                                characteristic: null,
+                                                device: null,
+                                              ),
+                                            ))
                                           });
                                 }
                                 return Text(snapshot.data.toString());
@@ -217,7 +229,6 @@ class _FindDevicesScreenState extends State<FindDevicesScreen> {
               onPressed: () => FlutterBlue.instance.startScan(
                 timeout: Duration(seconds: 4),
               ),
-
               // onPressed: finddveicename,
             );
           }
@@ -247,7 +258,10 @@ class _DeviceScreenState extends State<DeviceScreen> {
   String? genuidble;
   String? uidble;
   int _countPage = 0;
-
+  int _countPagestep = 0;
+  bool checkconnect = false;
+  Timer? timer;
+  int count = 1;
   String _dataParser(List<int> dataFromDevice) {
     return utf8.decode(dataFromDevice);
   }
@@ -481,14 +495,18 @@ class _DeviceScreenState extends State<DeviceScreen> {
         if (command.contains('RX00')) {
           Navigator.push(
               context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => page1(
-                        valueTx: value,
-                        characteristic: _characteristicTX!,
-                      )));
+              PageTransition(
+                type: PageTransitionType.fade,
+                child: page1(
+                  valueTx: value,
+                  characteristic: _characteristicTX!,
+                  device: widget.device,
+                ),
+              ));
           print('goto page1');
           setState(() {
             _countPage = 0;
+            _countPagestep = 0;
           });
         } else if (command.contains('RX01')) {
           if (command[4] == '0') {
@@ -496,57 +514,61 @@ class _DeviceScreenState extends State<DeviceScreen> {
               case '0':
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => eco(
-                      valueTx: value,
-                      characteristic: _characteristicTX!,
-                    ),
+                  PageTransition(
+                    type: PageTransitionType.fade,
+                    child: eco(
+                        valueTx: value,
+                        characteristic: _characteristicTX!,
+                        device: widget.device),
                   ),
                 );
                 setState(() {
                   _countPage = 0;
+                  _countPagestep = 0;
                 });
                 break;
               case '1':
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => comfort(
-                      valueTx: value,
-                      characteristic: _characteristicTX!,
-                    ),
-                  ),
-                );
+                    context,
+                    PageTransition(
+                        type: PageTransitionType.fade,
+                        child: comfort(
+                            valueTx: value,
+                            characteristic: _characteristicTX!,
+                            device: widget.device)));
                 setState(() {
                   _countPage = 0;
+                  _countPagestep = 0;
                 });
                 break;
               case '2':
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => page2(
-                      valueTx: value,
-                      characteristic: _characteristicTX!,
-                    ),
-                  ),
-                );
+                    context,
+                    PageTransition(
+                      type: PageTransitionType.fade,
+                      child: page2(
+                        valueTx: value,
+                        characteristic: _characteristicTX!,
+                        device: widget.device,
+                      ),
+                    ));
                 setState(() {
                   _countPage = 0;
+                  _countPagestep = 0;
                 });
                 break;
               case '3':
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => sport2(
-                      valueTx: value,
-                      characteristic: _characteristicTX!,
-                    ),
-                  ),
-                );
+                    context,
+                    PageTransition(
+                        type: PageTransitionType.fade,
+                        child: sport2(
+                            valueTx: value,
+                            characteristic: _characteristicTX!,
+                            device: widget.device)));
                 setState(() {
                   _countPage = 0;
+                  _countPagestep = 0;
                 });
                 break;
             }
@@ -554,16 +576,68 @@ class _DeviceScreenState extends State<DeviceScreen> {
 
           print('111 ${command[4]} ${command[5]}');
         } else if (command.contains('RX02')) {
-          print('RX02 ===== ${command[4]}${command[5]}');
-          final value2 = '${command[4]}${command[5]}';
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => page3(
-                        valueTx: value,
-                        characteristic: _characteristicTX!,
-                        value: value2,
-                      )));
+          // print('RX02 ===== ${command[4]}${command[5]}');
+          // final value2 = '${command[4]}${command[5]}';
+          // var providevalue = Provider.of<valueProvider>(context, listen: false);
+          // print('_countPage = ${_countPagestep}');
+
+          // setState(() {
+          //   if (_countPagestep < 2) {
+          //     _countPagestep++;
+          //   }
+          // });
+          // var valuestep = int.parse(value2);
+
+          // setState(() {
+          //   providevalue.valuespeed(valuestep);
+          // });
+
+          // if (_countPagestep <= 1) {
+          //   Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //           builder: (BuildContext context) => page3(
+          //                 valueTx: value,
+          //                 characteristic: _characteristicTX!,
+          //                 value: value2,
+          //               )));
+          // }
+          // setState(() {
+          //   _countPage = 0;
+          // });
+
+          var provider = Provider.of<valueProvider>(context, listen: false);
+          // โหมดปรับแต่งคันเร่ง
+          setState(() {
+            if (_countPagestep < 2) {
+              _countPagestep++;
+            }
+          });
+          print('PAGE 3');
+          final value1 = '${command[4]}${command[5]}';
+
+          var valuestep = int.parse(value1.toString());
+
+          setState(() {
+            provider.valuespeed(valuestep);
+          });
+
+          // }); _value1.increment(value1, value2);
+          print('///////////_value1.value1 = ${provider.valuestep}');
+
+          print('_countPage = ${_countPagestep}');
+
+          if (_countPagestep <= 1) {
+            Navigator.push(
+                context,
+                PageTransition(
+                    type: PageTransitionType.fade,
+                    child: page3(
+                      characteristic: _characteristicTX!,
+                      device: widget.device,
+                      value: value1,
+                    )));
+          }
           setState(() {
             _countPage = 0;
           });
@@ -579,57 +653,70 @@ class _DeviceScreenState extends State<DeviceScreen> {
           final value8 = '${command[16]}${command[17]}';
           final value9 = '${command[18]}${command[19]}';
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => page4(
-                        valueTx: value,
-                        characteristic: _characteristicTX!,
-                        value1: double.parse(value1),
-                        value2: double.parse(value2),
-                        value3: double.parse(value3),
-                        value4: double.parse(value4),
-                        value5: double.parse(value5),
-                        value6: double.parse(value6),
-                        value7: double.parse(value7),
-                        value8: double.parse(value8),
-                        value9: double.parse(value9),
-                      )));
+            context,
+            PageTransition(
+                type: PageTransitionType.fade,
+                child: page4(
+                    valueTx: value,
+                    characteristic: _characteristicTX!,
+                    value1: double.parse(value1),
+                    value2: double.parse(value2),
+                    value3: double.parse(value3),
+                    value4: double.parse(value4),
+                    value5: double.parse(value5),
+                    value6: double.parse(value6),
+                    value7: double.parse(value7),
+                    value8: double.parse(value8),
+                    value9: double.parse(value9),
+                    device: widget.device)),
+          );
           setState(() {
             _countPage = 0;
+            _countPagestep = 0;
           });
-        } else if (command.contains('RX02')) {
-          print('RX02 ===== ${command[4]}${command[5]}');
-          final value2 = '${command[4]}${command[5]}';
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => page3(
-                        valueTx: value,
-                        characteristic: _characteristicTX!,
-                        value: value2,
-                      )));
-          setState(() {
-            _countPage = 0;
-          });
+          // } else if (command.contains('RX02')) {
+          //   print('RX02 ===== ${command[4]}${command[5]}');
+          //   final value2 = '${command[4]}${command[5]}';
+          //   Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //           builder: (BuildContext context) => page3(
+          //                 valueTx: value,
+          //                 characteristic: _characteristicTX!,
+          //                 value: value2,
+          //               )));
+          //   setState(() {
+          //     _countPage = 0;
+          //   });
         } else if (command.contains('RX04')) {
           print('PAGE5');
           Navigator.push(
               context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => page5(
-                      valueTx: value, characteristic: _characteristicTX!)));
+              PageTransition(
+                  type: PageTransitionType.fade,
+                  child: page5(
+                    valueTx: value,
+                    characteristic: _characteristicTX!,
+                    device: widget.device,
+                  )));
           setState(() {
             _countPage = 0;
+            _countPagestep = 0;
           });
         } else if (command.contains('RX05')) {
           print('PAGE 6');
           Navigator.push(
               context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => page6(
-                      valueTx: value, characteristic: _characteristicTX!)));
+              PageTransition(
+                  type: PageTransitionType.fade,
+                  child: page6(
+                    valueTx: value,
+                    characteristic: _characteristicTX,
+                    device: widget.device,
+                  )));
           setState(() {
             _countPage = 0;
+            _countPagestep = 0;
           });
         } else if (command.contains('RX06')) {
           // โหมดเดินหอบ
@@ -640,17 +727,20 @@ class _DeviceScreenState extends State<DeviceScreen> {
           final value4 = '${command[10]}${command[11]}';
           Navigator.push(
               context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => page7(
-                        valueTx: value,
-                        characteristic: _characteristicTX!,
-                        value: double.parse(value1),
-                        value1: double.parse(value2),
-                        value2: double.parse(value3),
-                        value3: double.parse(value4),
-                      )));
+              PageTransition(
+                  type: PageTransitionType.fade,
+                  child: page7(
+                    valueTx: value,
+                    characteristic: _characteristicTX,
+                    value: double.parse(value1),
+                    value1: double.parse(value2),
+                    value2: double.parse(value3),
+                    value3: double.parse(value4),
+                    device: widget.device,
+                  )));
           setState(() {
             _countPage = 0;
+            _countPagestep = 0;
           });
         } else if (command.contains('RX07')) {
           var _value1 = Provider.of<valueProvider>(context, listen: false);
@@ -680,12 +770,15 @@ class _DeviceScreenState extends State<DeviceScreen> {
           if (_countPage <= 1) {
             Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => page8(
-                        valueTx: value,
-                        characteristic: _characteristicTX!,
-                        value1: double.parse(value1),
-                        value2: double.parse(value2))));
+                PageTransition(
+                    type: PageTransitionType.fade,
+                    child: page8(
+                      valueTx: value,
+                      characteristic: _characteristicTX,
+                      value1: double.parse(value1),
+                      value2: double.parse(value2),
+                      device: widget.device,
+                    )));
           }
         } else if (command.contains('RX08')) {
           // โหมดคันเร่งอัตโนมัติ
@@ -693,13 +786,17 @@ class _DeviceScreenState extends State<DeviceScreen> {
           final value1 = '${command[4]}${command[5]}';
           Navigator.push(
               context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => page9(
-                      valueTx: value,
-                      characteristic: _characteristicTX!,
-                      value1: int.parse(value1))));
+              PageTransition(
+                  type: PageTransitionType.fade,
+                  child: page9(
+                    valueTx: value,
+                    characteristic: _characteristicTX!,
+                    value1: int.parse(value1),
+                    device: widget.device,
+                  )));
           setState(() {
             _countPage = 0;
+            _countPagestep = 0;
           });
         } else if (command.contains('LCX')) {
           // โหมดล็อคกันขโมย 00 - 01
@@ -707,13 +804,17 @@ class _DeviceScreenState extends State<DeviceScreen> {
           print('โหมดล็อคกันขโมย');
           Navigator.push(
               context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => page10(
-                      valueTx: value,
-                      characteristic: _characteristicTX!,
-                      value1: value1)));
+              PageTransition(
+                  type: PageTransitionType.fade,
+                  child: page10(
+                    valueTx: value,
+                    characteristic: _characteristicTX!,
+                    value1: value1,
+                    device: widget.device,
+                  )));
           setState(() {
             _countPage = 0;
+            _countPagestep = 0;
           });
         } else if (command.contains('CN')) {
           final value1 = '${command[2]}${command[3]}';
@@ -721,14 +822,21 @@ class _DeviceScreenState extends State<DeviceScreen> {
 
           uidble = prefs.getString('uidble');
           if (command.contains('01#')) {
+            setState(() {
+              checkconnect = true;
+            });
             widget.device.discoverServices();
             if (uidble == '') {
               prefs.setString('uidble', '${genuidble.toString()}');
             }
             sendData('REQ#');
           } else {
-            checkConnectDevice();
-            _showDialog(context);
+            // checkConnectDevice();
+            // _showDialog(context);
+            getStatusBle();
+            if (count >= 6) {
+              timer!.cancel();
+            }
           }
           // if (value1 == '01') {
           //   widget.device.discoverServices();
@@ -761,25 +869,45 @@ class _DeviceScreenState extends State<DeviceScreen> {
           genuidble = randomNumeric(6);
         });
         // sendData('NID=${genuidble}#');
-        if (_characteristicTX != null) {
-          _characteristicTX!.write(utf8.encode('NID=${genuidble}#'));
-        }
-
-        prefs.setString('uidble', '${genuidble.toString()}');
+        timer = new Timer(new Duration(milliseconds: 800), () {
+          debugPrint("Print after 5 seconds");
+          if (_characteristicTX != null) {
+            if (count <= 6) {
+              sendData('NID=${genuidble}#');
+              // _characteristicTX!.write(utf8.encode('NID=${genuidble}#'));
+              count++;
+              print('connect count ============== > ${count}');
+            } else {
+              _showDialog(context);
+              widget.device.disconnect();
+              print('connect count ============== > device.disconnect');
+            }
+          }
+        });
+        // prefs.setString('uidble', '${genuidble.toString()}');
       } else {
         // sendData('OID=${uidble}#');
         if (_characteristicTX != null) {
-          _characteristicTX!.write(utf8.encode('OID=${uidble}#'));
+          if (count <= 6) {
+            sendData('OID=${uidble}#');
+            // _characteristicTX!.write(utf8.encode('OID=${uidble}#'));
+            count++;
+          } else {
+            _showDialog(context);
+            widget.device.disconnect();
+          }
         }
       }
       print('############ uidble == > ${uidble}');
     } else {
       Navigator.push(
           context,
-          MaterialPageRoute(
-              builder: (context) => page1(
-                    characteristic: null,
-                  )));
+          PageTransition(
+              type: PageTransitionType.fade,
+              child: page1(
+                characteristic: null,
+                device: null,
+              )));
     }
   }
 
@@ -806,12 +934,15 @@ class _DeviceScreenState extends State<DeviceScreen> {
                     print(
                         'Device State -------> BluetoothDeviceState.connected');
                     // getStatusBle();
-                    Future.delayed(const Duration(seconds: 2), () {
+                    Future.delayed(const Duration(seconds: 4), () {
                       if (event != BluetoothDeviceState.disconnected) {
                         getStatusBle();
                       }
                     });
                     // sendData('REQ#');
+                  } else {
+                    print(
+                        'Device State -------> BluetoothDeviceState.disconnected');
                   }
                 }
               });
@@ -866,16 +997,20 @@ class _DeviceScreenState extends State<DeviceScreen> {
                 case BluetoothDeviceState.connected:
                   onPressed = () async {
                     await widget.device.disconnect();
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => SettingBle()));
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                            type: PageTransitionType.fade,
+                            child: SettingBle()));
                   };
                   text = 'DISCONNECT';
                   break;
                 case BluetoothDeviceState.disconnected:
                   onPressed = () async {
-                    await checkConnectDevice();
-                    await widget.device.connect();
-                    await widget.device.discoverServices();
+                    // await checkConnectDevice();
+                    // await widget.device.connect();
+                    // await widget.device.discoverServices();
+                    connect();
                   };
                   text = 'CONNECT';
                   break;
@@ -993,10 +1128,15 @@ class _DeviceScreenState extends State<DeviceScreen> {
               onPressed: () {
                 Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => page1(
-                              characteristic: null,
-                            )));
+                    PageTransition(
+                        type: PageTransitionType.fade,
+                        child: page1(
+                          characteristic: null,
+                          device: null,
+                        )));
+                setState(() {
+                  count = 1;
+                });
               },
             ),
           ],

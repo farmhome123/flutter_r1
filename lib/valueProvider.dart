@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class valueProvider with ChangeNotifier {
   double? value1;
   double? value2;
+  int valuestep = 0;
   int count = 0;
   notifyListeners();
   // สร้างฟังก์ชันการนับ counter
@@ -14,6 +15,12 @@ class valueProvider with ChangeNotifier {
 
   value(value) {
     count = value;
+    notifyListeners();
+  }
+
+  valuespeed(step) {
+    valuestep = step;
+
     notifyListeners();
   }
 }

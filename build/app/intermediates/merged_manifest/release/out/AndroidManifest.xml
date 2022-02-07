@@ -1,27 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.torqueair.torqueair"
-    android:versionCode="1"
-    android:versionName="1.0.0" >
+    package="com.torqueair.torqueair1"
+    android:versionCode="8"
+    android:versionName="1.0.8" >
 
     <uses-sdk
         android:minSdkVersion="19"
         android:targetSdkVersion="31" />
+    <!-- <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/> -->
+    <!-- required for API 18 - 30 -->
+    <uses-permission
+        android:name="android.permission.BLUETOOTH"
+        android:maxSdkVersion="31" />
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_ADMIN"
+        android:maxSdkVersion="31" />
 
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
-    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+    <!-- required for API 23 - 30 -->
+    <uses-permission
+        android:name="android.permission.ACCESS_COARSE_LOCATION"
+        android:maxSdkVersion="31" />
+    <uses-permission
+        android:name="android.permission.ACCESS_FINE_LOCATION"
+        android:maxSdkVersion="31" />
+
+    <!-- API 31+ -->
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <!--
+         add android:usesPermissionFlags="neverForLocation" when you can strongly assert that
+         your app never derives physical location from Bluetooth scan results.
+    -->
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
 
     <application
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:icon="@mipmap/ic_launcher"
-        android:label="Torque" >
+        android:label="Torque Air" >
         <activity
-            android:name="com.example.torqueair.MainActivity"
+            android:name="com.torqueair.torqueair1.MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:exported="true"
             android:hardwareAccelerated="true"

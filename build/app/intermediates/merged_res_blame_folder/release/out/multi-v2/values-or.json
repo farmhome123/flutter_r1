@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/farm24dec/Desktop/torqueair/build/app/intermediates/incremental/mergeReleaseResources/merged.dir/values-or/values-or.xml",
+            "outputFile": "/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/app/intermediates/incremental/mergeReleaseResources/merged.dir/values-or/values-or.xml",
             "map": [
                 {
                     "source": "/Users/farm24dec/.gradle/caches/transforms-2/files-2.1/b71d60045584a8b6c65c6769ba846940/jetified-play-services-base-17.0.0/res/values-or/values.xml",

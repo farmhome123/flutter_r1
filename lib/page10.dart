@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert' show utf8;
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
+import 'package:page_transition/page_transition.dart';
 
 import 'package:passcode_screen/circle.dart';
 import 'package:passcode_screen/keyboard.dart';
@@ -20,6 +21,7 @@ import 'package:torqueair/page9.dart';
 import 'package:torqueair/settingble.dart';
 
 class page10 extends StatefulWidget {
+  final BluetoothDevice? device;
   final List<int>? valueTx;
   final BluetoothCharacteristic? characteristic;
   final String value1;
@@ -28,6 +30,7 @@ class page10 extends StatefulWidget {
     this.valueTx,
     required this.characteristic,
     required this.value1,
+    required this.device,
   }) : super(key: key);
 
   @override
@@ -45,6 +48,7 @@ class _page10State extends State<page10> {
   String? passwordnew;
   String? passwordconfrim;
   BluetoothCharacteristic? characteristic;
+  bool statusconnect = false;
   @override
   void _showDialog(BuildContext context) {
     showDialog(
@@ -70,13 +74,17 @@ class _page10State extends State<page10> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    setState(() {
+    if (widget.characteristic != null) {
       characteristic = widget.characteristic;
+    }
+
+    setState(() {
       lockscreen = widget.value1 == '01' ? true : false;
       isAuthenticated = widget.value1 == '01' ? true : false;
     });
     print('########## value1 : ${lockscreen}');
     getStorePassword();
+    statusconnecttion();
   }
 
   getStorePassword() async {
@@ -85,6 +93,29 @@ class _page10State extends State<page10> {
     storedPasscode = prefs.getString('passwordCode');
 
     print('storedPasscode : ${storedPasscode}');
+  }
+
+  void statusconnecttion() async {
+    if (widget.device != null) {
+      widget.device!.state.listen((status) {
+        print('######### -------- Status ble ---- > ${status}');
+        if (status == BluetoothDeviceState.connected) {
+          print('connected !!!!!!');
+          setState(() {
+            statusconnect = true;
+          });
+        } else {
+          print('disconnected !!!!!!');
+          setState(() {
+            statusconnect = false;
+          });
+          if (widget.device != null) {
+            widget.device!.disconnect();
+          }
+          //
+        }
+      });
+    }
   }
 
   @override
@@ -101,13 +132,29 @@ class _page10State extends State<page10> {
         ),
         centerTitle: true,
         actions: [
-          IconButton(
-            icon: Icon(Icons.bluetooth),
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SettingBle()));
-            },
-          )
+          Stack(
+            alignment: Alignment.centerLeft,
+            children: [
+              IconButton(
+                icon: Icon(
+                  Icons.bluetooth,
+                  size: 30,
+                ),
+                onPressed: () {
+                  // _showDialog(context);
+                  Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.fade,
+                        child: SettingBle(),
+                      ));
+                },
+              ),
+              Icon(Icons.circle,
+                  color: statusconnect == false ? Colors.red : Colors.green,
+                  size: 10),
+            ],
+          ),
         ],
       ),
       body: Container(
@@ -175,10 +222,13 @@ class _page10State extends State<page10> {
                       } else {
                         Navigator.push(
                             context,
-                            MaterialPageRoute(
-                                builder: (context) => page1(
-                                      characteristic: widget.characteristic,
-                                    )));
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: page1(
+                                characteristic: widget.characteristic,
+                                device: widget.device,
+                              ),
+                            ));
                       }
                     }
                   },
@@ -193,10 +243,12 @@ class _page10State extends State<page10> {
                       } else {
                         Navigator.push(
                             context,
-                            MaterialPageRoute(
-                                builder: (context) => page2(
-                                      characteristic: widget.characteristic,
-                                    )));
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: page2(
+                                  characteristic: widget.characteristic,
+                                  device: widget.device),
+                            ));
                       }
                     }
                   },
@@ -211,11 +263,13 @@ class _page10State extends State<page10> {
                       } else {
                         Navigator.push(
                             context,
-                            MaterialPageRoute(
-                                builder: (context) => page3(
-                                      value: '0',
-                                      characteristic: widget.characteristic,
-                                    )));
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: page3(
+                                  value: '0',
+                                  characteristic: widget.characteristic,
+                                  device: widget.device),
+                            ));
                       }
                     }
                   },
@@ -230,19 +284,21 @@ class _page10State extends State<page10> {
                       } else {
                         Navigator.push(
                             context,
-                            MaterialPageRoute(
-                                builder: (context) => page4(
-                                      characteristic: widget.characteristic,
-                                      value1: 0,
-                                      value3: 0,
-                                      value2: 0,
-                                      value4: 0,
-                                      value5: 0,
-                                      value6: 0,
-                                      value7: 0,
-                                      value8: 0,
-                                      value9: 0,
-                                    )));
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: page4(
+                                  characteristic: widget.characteristic,
+                                  value1: 0,
+                                  value3: 0,
+                                  value2: 0,
+                                  value4: 0,
+                                  value5: 0,
+                                  value6: 0,
+                                  value7: 0,
+                                  value8: 0,
+                                  value9: 0,
+                                  device: widget.device),
+                            ));
                       }
                     }
                   },
@@ -256,11 +312,14 @@ class _page10State extends State<page10> {
                         widget.characteristic!.write(utf8.encode('RY04#'));
                       } else {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => page5(
-                                      characteristic: widget.characteristic,
-                                    )));
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page5(
+                                characteristic: widget.characteristic,
+                                device: widget.device),
+                          ),
+                        );
                       }
                     }
                   },
@@ -275,10 +334,12 @@ class _page10State extends State<page10> {
                       } else {
                         Navigator.push(
                             context,
-                            MaterialPageRoute(
-                                builder: (context) => page6(
-                                      characteristic: widget.characteristic,
-                                    )));
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: page6(
+                                  characteristic: widget.characteristic,
+                                  device: widget.device),
+                            ));
                       }
                     }
                   },
@@ -293,14 +354,16 @@ class _page10State extends State<page10> {
                       } else {
                         Navigator.push(
                             context,
-                            MaterialPageRoute(
-                                builder: (context) => page7(
-                                      characteristic: widget.characteristic,
-                                      value: 0,
-                                      value1: 0,
-                                      value2: 0,
-                                      value3: 0,
-                                    )));
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: page7(
+                                  characteristic: widget.characteristic,
+                                  value: 0,
+                                  value1: 0,
+                                  value2: 0,
+                                  value3: 0,
+                                  device: widget.device),
+                            ));
                       }
                     }
                   },
@@ -314,13 +377,16 @@ class _page10State extends State<page10> {
                         widget.characteristic!.write(utf8.encode('RY07#'));
                       } else {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => page8(
-                                      characteristic: widget.characteristic,
-                                      value1: 0,
-                                      value2: 0,
-                                    )));
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page8(
+                                characteristic: widget.characteristic,
+                                value1: 0,
+                                value2: 0,
+                                device: widget.device),
+                          ),
+                        );
                       }
                     }
                   },
@@ -335,11 +401,13 @@ class _page10State extends State<page10> {
                       } else {
                         Navigator.push(
                             context,
-                            MaterialPageRoute(
-                                builder: (context) => page9(
-                                      characteristic: widget.characteristic,
-                                      value1: 0,
-                                    )));
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: page9(
+                                  characteristic: widget.characteristic,
+                                  value1: 0,
+                                  device: widget.device),
+                            ));
                       }
                     }
                   },
@@ -507,15 +575,13 @@ class _page10State extends State<page10> {
                   fontWeight: FontWeight.w300),
             ),
 
-            onPressed:
-                !isAuthenticated ? _resetAppPassword : null,
+            onPressed: !isAuthenticated ? _resetAppPassword : null,
             // splashColor: Colors.white.withOpacity(0.4),
             // highlightColor: Colors.white.withOpacity(0.2),
             // ),
           ),
         ),
       );
-  
 
   _resetAppPassword() {
     Navigator.maybePop(context).then((result) {

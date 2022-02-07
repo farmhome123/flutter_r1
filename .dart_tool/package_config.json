@@ -14,12 +14,6 @@
       "languageVersion": "2.14"
     },
     {
-      "name": "animated_splash_screen",
-      "rootUri": "file:///Users/farm24dec/flutter/.pub-cache/hosted/pub.dartlang.org/animated_splash_screen-1.1.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "archive",
       "rootUri": "file:///Users/farm24dec/flutter/.pub-cache/hosted/pub.dartlang.org/archive-3.1.2",
       "packageUri": "lib/",
@@ -279,7 +273,7 @@
     },
     {
       "name": "page_transition",
-      "rootUri": "file:///Users/farm24dec/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0",
+      "rootUri": "file:///Users/farm24dec/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.4",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -584,7 +578,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2022-01-19T16:44:52.044190Z",
+  "generated": "2022-02-01T10:28:15.589497Z",
   "generator": "pub",
   "generatorVersion": "2.15.1"
 }

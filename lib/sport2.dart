@@ -19,9 +19,14 @@ import 'package:torqueair/page9.dart';
 import 'package:torqueair/settingble.dart';
 
 class sport2 extends StatefulWidget {
+  final BluetoothDevice? device;
   final List<int>? valueTx;
   final BluetoothCharacteristic? characteristic;
-  const sport2({Key? key, this.valueTx, required this.characteristic})
+  const sport2(
+      {Key? key,
+      this.valueTx,
+      required this.characteristic,
+      required this.device})
       : super(key: key);
 
   @override
@@ -30,6 +35,7 @@ class sport2 extends StatefulWidget {
 
 class _sport2State extends State<sport2> {
   BluetoothCharacteristic? characteristic;
+  bool statusconnect = false;
   void _showDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -56,7 +62,34 @@ class _sport2State extends State<sport2> {
     super.initState();
     print('โหมด  AI SPORT+');
     print('send to esp RY0103#');
-    characteristic = widget.characteristic;
+    if (widget.characteristic != null) {
+      characteristic = widget.characteristic;
+    }
+
+    statusconnecttion();
+  }
+
+  void statusconnecttion() async {
+    if (widget.device != null) {
+      widget.device!.state.listen((status) {
+        print('######### -------- Status ble ---- > ${status}');
+        if (status == BluetoothDeviceState.connected) {
+          print('connected !!!!!!');
+          setState(() {
+            statusconnect = true;
+          });
+        } else {
+          print('disconnected !!!!!!');
+          setState(() {
+            statusconnect = false;
+          });
+          // widget.device!.disconnect();
+          if (widget.device != null) {
+            widget.device!.disconnect();
+          }
+        }
+      });
+    }
   }
 
   @override
@@ -73,13 +106,29 @@ class _sport2State extends State<sport2> {
         ),
         centerTitle: true,
         actions: [
-          IconButton(
-            icon: Icon(Icons.bluetooth),
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SettingBle()));
-            },
-          )
+          Stack(
+            alignment: Alignment.centerLeft,
+            children: [
+              IconButton(
+                icon: Icon(
+                  Icons.bluetooth,
+                  size: 30,
+                ),
+                onPressed: () {
+                  // _showDialog(context);
+                  Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.fade,
+                        child: SettingBle(),
+                      ));
+                },
+              ),
+              Icon(Icons.circle,
+                  color: statusconnect == false ? Colors.red : Colors.green,
+                  size: 10),
+            ],
+          ),
         ],
       ),
       body: Container(
@@ -155,10 +204,13 @@ class _sport2State extends State<sport2> {
                                         }
                                         Navigator.push(
                                             context,
-                                            MaterialPageRoute(
-                                                builder: (context) => page2(
-                                                    characteristic:
-                                                        characteristic)));
+                                            PageTransition(
+                                              type: PageTransitionType.fade,
+                                              child: page2(
+                                                characteristic: characteristic,
+                                                device: widget.device,
+                                              ),
+                                            ));
                                       },
                                       icon: Image.asset('lib/item/SPORT1.png'),
                                       iconSize: 60,
@@ -178,10 +230,13 @@ class _sport2State extends State<sport2> {
                                         }
                                         Navigator.push(
                                             context,
-                                            MaterialPageRoute(
-                                                builder: (context) => comfort(
-                                                    characteristic:
-                                                        characteristic)));
+                                            PageTransition(
+                                              type: PageTransitionType.fade,
+                                              child: comfort(
+                                                  characteristic:
+                                                      characteristic,
+                                                  device: widget.device),
+                                            ));
                                       },
                                       icon:
                                           Image.asset('lib/item/COMFORT1.png'),
@@ -210,10 +265,13 @@ class _sport2State extends State<sport2> {
                                         }
                                         Navigator.push(
                                             context,
-                                            MaterialPageRoute(
-                                                builder: (context) => eco(
-                                                    characteristic:
-                                                        characteristic)));
+                                            PageTransition(
+                                              type: PageTransitionType.fade,
+                                              child: eco(
+                                                  characteristic:
+                                                      characteristic,
+                                                  device: widget.device),
+                                            ));
                                       },
                                       icon: Image.asset('lib/item/ECO1.png'),
                                       iconSize: 60,
@@ -254,10 +312,13 @@ class _sport2State extends State<sport2> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page1(
-                                    characteristic: widget.characteristic,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page1(
+                              characteristic: widget.characteristic,
+                              device: widget.device,
+                            ),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon1.png'),
@@ -270,10 +331,12 @@ class _sport2State extends State<sport2> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page2(
-                                    characteristic: widget.characteristic,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page2(
+                                characteristic: widget.characteristic,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon2.1.png'),
@@ -286,11 +349,13 @@ class _sport2State extends State<sport2> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page3(
-                                    value: '0',
-                                    characteristic: widget.characteristic,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page3(
+                                value: '0',
+                                characteristic: widget.characteristic,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon3.png'),
@@ -303,19 +368,21 @@ class _sport2State extends State<sport2> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page4(
-                                    characteristic: widget.characteristic,
-                                    value1: 0,
-                                    value3: 0,
-                                    value2: 0,
-                                    value4: 0,
-                                    value5: 0,
-                                    value6: 0,
-                                    value7: 0,
-                                    value8: 0,
-                                    value9: 0,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page4(
+                                characteristic: widget.characteristic,
+                                value1: 0,
+                                value3: 0,
+                                value2: 0,
+                                value4: 0,
+                                value5: 0,
+                                value6: 0,
+                                value7: 0,
+                                value8: 0,
+                                value9: 0,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon4.png'),
@@ -328,10 +395,12 @@ class _sport2State extends State<sport2> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page5(
-                                    characteristic: widget.characteristic,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page5(
+                                characteristic: widget.characteristic,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon5.png'),
@@ -344,10 +413,12 @@ class _sport2State extends State<sport2> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page6(
-                                    characteristic: widget.characteristic,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page6(
+                                characteristic: widget.characteristic,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon6.png'),
@@ -360,14 +431,17 @@ class _sport2State extends State<sport2> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page7(
-                                    characteristic: widget.characteristic,
-                                    value: 0,
-                                    value1: 0,
-                                    value2: 0,
-                                    value3: 0,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page7(
+                              characteristic: widget.characteristic,
+                              device: widget.device,
+                              value: 0,
+                              value1: 0,
+                              value2: 0,
+                              value3: 0,
+                            ),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon7.png'),
@@ -380,12 +454,14 @@ class _sport2State extends State<sport2> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page8(
-                                    characteristic: widget.characteristic,
-                                    value1: 0,
-                                    value2: 0,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page8(
+                                characteristic: widget.characteristic,
+                                value1: 0,
+                                value2: 0,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon8.png'),
@@ -398,11 +474,13 @@ class _sport2State extends State<sport2> {
                     } else {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => page9(
-                                    characteristic: widget.characteristic,
-                                    value1: 0,
-                                  )));
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: page9(
+                                characteristic: widget.characteristic,
+                                value1: 0,
+                                device: widget.device),
+                          ));
                     }
                   },
                   icon: Image.asset('lib/img/icon9.png'),
@@ -416,11 +494,13 @@ class _sport2State extends State<sport2> {
                     // }
                     Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => page10(
-                                  characteristic: widget.characteristic,
-                                  value1: '',
-                                )));
+                        PageTransition(
+                          type: PageTransitionType.fade,
+                          child: page10(
+                              characteristic: widget.characteristic,
+                              value1: '',
+                              device: widget.device),
+                        ));
                   },
                   icon: Image.asset('lib/img/icon10.png'),
                   iconSize: 70,

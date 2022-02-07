@@ -19,7 +19,7 @@ class NavBar extends StatelessWidget {
                 color: Colors.black, fontSize: 20, fontFamily: 'Kanit'),
           ),
           content: Container(
-            height: MediaQuery.of(context).size.height / 2,
+            height: MediaQuery.of(context).size.height / 1.8,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               image: DecorationImage(
@@ -60,9 +60,9 @@ class NavBar extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => page10(
+                    builder: (context) => page1(
                           characteristic: null,
-                          value1: '',
+                          device: null,
                         )));
           },
         );

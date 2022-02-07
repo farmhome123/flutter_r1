@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/farm24dec/Desktop/torqueair/build/app/intermediates/incremental/mergeReleaseResources/merged.dir/values-night-v8/values-night-v8.xml",
+            "outputFile": "/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/app/intermediates/incremental/mergeReleaseResources/merged.dir/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "/Users/farm24dec/Desktop/torqueair/android/app/src/main/res/values-night/styles.xml",
+                    "source": "/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/res/values-night/styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",
