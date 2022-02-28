@@ -93,8 +93,8 @@ class _page1State extends State<page1> {
               actions: [
                 TextButton(
                   onPressed: () async {
-                    // await Geolocator.openAppSettings();
-                    // await Geolocator.openLocationSettings();
+                     await Geolocator.openAppSettings();
+                     //await Geolocator.openLocationSettings();
                     // exit(0);
                     // Find LatLang
                     Navigator.pop(context);
@@ -119,7 +119,7 @@ class _page1State extends State<page1> {
               actions: [
                 TextButton(
                   onPressed: () async {
-                    // await Geolocator.openAppSettings();
+                     await Geolocator.openAppSettings();
                     // await Geolocator.openLocationSettings();
                     // exit(0);
                     // Find LatLang
@@ -146,8 +146,8 @@ class _page1State extends State<page1> {
           actions: [
             TextButton(
               onPressed: () async {
-                // await Geolocator.openAppSettings();
-                // await Geolocator.openLocationSettings();
+                await Geolocator.openAppSettings();
+                 //await Geolocator.openLocationSettings();
                 // exit(0);
                 // Find LatLang
                 Navigator.pop(context);
@@ -543,6 +543,7 @@ class _page1State extends State<page1> {
                     //   // widget.characteristic!.write(utf8.encode('RY08#'));
                     // } else {
                     // }
+                    print('PageTransition');
                     Navigator.push(
                         context,
                         PageTransition(

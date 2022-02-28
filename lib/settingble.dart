@@ -168,12 +168,12 @@ class _FindDevicesScreenState extends State<FindDevicesScreen> {
                 builder: (c, snapshot) => Column(
                   children: snapshot.data!.map((r) {
                     if (r.device.name
-                        .toLowerCase()
-                        .contains(NAME_DIVCE.toLowerCase())) {
+                        .toLowerCase().trim()
+                        .contains(NAME_DIVCE.toLowerCase().trim())) {
                       return ScanResultTile(
                           result: r,
                           onTap: () => Navigator.of(context)
-                                  .push(MaterialPageRoute(builder: (context) {
+                                  . push(MaterialPageRoute(builder: (context) {
                                 r.device.connect();
                                 return DeviceScreen(device: r.device);
                               })));

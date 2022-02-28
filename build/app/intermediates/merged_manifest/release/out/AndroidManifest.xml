@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.torqueair.torqueair1"
-    android:versionCode="8"
-    android:versionName="1.0.8" >
+    android:versionCode="1"
+    android:versionName="1.0.0" >
 
     <uses-sdk
         android:minSdkVersion="19"
@@ -30,7 +30,10 @@
          add android:usesPermissionFlags="neverForLocation" when you can strongly assert that
          your app never derives physical location from Bluetooth scan results.
     -->
-    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_SCAN"
+        android:usesPermissionFlags="neverForLocation" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
