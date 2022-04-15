@@ -1,0 +1,264 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:1:1-67:12
+INJECTED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:1:1-67:12
+INJECTED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:1:1-67:12
+INJECTED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:1:1-67:12
+MERGED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:1:1-67:12
+MERGED from [:shared_preferences_android] /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/shared_preferences_android/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:geolocator_android] /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/geolocator_android/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:url_launcher_android] /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/url_launcher_android/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-14:12
+MERGED from [:flutter_blue] /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/flutter_blue/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.window:window-java:1.0.0-beta04] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/d02a044c0313bfd6d7d1798b547887f6/jetified-window-java-1.0.0-beta04/AndroidManifest.xml:17:1-23:12
+MERGED from [androidx.window:window:1.0.0-beta04] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/6f95114facb6afeba482d4f293fb514b/jetified-window-1.0.0-beta04/AndroidManifest.xml:17:1-33:12
+MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/c8fc20e52d9777f87f26a08987788785/jetified-play-services-location-17.0.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-base:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/059b2c883dc7bb6384cc69fb08cee6f1/jetified-play-services-base-17.0.0/AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/8280e6d7e121ff76c287c53d3e76b8e0/jetified-play-services-places-placereport-17.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/c1bc2cdf2199a3d5cf6e7772a95cefcc/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/2b3b3367439fecee56c28c9eeab7248a/jetified-play-services-basement-17.0.0/AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.fragment:fragment:1.1.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/b1e30d024612b8ba5549230b4fb46d1a/fragment-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/9da85aeea43e12746ffdf04be7ad1adc/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/d9eb0a5bc165c6c1264332577832dada/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/187fc07b220376b0a82305d156c0e188/jetified-activity-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview:1.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/7c933fe587d7b6cb0c6e538ddda87237/customview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.6.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/1ee4b3ecd08b08221c92ac47a12b9747/core-1.6.0/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/6b99f68eb7ddf9b9c531f96a9a13cd2c/lifecycle-runtime-2.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/6deeaa48eaff65e657bc8e324f7652d9/jetified-savedstate-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/8be1fcdee70f36c76d031424711a3771/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/0d5714713679b406253c0d9013c1f0ab/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/517f5d5b50acb5b4f5c89f3799fced1d/jetified-tracing-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/5c9423e73b1e7806bf85685d382cb267/core-runtime-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/31b093e3f2ee995211b7f68eafe1cb10/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/f1bbe7b3b556820cddf0a9181db6088d/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/59e343009f6023b3900b90d897fe0fc9/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:17:1-24:12
+INJECTED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+INJECTED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+INJECTED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+	package
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:2:5-39
+		INJECTED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/debug/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:1:1-67:12
+		INJECTED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/debug/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:1:1-67:12
+		INJECTED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/debug/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:1:11-69
+uses-permission#android.permission.BLUETOOTH
+ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:5:5-7:38
+MERGED from [:flutter_blue] /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/flutter_blue/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-68
+MERGED from [:flutter_blue] /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/flutter_blue/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-68
+	android:maxSdkVersion
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:7:9-35
+	android:name
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:6:9-52
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:8:5-10:38
+MERGED from [:flutter_blue] /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/flutter_blue/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-74
+MERGED from [:flutter_blue] /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/flutter_blue/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-74
+	android:maxSdkVersion
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:10:9-35
+	android:name
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:9:9-58
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:13:5-15:38
+	android:maxSdkVersion
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:15:9-35
+	android:name
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:14:9-65
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:16:5-18:38
+MERGED from [:flutter_blue] /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/flutter_blue/intermediates/library_manifest/debug/AndroidManifest.xml:9:5-79
+MERGED from [:flutter_blue] /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/flutter_blue/intermediates/library_manifest/debug/AndroidManifest.xml:9:5-79
+	android:maxSdkVersion
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:18:9-35
+	android:name
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:17:9-63
+uses-permission#android.permission.BLUETOOTH_CONNECT
+ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:21:5-76
+	android:name
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:21:22-73
+uses-permission#android.permission.BLUETOOTH_SCAN
+ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:24:6-26:62
+	android:usesPermissionFlags
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:26:13-59
+	android:name
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:25:13-61
+uses-permission#android.permission.INTERNET
+ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:27:6-67
+MERGED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:27:6-67
+MERGED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:27:6-67
+	android:name
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:27:23-65
+application
+ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:28:4-66:19
+MERGED from [:url_launcher_android] /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/url_launcher_android/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-12:19
+MERGED from [:url_launcher_android] /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/url_launcher_android/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-12:19
+MERGED from [androidx.window:window:1.0.0-beta04] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/6f95114facb6afeba482d4f293fb514b/jetified-window-1.0.0-beta04/AndroidManifest.xml:24:5-31:19
+MERGED from [androidx.window:window:1.0.0-beta04] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/6f95114facb6afeba482d4f293fb514b/jetified-window-1.0.0-beta04/AndroidManifest.xml:24:5-31:19
+MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/c8fc20e52d9777f87f26a08987788785/jetified-play-services-location-17.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/c8fc20e52d9777f87f26a08987788785/jetified-play-services-location-17.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-base:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/059b2c883dc7bb6384cc69fb08cee6f1/jetified-play-services-base-17.0.0/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/059b2c883dc7bb6384cc69fb08cee6f1/jetified-play-services-base-17.0.0/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/8280e6d7e121ff76c287c53d3e76b8e0/jetified-play-services-places-placereport-17.0.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/8280e6d7e121ff76c287c53d3e76b8e0/jetified-play-services-places-placereport-17.0.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/c1bc2cdf2199a3d5cf6e7772a95cefcc/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/c1bc2cdf2199a3d5cf6e7772a95cefcc/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/2b3b3367439fecee56c28c9eeab7248a/jetified-play-services-basement-17.0.0/AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/2b3b3367439fecee56c28c9eeab7248a/jetified-play-services-basement-17.0.0/AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.core:core:1.6.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/1ee4b3ecd08b08221c92ac47a12b9747/core-1.6.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.6.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/1ee4b3ecd08b08221c92ac47a12b9747/core-1.6.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/31b093e3f2ee995211b7f68eafe1cb10/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/31b093e3f2ee995211b7f68eafe1cb10/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.6.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/1ee4b3ecd08b08221c92ac47a12b9747/core-1.6.0/AndroidManifest.xml:24:18-86
+	android:label
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:29:9-35
+	android:icon
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:30:9-43
+activity#com.torqueair.torqueair1.MainActivity
+ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:31:9-60:20
+	android:launchMode
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:34:13-43
+	android:hardwareAccelerated
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:37:13-47
+	android:windowSoftInputMode
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:38:13-55
+	android:exported
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:32:13-36
+	android:configChanges
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:36:13-163
+	android:theme
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:35:13-47
+	android:name
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:33:13-41
+meta-data#io.flutter.embedding.android.NormalTheme
+ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:43:13-46:17
+	android:resource
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:45:15-52
+	android:name
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:44:15-70
+meta-data#io.flutter.embedding.android.SplashScreenDrawable
+ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:52:13-55:17
+	android:resource
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:54:15-61
+	android:name
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:53:15-79
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:56:13-59:29
+action#android.intent.action.MAIN
+ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:57:17-68
+	android:name
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:57:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:58:17-76
+	android:name
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:58:27-74
+meta-data#flutterEmbedding
+ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:63:9-65:33
+	android:value
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:65:13-30
+	android:name
+		ADDED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:64:13-44
+uses-sdk
+INJECTED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml
+INJECTED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml
+MERGED from [:shared_preferences_android] /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/shared_preferences_android/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences_android] /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/shared_preferences_android/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:geolocator_android] /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/geolocator_android/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:geolocator_android] /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/geolocator_android/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:url_launcher_android] /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/url_launcher_android/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:url_launcher_android] /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/url_launcher_android/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_blue] /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/flutter_blue/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_blue] /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/flutter_blue/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [androidx.window:window-java:1.0.0-beta04] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/d02a044c0313bfd6d7d1798b547887f6/jetified-window-java-1.0.0-beta04/AndroidManifest.xml:19:5-21:41
+MERGED from [androidx.window:window-java:1.0.0-beta04] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/d02a044c0313bfd6d7d1798b547887f6/jetified-window-java-1.0.0-beta04/AndroidManifest.xml:19:5-21:41
+MERGED from [androidx.window:window:1.0.0-beta04] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/6f95114facb6afeba482d4f293fb514b/jetified-window-1.0.0-beta04/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.window:window:1.0.0-beta04] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/6f95114facb6afeba482d4f293fb514b/jetified-window-1.0.0-beta04/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/c8fc20e52d9777f87f26a08987788785/jetified-play-services-location-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/c8fc20e52d9777f87f26a08987788785/jetified-play-services-location-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-base:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/059b2c883dc7bb6384cc69fb08cee6f1/jetified-play-services-base-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/059b2c883dc7bb6384cc69fb08cee6f1/jetified-play-services-base-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/8280e6d7e121ff76c287c53d3e76b8e0/jetified-play-services-places-placereport-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/8280e6d7e121ff76c287c53d3e76b8e0/jetified-play-services-places-placereport-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/c1bc2cdf2199a3d5cf6e7772a95cefcc/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/c1bc2cdf2199a3d5cf6e7772a95cefcc/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/2b3b3367439fecee56c28c9eeab7248a/jetified-play-services-basement-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/2b3b3367439fecee56c28c9eeab7248a/jetified-play-services-basement-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.1.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/b1e30d024612b8ba5549230b4fb46d1a/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/b1e30d024612b8ba5549230b4fb46d1a/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/9da85aeea43e12746ffdf04be7ad1adc/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/9da85aeea43e12746ffdf04be7ad1adc/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/d9eb0a5bc165c6c1264332577832dada/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/d9eb0a5bc165c6c1264332577832dada/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/187fc07b220376b0a82305d156c0e188/jetified-activity-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/187fc07b220376b0a82305d156c0e188/jetified-activity-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/7c933fe587d7b6cb0c6e538ddda87237/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/7c933fe587d7b6cb0c6e538ddda87237/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.6.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/1ee4b3ecd08b08221c92ac47a12b9747/core-1.6.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.6.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/1ee4b3ecd08b08221c92ac47a12b9747/core-1.6.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/6b99f68eb7ddf9b9c531f96a9a13cd2c/lifecycle-runtime-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/6b99f68eb7ddf9b9c531f96a9a13cd2c/lifecycle-runtime-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/6deeaa48eaff65e657bc8e324f7652d9/jetified-savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/6deeaa48eaff65e657bc8e324f7652d9/jetified-savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/8be1fcdee70f36c76d031424711a3771/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/8be1fcdee70f36c76d031424711a3771/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/0d5714713679b406253c0d9013c1f0ab/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/0d5714713679b406253c0d9013c1f0ab/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/517f5d5b50acb5b4f5c89f3799fced1d/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/517f5d5b50acb5b4f5c89f3799fced1d/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/5c9423e73b1e7806bf85685d382cb267/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/5c9423e73b1e7806bf85685d382cb267/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/31b093e3f2ee995211b7f68eafe1cb10/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/31b093e3f2ee995211b7f68eafe1cb10/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/f1bbe7b3b556820cddf0a9181db6088d/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/f1bbe7b3b556820cddf0a9181db6088d/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/59e343009f6023b3900b90d897fe0fc9/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/59e343009f6023b3900b90d897fe0fc9/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
+INJECTED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/debug/AndroidManifest.xml
+INJECTED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/debug/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/debug/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/debug/AndroidManifest.xml
+activity#io.flutter.plugins.urllauncher.WebViewActivity
+ADDED from [:url_launcher_android] /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/url_launcher_android/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-11:74
+	android:exported
+		ADDED from [:url_launcher_android] /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/url_launcher_android/intermediates/library_manifest/debug/AndroidManifest.xml:10:13-37
+	android:theme
+		ADDED from [:url_launcher_android] /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/url_launcher_android/intermediates/library_manifest/debug/AndroidManifest.xml:11:13-71
+	android:name
+		ADDED from [:url_launcher_android] /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/url_launcher_android/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-74
+uses-library#androidx.window.extensions
+ADDED from [androidx.window:window:1.0.0-beta04] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/6f95114facb6afeba482d4f293fb514b/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
+	android:required
+		ADDED from [androidx.window:window:1.0.0-beta04] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/6f95114facb6afeba482d4f293fb514b/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.window:window:1.0.0-beta04] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/6f95114facb6afeba482d4f293fb514b/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
+uses-library#androidx.window.sidecar
+ADDED from [androidx.window:window:1.0.0-beta04] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/6f95114facb6afeba482d4f293fb514b/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
+	android:required
+		ADDED from [androidx.window:window:1.0.0-beta04] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/6f95114facb6afeba482d4f293fb514b/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
+	android:name
+		ADDED from [androidx.window:window:1.0.0-beta04] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/6f95114facb6afeba482d4f293fb514b/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/059b2c883dc7bb6384cc69fb08cee6f1/jetified-play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/059b2c883dc7bb6384cc69fb08cee6f1/jetified-play-services-base-17.0.0/AndroidManifest.xml:25:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/059b2c883dc7bb6384cc69fb08cee6f1/jetified-play-services-base-17.0.0/AndroidManifest.xml:26:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/059b2c883dc7bb6384cc69fb08cee6f1/jetified-play-services-base-17.0.0/AndroidManifest.xml:24:13-79
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/2b3b3367439fecee56c28c9eeab7248a/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/2b3b3367439fecee56c28c9eeab7248a/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/2b3b3367439fecee56c28c9eeab7248a/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58

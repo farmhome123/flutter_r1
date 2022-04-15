@@ -1,0 +1,34 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/shared_preferences_android/intermediates/res/merged/debug/values-iw/values-iw.xml",
+            "map": [
+                {
+                    "source": "/Users/farm24dec/.gradle/caches/transforms-2/files-2.1/1ee4b3ecd08b08221c92ac47a12b9747/core-1.6.0/res/values-iw/values-iw.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/shared_preferences_android/intermediates/incremental/mergeDebugResources/merged.dir/values-iw/values-iw.xml",
+            "map": [
+                {
+                    "source": "/Users/farm24dec/.gradle/caches/transforms-2/files-2.1/1ee4b3ecd08b08221c92ac47a12b9747/core-1.6.0/res/values-iw/values-iw.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        }
+    ]
+}

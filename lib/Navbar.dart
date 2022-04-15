@@ -1,13 +1,21 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:torqueair/page1.dart';
-import 'package:torqueair/page10.dart';
-import 'package:torqueair/reset.dart';
 import 'package:torqueair/settingble.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class NavBar extends StatelessWidget {
+class NavBar extends StatefulWidget {
   const NavBar({Key? key}) : super(key: key);
+
+  @override
+  State<NavBar> createState() => _NavBarState();
+}
+
+class _NavBarState extends State<NavBar> {
+  TextEditingController? phoneController;
+  TextEditingController? phonemainController;
+
   void _showDialogStart(BuildContext context) {
     showDialog(
       context: context,
@@ -82,6 +90,137 @@ class NavBar extends StatelessWidget {
     );
   }
 
+  void showAlertBar() {
+    Flushbar(
+      title: "กรุณากรอกเบอร์โทรศัพท์ 10 หลัก",
+      message: "กรุณาลองใหม่อีกครั้ง",
+      icon: Icon(
+        Icons.error,
+        size: 28.0,
+        color: Colors.blue[300],
+      ),
+      duration: Duration(seconds: 3),
+      leftBarIndicatorColor: Colors.blue[300],
+      padding: EdgeInsets.all(8.0),
+    ).show(context);
+  }
+
+  void showAlertSuccess() {
+    Flushbar(
+      title: "เพิ่มเบอร์Sms เรียบร้อยแล้ว",
+      icon: Icon(
+        Icons.check,
+        size: 28.0,
+        color: Colors.green[300],
+      ),
+      duration: Duration(seconds: 3),
+      leftBarIndicatorColor: Colors.blue[300],
+      padding: EdgeInsets.all(8.0),
+    ).show(context);
+  }
+
+  void _showDialogPhone(BuildContext context) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final _phone = prefs.get('phone');
+    final _phonemain = prefs.get('phonemain');
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        Widget cancelButton = FlatButton(
+          child: Text("ยกเลิก"),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        );
+        Widget continueButton = FlatButton(
+          child: Text("ตกลง"),
+          onPressed: () async {
+            String phone = phoneController!.text;
+            String phonemain = phonemainController!.text;
+
+            if (phone.length != 10 && phonemain.length != 10) {
+              print("กรุณากรอกเบอร์โทร 10 หลัก");
+              setState(() {});
+              showAlertBar();
+            }
+
+            if (phone.length == 10 && phonemain.length == 10) {
+              print('setString phone');
+              // showAlertSuccess();
+              prefs.setString("phone", phone);
+              prefs.setString("phonemain", phonemain);
+              Navigator.of(context).pop();
+            } else {
+              print('setString phone faild');
+              setState(() {});
+            }
+
+            // prefs.setString('phone',);
+          },
+        );
+        return AlertDialog(
+          backgroundColor: Colors.grey[300],
+          title: Text("เพิ่มเบอร์โทรศัพท์สำหรับแจ้งเตือน SMS"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                children: [
+                  Text('เบอร์โทรผู้รับSMS:'),
+                  Text(_phone == null ? "ยังไม่ได้เพิ่ม" : _phone.toString()),
+                ],
+              ),
+              Row(
+                children: [
+                  Text('เบอร์โทรเจ้าของเครื่อง:'),
+                  Text(_phonemain == null ? "ยังไม่ได้เพิ่ม" : _phonemain.toString()),
+                ],
+              ),
+              TextField(
+                controller: phoneController,
+                decoration: InputDecoration(
+                  labelText: 'เบอร์โทรผู้รับSMS',
+                  hintText: '',
+                ),
+                keyboardType: TextInputType.phone,
+                textInputAction: TextInputAction.next,
+              ),
+              TextField(
+                controller: phonemainController,
+                decoration: InputDecoration(
+                  labelText: 'เบอร์โทรเจ้าของเครื่อง',
+                  hintText: '',
+                ),
+                keyboardType: TextInputType.phone,
+                textInputAction: TextInputAction.next,
+              ),
+            ],
+          ),
+          actions: [
+            cancelButton,
+            continueButton,
+          ],
+        );
+      },
+    );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    phoneController = TextEditingController();
+    phonemainController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    phoneController?.dispose();
+    phonemainController?.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     _launchURLBrowser(String url) async {
@@ -134,6 +273,23 @@ class NavBar extends StatelessWidget {
                 },
                 child: Text(
                   'เชื่อมต่ออุปกรณ์',
+                  style: TextStyle(
+                      color: Colors.white, fontSize: 15, fontFamily: 'Kanit'),
+                ),
+              )),
+            ),
+            Container(
+              margin: EdgeInsets.only(right: 20, left: 20),
+              decoration: BoxDecoration(
+                border: Border(bottom: BorderSide(color: Colors.white)),
+              ),
+              child: ListTile(
+                  title: TextButton(
+                onPressed: () {
+                  _showDialogPhone(context);
+                },
+                child: Text(
+                  'เพิ่มเบอร์โทรศัพท์',
                   style: TextStyle(
                       color: Colors.white, fontSize: 15, fontFamily: 'Kanit'),
                 ),

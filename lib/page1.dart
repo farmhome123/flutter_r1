@@ -1,12 +1,14 @@
 import 'dart:convert' show utf8;
-import 'dart:io';
+import 'dart:math';
 
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:page_transition/page_transition.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 import 'package:torqueair/Navbar.dart';
 import 'package:torqueair/page10.dart';
 import 'package:torqueair/page2.dart';
@@ -37,8 +39,44 @@ class page1 extends StatefulWidget {
 class _page1State extends State<page1> {
   BluetoothCharacteristic? characteristic;
   double? speed;
-  double? speed2;
+  List<int>? speedAlert;
   bool statusconnect = false;
+  int? sumValue;
+  Random random = new Random();
+
+  void showAlertBrake() {
+    Flushbar(
+      title: "เกิดการเบรคกระทันหัน",
+      message: "เกิดการเบรคกระทันหัน",
+      icon: Icon(
+        Icons.error,
+        size: 28.0,
+        color: Colors.blue[300],
+      ),
+      duration: Duration(seconds: 3),
+      leftBarIndicatorColor: Colors.blue[300],
+      padding: EdgeInsets.all(8.0),
+    ).show(context);
+  }
+
+  _sendSMS() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final _phoneSms = prefs.get('phone');
+    final url = Uri.parse("https://torqueair.komkawila.com/$_phoneSms");
+    var data = {"message": "เกิดการเบรคกระทันหัน"};
+
+    try {
+      var response = await http.post(url, body: data);
+      if (response.statusCode == 200) {
+        print('_phoneSms success');
+      } else {
+        print('_phoneSms faild');
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
   void _showDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -63,6 +101,7 @@ class _page1State extends State<page1> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    speedAlert = [];
     checkPermission();
     print('โหมด  AI SPORT');
     print('send to esp RY0102#');
@@ -93,8 +132,8 @@ class _page1State extends State<page1> {
               actions: [
                 TextButton(
                   onPressed: () async {
-                     await Geolocator.openAppSettings();
-                     //await Geolocator.openLocationSettings();
+                    await Geolocator.openAppSettings();
+                    //await Geolocator.openLocationSettings();
                     // exit(0);
                     // Find LatLang
                     Navigator.pop(context);
@@ -119,7 +158,7 @@ class _page1State extends State<page1> {
               actions: [
                 TextButton(
                   onPressed: () async {
-                     await Geolocator.openAppSettings();
+                    await Geolocator.openAppSettings();
                     // await Geolocator.openLocationSettings();
                     // exit(0);
                     // Find LatLang
@@ -147,7 +186,7 @@ class _page1State extends State<page1> {
             TextButton(
               onPressed: () async {
                 await Geolocator.openAppSettings();
-                 //await Geolocator.openLocationSettings();
+                //await Geolocator.openLocationSettings();
                 // exit(0);
                 // Find LatLang
                 Navigator.pop(context);
@@ -160,40 +199,128 @@ class _page1State extends State<page1> {
     }
   }
 
-  Future<Null?> findSpeed() async {
-    print('Find findSpeed');
-    late LocationSettings locationSettings;
-    if (defaultTargetPlatform == TargetPlatform.android) {
-      print('locationSettings :android ');
-      locationSettings = AndroidSettings(
-        // accuracy: LocationAccuracy.best,
-        // distanceFilter: 2,
-        // forceLocationManager: false,
-        intervalDuration: const Duration(milliseconds: 500),
-      );
-    } else if (defaultTargetPlatform == TargetPlatform.iOS ||
-        defaultTargetPlatform == TargetPlatform.macOS) {
-      locationSettings = AppleSettings(
-          // accuracy: LocationAccuracy.high,
-          // distanceFilter: 100,
-          // pauseLocationUpdatesAutomatically: true,
+  Future<Null> findSpeed() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final _phoneSms = prefs.get('phone');
+    final _phoneSmsmain = prefs.get('phonemain');
+    if (_phoneSms != null && _phoneSmsmain != null) {
+      print('Find findSpeed');
+      late LocationSettings locationSettings;
+      if (defaultTargetPlatform == TargetPlatform.android) {
+        print('locationSettings :android ');
+        locationSettings = AndroidSettings(
+          // accuracy: LocationAccuracy.best,
+          // distanceFilter: 2,
+          // forceLocationManager: false,
+          intervalDuration: const Duration(milliseconds: 500),
+        );
+      } else if (defaultTargetPlatform == TargetPlatform.iOS ||
+          defaultTargetPlatform == TargetPlatform.macOS) {
+        locationSettings = AppleSettings(
+            // accuracy: LocationAccuracy.high,
+            // distanceFilter: 100,
+            // pauseLocationUpdatesAutomatically: true,
 
-          );
-    } else {
-      print('locationSettings orter');
-      locationSettings = LocationSettings(
-        accuracy: LocationAccuracy.high,
-        distanceFilter: 100,
-      );
-    }
-    Geolocator.getPositionStream(locationSettings: locationSettings)
-        .listen((position) {
-      var speedInMps = position.speed; // this is your speed
-      // print('speedInMps = $speedInMps');
-      setState(() {
-        speed = double.parse('${speedInMps}');
+            );
+      } else {
+        print('locationSettings orter');
+        locationSettings = LocationSettings(
+          accuracy: LocationAccuracy.high,
+          distanceFilter: 100,
+        );
+      }
+      int count = 0;
+      Geolocator.getPositionStream(locationSettings: locationSettings)
+          .listen((position) async {
+        var speedInMps = await position.speed; // this is your speed
+        // print('speedInMps = $speedInMps');
+        var speedTest = double.parse(speedInMps.toString());
+        setState(() {
+          speed = double.parse('${speedInMps}');
+        });
+
+        if (speed != null) {
+          int randomNumber = random.nextInt(90) + 10;
+          print(' ${(speedTest).toStringAsFixed(0)} speedTest');
+          // print('random speed ==>$randomNumber');
+
+          if (speedAlert!.length < 4) {
+            // if (speedTest > 0) {
+            //   speedAlert!.add((speedTest).toInt());
+            // }
+            speedAlert!.add((randomNumber));
+            print("speedAlert!.length ==> ${speedAlert!.length}");
+            if (speedAlert!.length == 4) {
+              print('speedAlert![${speedAlert!.length}] ===> ${speedAlert!}');
+              int sum = speedAlert!.first - speedAlert!.last;
+              print('speed 1 - 4 == > ${sum}');
+              setState(() {
+                sumValue = sum;
+              });
+              if (sum >= 10) {
+                print('แจ้งเตือนแบกกระทันหัน');
+                // showAlertBrake();
+                _modalCallPhone();
+                _sendSMS();
+                setState(() {});
+              } else {
+                speedAlert!.removeAt(0);
+              }
+            }
+          }
+        }
       });
-    });
+    } else {
+      print('ไม่มีเบอร์SMS');
+      showAlertBar();
+    }
+  }
+
+  void _modalCallPhone() {
+    final _bildListTile = (
+      IconData icon,
+      String title,
+    ) =>
+        ListTile(
+          leading: Icon(icon),
+          title: Text(title),
+          onTap: () {
+            Navigator.pop(context);
+            // _pickImage(imageSource);
+          },
+        );
+    showBottomSheet(
+      backgroundColor: Colors.blue[50],
+      context: context,
+      builder: (context) => Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _bildListTile(
+            Icons.photo_camera,
+            "Take a picture from camera",
+          ),
+          _bildListTile(
+            Icons.photo_library,
+            "Take a picture from gallery",
+          ),
+        ],
+      ),
+    );
+  }
+
+  void showAlertBar() {
+    Flushbar(
+      title: "คุณยังไม่ได้เพิ่มเบอร์ SMS",
+      message: "กรุณาเพิ่มเบอร์มือถือ",
+      icon: Icon(
+        Icons.error,
+        size: 28.0,
+        color: Colors.blue[300],
+      ),
+      duration: Duration(seconds: 3),
+      leftBarIndicatorColor: Colors.blue[300],
+      padding: EdgeInsets.all(8.0),
+    ).show(context);
   }
 
   void statusconnecttion() async {
@@ -304,7 +431,8 @@ class _page1State extends State<page1> {
                 child: Column(
                   children: [
                     Container(
-                      height: 200,
+                      // height: 200,
+                      height: 300,
                       child: Column(
                         children: [
                           speed != null
@@ -359,6 +487,26 @@ class _page1State extends State<page1> {
                                   fontSize: 15,
                                   fontFamily: 'Kanit',
                                   color: Colors.white),
+                              textAlign: TextAlign.start,
+                            ),
+                          ),
+                          Expanded(
+                            child: Text(
+                              "speedAlert $speedAlert",
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  fontFamily: 'Kanit',
+                                  color: Colors.deepOrange),
+                              textAlign: TextAlign.start,
+                            ),
+                          ),
+                          Expanded(
+                            child: Text(
+                              "sumValue $sumValue",
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  fontFamily: 'Kanit',
+                                  color: Colors.deepOrange),
                               textAlign: TextAlign.start,
                             ),
                           ),
@@ -554,7 +702,6 @@ class _page1State extends State<page1> {
                               device: widget.device),
                         ));
                   },
-
                   icon: Image.asset('lib/img/icon10.png'),
                   iconSize: 70,
                 ),

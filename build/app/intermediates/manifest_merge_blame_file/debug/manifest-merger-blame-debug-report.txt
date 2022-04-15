@@ -1,0 +1,170 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.torqueair.torqueair1"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="19"
+9        android:targetSdkVersion="31" />
+10    <!--
+11         Flutter needs it to communicate with the running application
+12         to allow setting breakpoints, to provide hot reload, etc.
+13    -->
+14    <uses-permission android:name="android.permission.INTERNET" />
+14-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:27:6-67
+14-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:27:23-65
+15    <!-- <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/> -->
+16    <!-- required for API 18 - 30 -->
+17    <uses-permission
+17-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:5:5-7:38
+18        android:name="android.permission.BLUETOOTH"
+18-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:6:9-52
+19        android:maxSdkVersion="31" />
+19-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:7:9-35
+20    <uses-permission
+20-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:8:5-10:38
+21        android:name="android.permission.BLUETOOTH_ADMIN"
+21-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:9:9-58
+22        android:maxSdkVersion="31" /> <!-- required for API 23 - 30 -->
+22-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:10:9-35
+23    <uses-permission
+23-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:13:5-15:38
+24        android:name="android.permission.ACCESS_COARSE_LOCATION"
+24-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:14:9-65
+25        android:maxSdkVersion="31" />
+25-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:15:9-35
+26    <uses-permission
+26-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:16:5-18:38
+27        android:name="android.permission.ACCESS_FINE_LOCATION"
+27-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:17:9-63
+28        android:maxSdkVersion="31" /> <!-- API 31+ -->
+28-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:18:9-35
+29    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+29-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:21:5-76
+29-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:21:22-73
+30    <!--
+31 add android:usesPermissionFlags="neverForLocation" when you can strongly assert that
+32         your app never derives physical location from Bluetooth scan results.
+33    -->
+34    <uses-permission
+34-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:24:6-26:62
+35        android:name="android.permission.BLUETOOTH_SCAN"
+35-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:25:13-61
+36        android:usesPermissionFlags="neverForLocation" />
+36-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:26:13-59
+37
+38    <application
+38-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:28:4-66:19
+39        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+39-->[androidx.core:core:1.6.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/1ee4b3ecd08b08221c92ac47a12b9747/core-1.6.0/AndroidManifest.xml:24:18-86
+40        android:debuggable="true"
+41        android:icon="@mipmap/ic_launcher"
+41-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:30:9-43
+42        android:label="Torque Air" >
+42-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:29:9-35
+43        <activity
+43-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:31:9-60:20
+44            android:name="com.torqueair.torqueair1.MainActivity"
+44-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:33:13-41
+45            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+45-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:36:13-163
+46            android:exported="true"
+46-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:32:13-36
+47            android:hardwareAccelerated="true"
+47-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:37:13-47
+48            android:launchMode="singleTop"
+48-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:34:13-43
+49            android:theme="@style/LaunchTheme"
+49-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:35:13-47
+50            android:windowSoftInputMode="adjustResize" >
+50-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:38:13-55
+51
+52            <!--
+53                 Specifies an Android theme to apply to this Activity as soon as
+54                 the Android process has started. This theme is visible to the user
+55                 while the Flutter UI initializes. After that, this theme continues
+56                 to determine the Window background behind the Flutter UI.
+57            -->
+58            <meta-data
+58-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:43:13-46:17
+59                android:name="io.flutter.embedding.android.NormalTheme"
+59-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:44:15-70
+60                android:resource="@style/NormalTheme" />
+60-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:45:15-52
+61            <!--
+62                 Displays an Android View that continues showing the launch screen
+63                 Drawable until Flutter paints its first frame, then this splash
+64                 screen fades out. A splash screen is useful to avoid any visual
+65                 gap between the end of Android's launch screen and the painting of
+66                 Flutter's first frame.
+67            -->
+68            <meta-data
+68-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:52:13-55:17
+69                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+69-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:53:15-79
+70                android:resource="@drawable/launch_background" />
+70-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:54:15-61
+71
+72            <intent-filter>
+72-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:56:13-59:29
+73                <action android:name="android.intent.action.MAIN" />
+73-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:57:17-68
+73-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:57:25-66
+74
+75                <category android:name="android.intent.category.LAUNCHER" />
+75-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:58:17-76
+75-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:58:27-74
+76            </intent-filter>
+77        </activity>
+78        <!--
+79             Don't delete the meta-data below.
+80             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+81        -->
+82        <meta-data
+82-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:63:9-65:33
+83            android:name="flutterEmbedding"
+83-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:64:13-44
+84            android:value="2" />
+84-->/Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/android/app/src/main/AndroidManifest.xml:65:13-30
+85
+86        <activity
+86-->[:url_launcher_android] /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/url_launcher_android/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-11:74
+87            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+87-->[:url_launcher_android] /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/url_launcher_android/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-74
+88            android:exported="false"
+88-->[:url_launcher_android] /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/url_launcher_android/intermediates/library_manifest/debug/AndroidManifest.xml:10:13-37
+89            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+89-->[:url_launcher_android] /Users/farm24dec/Desktop/ApplicationCom/untitled folder/backupApptorqueair/build/url_launcher_android/intermediates/library_manifest/debug/AndroidManifest.xml:11:13-71
+90
+91        <uses-library
+91-->[androidx.window:window:1.0.0-beta04] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/6f95114facb6afeba482d4f293fb514b/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
+92            android:name="androidx.window.extensions"
+92-->[androidx.window:window:1.0.0-beta04] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/6f95114facb6afeba482d4f293fb514b/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
+93            android:required="false" />
+93-->[androidx.window:window:1.0.0-beta04] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/6f95114facb6afeba482d4f293fb514b/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
+94        <uses-library
+94-->[androidx.window:window:1.0.0-beta04] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/6f95114facb6afeba482d4f293fb514b/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
+95            android:name="androidx.window.sidecar"
+95-->[androidx.window:window:1.0.0-beta04] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/6f95114facb6afeba482d4f293fb514b/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
+96            android:required="false" />
+96-->[androidx.window:window:1.0.0-beta04] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/6f95114facb6afeba482d4f293fb514b/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
+97
+98        <activity
+98-->[com.google.android.gms:play-services-base:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/059b2c883dc7bb6384cc69fb08cee6f1/jetified-play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
+99            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+99-->[com.google.android.gms:play-services-base:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/059b2c883dc7bb6384cc69fb08cee6f1/jetified-play-services-base-17.0.0/AndroidManifest.xml:24:13-79
+100            android:exported="false"
+100-->[com.google.android.gms:play-services-base:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/059b2c883dc7bb6384cc69fb08cee6f1/jetified-play-services-base-17.0.0/AndroidManifest.xml:25:13-37
+101            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+101-->[com.google.android.gms:play-services-base:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/059b2c883dc7bb6384cc69fb08cee6f1/jetified-play-services-base-17.0.0/AndroidManifest.xml:26:13-72
+102
+103        <meta-data
+103-->[com.google.android.gms:play-services-basement:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/2b3b3367439fecee56c28c9eeab7248a/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
+104            android:name="com.google.android.gms.version"
+104-->[com.google.android.gms:play-services-basement:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/2b3b3367439fecee56c28c9eeab7248a/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
+105            android:value="@integer/google_play_services_version" />
+105-->[com.google.android.gms:play-services-basement:17.0.0] /Users/farm24dec/.gradle/caches/transforms-2/files-2.1/2b3b3367439fecee56c28c9eeab7248a/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
+106    </application>
+107
+108</manifest>
